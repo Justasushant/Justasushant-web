@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   root: "./client",
-  base: "/", // ✅ ensures Vite links to JS/CSS correctly
+  base: "./", // ✅ ensures Vite links to JS/CSS correctly
   plugins: [react()],
   resolve: {
     alias: {
