@@ -3,9 +3,7 @@ module.exports = {
   darkMode: ["class"],
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}"
+    "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -44,6 +42,9 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      borderColor: {
+        border: "hsl(var(--border))", // ✅ This makes `border-border` valid
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -52,4 +53,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
+}
