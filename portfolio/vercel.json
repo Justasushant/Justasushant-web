@@ -1,11 +1,11 @@
 {
   "version": 2,
+  "builds": [
+    { "src": "client/package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+  ],
   "routes": [
-    // Serve static files normally
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/favicon.ico", "dest": "/favicon.ico" },
-
-    // Rewrite everything else to index.html (for SPA routing)
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
