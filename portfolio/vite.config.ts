@@ -1,19 +1,17 @@
-// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  root: path.resolve(__dirname, "client"),
-  build: {
-    outDir: path.resolve(__dirname, "dist/client"),
-    emptyOutDir: true,
-  },
+  root: "./client", // ✅ Let Vite know the HTML & src are inside /client
+  plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"),
-      "@shared": path.resolve(__dirname, "shared"),
+      "@": path.resolve(__dirname, "./client/src"), // ✅ shorthand imports
     },
   },
-  plugins: [react()],
+  build: {
+    outDir: "../dist", // ✅ output outside client folder
+    emptyOutDir: true,
+  },
 });
