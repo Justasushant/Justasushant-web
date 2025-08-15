@@ -40,9 +40,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <span className="text-2xl font-poppins font-bold bg-gradient-to-r from-flame to-flame-light bg-clip-text text-transparent">
-              Justasushant
-            </span>
+            <img 
+              src="https://i.ibb.co/SXRMRpkJ/Pheonix-logo-png.png" 
+              alt="Phoenix Logo" 
+              className="h-10 w-auto"
+            />
           </div>
 
           {/* Desktop Pill Navigation */}
