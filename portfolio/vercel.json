@@ -1,11 +1,13 @@
 {
   "version": 2,
   "builds": [
-    { "src": "client/package.json", "use": "@vercel/static-build" },
-    { "src": "server/index.ts", "use": "@vercel/node" }
+    {
+      "src": "portfolio/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "portfolio/dist" }
+    }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/server/index.js" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
