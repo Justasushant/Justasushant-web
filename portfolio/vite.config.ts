@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  root: "./client",
-  base: "./", // ✅ ensures Vite links to JS/CSS correctly
+  root: "./client",       // client folder contains index.html
+  base: "./",             // relative paths so JS/CSS load correctly
   plugins: [react()],
   resolve: {
     alias: {
@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "../dist",
+    outDir: "../dist",     // build output goes to dist/
     emptyOutDir: true,
   },
 });
