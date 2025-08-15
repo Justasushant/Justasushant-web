@@ -1,6 +1,11 @@
 {
   "version": 2,
   "routes": [
+    // Serve static files normally
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
+
+    // Rewrite everything else to index.html (for SPA routing)
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
