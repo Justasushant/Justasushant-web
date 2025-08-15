@@ -13,7 +13,10 @@ export default defineConfig({
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist"),
+    outDir: path.resolve(__dirname, "dist", "client"), // keep frontend build separate from backend
     emptyOutDir: true,
+  },
+  server: {
+    historyApiFallback: true, // ensures SPA routing works in dev
   },
 });
