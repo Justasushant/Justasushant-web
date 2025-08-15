@@ -1,0 +1,40 @@
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --muted: #a1a1aa;
+  --accent: #ff6a00;
+}
+
+* { box-sizing: border-box }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+a { color: var(--fg) }
+
+.button {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.8rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.section {
+  padding: 64px 24px;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
