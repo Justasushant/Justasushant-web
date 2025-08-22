@@ -32,6 +32,17 @@ export default function ProjectsSection() {
       tech: ["React", "Node.js", "Stripe", "MongoDB"],
       icon: "fas fa-mobile-alt",
       link: "https://shreeshyammobile.com"
+    },
+    {
+      id: 4,
+      title: "Coneiz",
+      description: "Parent company platform providing comprehensive business solutions",
+      status: "Currently active",
+      statusColor: "bg-green-500/20 text-green-400 border-green-500/30",
+      features: ["Business Solutions", "Platform Management", "Client Services", "Digital Solutions"],
+      tech: ["React", "Node.js", "PostgreSQL", "AWS"],
+      icon: "fas fa-building",
+      link: "https://coneiz.com"
     }
   ];
 

@@ -1,8 +1,8 @@
 
-import { RotatingText } from "./rotating-text";
+import Typewriter from "./typewriter";
 
 export default function HeroSection() {
-  const skills = ["Web Developer (Frontend)", "Python Developer"];
+  const skills = ["Python Developer", "Web Developer"];
 
   const handleDownloadCV = () => {
     // In a real application, this would trigger a download of the CV
@@ -26,7 +26,7 @@ export default function HeroSection() {
             </h1>
             <div className="text-xl sm:text-2xl lg:text-3xl font-poppins font-semibold h-16">
               <span className="text-white">And I'm a </span>
-              <RotatingText texts={skills} />
+              <Typewriter texts={skills} />
             </div>
           </div>
           
@@ -38,11 +38,11 @@ export default function HeroSection() {
           {/* Social Media Links */}
           <div className="flex justify-center lg:justify-start space-x-4 pt-4">
             <a 
-              href="https://discord.com" 
+              href="https://discord.com/users/1054399503052050512" 
               target="_blank" 
               rel="noopener noreferrer"
               className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
-              aria-label="Connect with me on Discord"
+              aria-label="Connect with me on Discord - Justasushant"
             >
               <i className="fab fa-discord text-xl" aria-hidden="true"></i>
             </a>
@@ -56,9 +56,9 @@ export default function HeroSection() {
               <i className="fab fa-instagram text-xl" aria-hidden="true"></i>
             </a>
             <a 
-              href="mailto:contact@justasushant.dev" 
+              href="mailto:sushantsharma5128@gmail.com" 
               className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
-              aria-label="Send me an email at contact@justasushant.dev"
+              aria-label="Send me an email at sushantsharma5128@gmail.com"
             >
               <i className="fas fa-envelope text-xl" aria-hidden="true"></i>
             </a>
@@ -80,20 +80,18 @@ export default function HeroSection() {
         <div className="flex justify-center lg:justify-end">
           <div className="relative">
             {/* Profile Container */}
-            <div className="w-80 h-80 bg-gradient-to-br from-flame to-flame-light rounded-3xl shadow-2xl shadow-flame/20 flex items-center justify-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-black/90 rounded-3xl"></div>
-              <div className="relative z-10 flex flex-col items-center justify-center">
-                {/* Developer Icon */}
-                <div className="w-32 h-32 bg-gradient-to-br from-flame to-flame-light rounded-full flex items-center justify-center mb-6 shadow-2xl">
-                  <i className="fas fa-code text-white text-6xl"></i>
-                </div>
-                <h3 className="text-2xl font-poppins font-bold text-white mb-2">Justasushant</h3>
-                <p className="text-flame text-lg font-medium">Frontend Developer</p>
-                <div className="flex space-x-2 mt-4">
-                  <div className="w-2 h-2 bg-flame rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-flame rounded-full animate-pulse delay-100"></div>
-                  <div className="w-2 h-2 bg-flame rounded-full animate-pulse delay-200"></div>
-                </div>
+            <div className="w-80 h-80 rounded-3xl shadow-2xl shadow-flame/20 flex items-center justify-center relative overflow-hidden group">
+              {/* Background layers with flame colors */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/80 to-red-600/80 rounded-3xl"></div>
+              <div className="absolute inset-2 bg-gradient-to-br from-flame/60 to-orange-700/60 rounded-3xl"></div>
+              
+              {/* Profile Image */}
+              <div className="relative z-10 w-72 h-72 rounded-3xl overflow-hidden">
+                <img 
+                  src="https://i.postimg.cc/kgbJNQZD/cartoon-image.png" 
+                  alt="Justasushant Profile"
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
               
               {/* Animated Border */}

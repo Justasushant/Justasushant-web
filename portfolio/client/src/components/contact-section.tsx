@@ -1,11 +1,18 @@
+import React from 'react';
 
-export default function ContactSection() {
+function ContactSection() {
   const contactMethods = [
+    {
+      icon: "fas fa-envelope",
+      title: "Email",
+      value: "sushantsharma5128@gmail.com",
+      link: "mailto:sushantsharma5128@gmail.com"
+    },
     {
       icon: "fab fa-discord",
       title: "Discord",
-      value: "justasushant#1234",
-      link: "https://discord.com"
+      value: "Justasushant",
+      link: "https://discord.com/users/1054399503052050512"
     },
     {
       icon: "fab fa-instagram", 
@@ -14,10 +21,25 @@ export default function ContactSection() {
       link: "https://instagram.com/justasushant"
     },
     {
-      icon: "fas fa-envelope",
-      title: "Email", 
-      value: "contact@justasushant.dev",
-      link: "mailto:contact@justasushant.dev"
+      icon: "fas fa-user-astronaut",
+      title: "Profile",
+      value: "justasushant",
+      link: "/profile"
+    }
+  ];
+
+  const projects = [
+    {
+      name: "Portfolio Website",
+      description: "A dynamic personal portfolio showcasing my skills and projects.",
+      link: "https://justasushant.dev",
+      technologies: ["React", "Tailwind CSS", "Framer Motion"]
+    },
+    {
+      name: "Coneiz",
+      description: "Parent company website, showcasing services and solutions.",
+      link: "https://coneiz.com",
+      technologies: ["Next.js", "Tailwind CSS", "Contentful"]
     }
   ];
 
@@ -25,19 +47,20 @@ export default function ContactSection() {
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-1/2 w-96 h-96 bg-flame/20 rounded-full blur-3xl transform -translate-x-1/2"></div>
+        <div className="absolute top-0 left-1/2 w-96 h-96 bg-flame rounded-full blur-3xl transform -translate-x-1/2" style={{ opacity: '0.4' }}></div>
+        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-reddish-orange rounded-full blur-3xl transform -translate-x-1/2" style={{ opacity: '0.3' }}></div>
       </div>
-      
+
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6">
           Get In <span className="bg-gradient-to-r from-flame to-flame-light bg-clip-text text-transparent">Touch</span>
         </h2>
-        
+
         <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
           Ready to bring your ideas to life? Let's collaborate and create something amazing together. 
           I'm always excited to work on new and challenging projects.
         </p>
-        
+
         {/* Contact Methods */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {contactMethods.map((method, index) => (
@@ -61,9 +84,40 @@ export default function ContactSection() {
             </a>
           ))}
         </div>
-        
+
+        {/* Projects Section */}
+        <div className="mt-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6 text-center">
+            Featured <span className="bg-gradient-to-r from-flame to-flame-light bg-clip-text text-transparent">Projects</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-flame/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-flame/10 text-left">
+                <h3 className="text-2xl font-poppins font-bold mb-4 text-flame">{project.name}</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span key={techIndex} className="bg-gray-800/70 text-gray-400 px-3 py-1 rounded-full text-sm font-medium border border-gray-700/50">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-flame font-semibold hover:underline flex items-center group"
+                >
+                  View Project 
+                  <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-flame/10 to-flame-light/10 rounded-2xl p-8 border border-flame/20">
+        <div className="bg-gradient-to-r from-flame/10 to-flame-light/10 rounded-2xl p-8 border border-flame/20 mt-20">
           <h3 className="text-2xl font-poppins font-bold mb-4">
             Let's Build Something <span className="text-flame">Amazing</span>
           </h3>
