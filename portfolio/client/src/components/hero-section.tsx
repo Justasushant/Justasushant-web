@@ -31,8 +31,8 @@ export default function HeroSection() {
           </div>
           
           <p className="text-gray-300 text-lg max-w-lg mx-auto lg:mx-0 animate-fade-in-delay">
-            Passionate developer creating innovative digital solutions with modern technologies. 
-            Specializing in web development, Python programming, and creative design.
+            Passionate frontend developer creating beautiful, responsive web applications with modern technologies. 
+            Specializing in React, TypeScript, and user experience design.
           </p>
           
           {/* Social Media Links */}
@@ -42,22 +42,25 @@ export default function HeroSection() {
               target="_blank" 
               rel="noopener noreferrer"
               className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
+              aria-label="Connect with me on Discord"
             >
-              <i className="fab fa-discord text-xl"></i>
+              <i className="fab fa-discord text-xl" aria-hidden="true"></i>
             </a>
             <a 
               href="https://instagram.com/justasushant" 
               target="_blank" 
               rel="noopener noreferrer"
               className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
+              aria-label="Follow me on Instagram @justasushant"
             >
-              <i className="fab fa-instagram text-xl"></i>
+              <i className="fab fa-instagram text-xl" aria-hidden="true"></i>
             </a>
             <a 
               href="mailto:contact@justasushant.dev" 
               className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
+              aria-label="Send me an email at contact@justasushant.dev"
             >
-              <i className="fas fa-envelope text-xl"></i>
+              <i className="fas fa-envelope text-xl" aria-hidden="true"></i>
             </a>
           </div>
           
@@ -73,19 +76,24 @@ export default function HeroSection() {
           </div>
         </div>
         
-        {/* Right Content - Profile Image */}
+        {/* Right Content - Profile Area */}
         <div className="flex justify-center lg:justify-end">
           <div className="relative">
-            {/* Logo Container */}
+            {/* Profile Container */}
             <div className="w-80 h-80 bg-gradient-to-br from-flame to-flame-light rounded-3xl shadow-2xl shadow-flame/20 flex items-center justify-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-black/90 rounded-3xl"></div>
               <div className="relative z-10 flex flex-col items-center justify-center">
-                <img 
-                  src="https://i.ibb.co/7xKhBDk/image-1751973541905.png" 
-                  alt="Justasushant Logo" 
-                  className="w-48 h-48 object-contain filter drop-shadow-2xl"
-                />
-                <p className="text-gray-400 text-sm mt-4 font-medium">Justasushant</p>
+                {/* Developer Icon */}
+                <div className="w-32 h-32 bg-gradient-to-br from-flame to-flame-light rounded-full flex items-center justify-center mb-6 shadow-2xl">
+                  <i className="fas fa-code text-white text-6xl"></i>
+                </div>
+                <h3 className="text-2xl font-poppins font-bold text-white mb-2">Justasushant</h3>
+                <p className="text-flame text-lg font-medium">Frontend Developer</p>
+                <div className="flex space-x-2 mt-4">
+                  <div className="w-2 h-2 bg-flame rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-flame rounded-full animate-pulse delay-100"></div>
+                  <div className="w-2 h-2 bg-flame rounded-full animate-pulse delay-200"></div>
+                </div>
               </div>
               
               {/* Animated Border */}

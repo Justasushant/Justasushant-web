@@ -61,8 +61,8 @@ export default function ProjectsSection() {
             >
               {/* Project Header */}
               <div className="flex items-start justify-between mb-4">
-                <div className="w-12 h-12 bg-flame/20 rounded-xl flex items-center justify-center group-hover:bg-flame/30 transition-colors">
-                  <i className={`${project.icon} text-xl text-flame`}></i>
+                <div className="w-12 h-12 bg-flame/20 rounded-xl flex items-center justify-center group-hover:bg-flame/30 transition-colors" role="img" aria-label={`${project.title} project icon`}>
+                  <i className={`${project.icon} text-xl text-flame`} aria-hidden="true"></i>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium border ${project.statusColor}`}>
                   {project.status}

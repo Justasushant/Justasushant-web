@@ -40,11 +40,12 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src="https://i.ibb.co/SXRMRpkJ/Pheonix-logo-png.png" 
-              alt="Phoenix Logo" 
-              className="h-10 w-auto"
-            />
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-br from-flame to-flame-light rounded-lg flex items-center justify-center">
+                <i className="fas fa-fire text-white text-lg" aria-label="Justasushant Portfolio Logo"></i>
+              </div>
+              <span className="font-poppins font-bold text-white text-lg hidden sm:block">Justasushant</span>
+            </div>
           </div>
 
           {/* Desktop Pill Navigation */}
@@ -65,6 +66,8 @@ export default function Navigation() {
                         ? "text-white bg-flame shadow-lg shadow-flame/25"
                         : "text-gray-300 hover:text-white hover:bg-gray-800/50"
                     }`}
+                    aria-label={`Navigate to ${item.label} section`}
+                    aria-current={activeSection === item.id ? "page" : undefined}
                   >
                     {item.label}
                     {activeSection === item.id && (

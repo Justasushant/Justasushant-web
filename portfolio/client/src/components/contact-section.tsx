@@ -49,8 +49,8 @@ export default function ContactSection() {
               className="group bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-flame/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-flame/10"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-flame/20 to-flame-light/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-flame/30 group-hover:to-flame-light/30 transition-all duration-300">
-                <i className={`${method.icon} text-2xl text-flame group-hover:scale-110 transition-transform duration-300`}></i>
+              <div className="w-16 h-16 bg-gradient-to-br from-flame/20 to-flame-light/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-flame/30 group-hover:to-flame-light/30 transition-all duration-300" role="img" aria-label={`${method.title} contact method`}>
+                <i className={`${method.icon} text-2xl text-flame group-hover:scale-110 transition-transform duration-300`} aria-hidden="true"></i>
               </div>
               <h3 className="text-xl font-poppins font-bold mb-3 group-hover:text-flame transition-colors">
                 {method.title}

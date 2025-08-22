@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://justasushant.dev/sitemap.xml
+
+# Important pages
+Allow: /
+Allow: /#about
+Allow: /#projects 
+Allow: /#contact
+
+# Block any admin or private directories (if they exist)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.env
+Disallow: /node_modules/
+
+# Allow common web resources
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
