@@ -44,7 +44,7 @@ export default function Navigation() {
               <div className="w-10 h-10 bg-gradient-to-br from-flame to-flame-light rounded-lg flex items-center justify-center">
                 <i className="fas fa-fire text-white text-lg" aria-label="Justasushant Portfolio Logo"></i>
               </div>
-              <span className="font-poppins font-bold text-white text-lg hidden sm:block">Justasushant</span>
+              <span className="font-poppins font-bold text-white text-lg hidden sm:block">Sushant</span>
             </div>
           </div>
 

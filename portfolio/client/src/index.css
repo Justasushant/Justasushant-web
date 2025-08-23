@@ -98,6 +98,35 @@ body {
   }
 }
 
+
+/* Circular ring animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse-slow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin-reverse-slow 15s linear infinite;
+}
+
+
 @keyframes glow {
   0%, 100% {
     box-shadow: 0 0 20px rgba(255, 87, 34, 0.3);

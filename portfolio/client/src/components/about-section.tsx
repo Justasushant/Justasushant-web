@@ -77,8 +77,8 @@ export default function AboutSection() {
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8">
           {[
-            { number: "50+", label: "Projects Completed" },
-            { number: "2+", label: "Years Experience" },
+            { number: "4+", label: "Projects Completed" },
+            { number: "5+", label: "Clients Served" },
             { number: "100%", label: "Client Satisfaction" }
           ].map((stat, index) => (
             <div key={index} className="text-center">
