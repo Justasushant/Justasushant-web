@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ContactSection() {
+  const [showPlatformModal, setShowPlatformModal] = useState(false);
   const contactMethods = [
     {
       icon: "fas fa-envelope",
@@ -22,8 +23,6 @@ function ContactSection() {
     },
   ];
 
-  
-
   return (
     <section
       id="contact"
@@ -43,10 +42,7 @@ function ContactSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6">
-          Get In{" "}
-          <span className="bg-gradient-to-r from-flame to-flame-light bg-clip-text text-transparent">
-            Touch
-          </span>
+          Get In Touch
         </h2>
 
         <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -99,11 +95,88 @@ function ContactSection() {
             Have a project in mind? I'd love to hear about it and discuss how we
             can make it a reality.
           </p>
-          <button className="flame-gradient text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105 relative overflow-hidden group">
-            <span className="relative z-10">Start a Conversation</span>
+          <button
+            onClick={() => setShowPlatformModal(true)}
+            className="flame-gradient text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300 hover:scale-105 relative overflow-hidden group"
+          >
+            <span className="relative z-10">Get In Touch</span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
           </button>
         </div>
+
+        {/* Platform Selection Modal */}
+        {showPlatformModal && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-gray-900/95 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 max-w-md w-full relative">
+              <button
+                onClick={() => setShowPlatformModal(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              >
+                <i className="fas fa-times text-xl"></i>
+              </button>
+
+              <h3 className="text-2xl font-poppins font-bold mb-6 text-center">
+                Choose Your <span className="text-flame">Platform</span>
+              </h3>
+
+              <div className="space-y-4">
+                <a
+                  href="mailto:sushantsharma5128@gmail.com"
+                  className="w-full bg-gray-800/50 hover:bg-flame/20 border border-gray-700/50 hover:border-flame/30 rounded-xl p-4 flex items-center space-x-4 transition-all duration-300 group"
+                  onClick={() => setShowPlatformModal(false)}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-flame/20 to-flame-light/20 rounded-xl flex items-center justify-center group-hover:from-flame/30 group-hover:to-flame-light/30">
+                    <i className="fas fa-envelope text-flame text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white group-hover:text-flame">
+                      Email
+                    </h4>
+                    <p className="text-gray-400 text-sm">
+                      sushantsharma5128@gmail.com
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://instagram.com/justasushant"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-gray-800/50 hover:bg-flame/20 border border-gray-700/50 hover:border-flame/30 rounded-xl p-4 flex items-center space-x-4 transition-all duration-300 group"
+                  onClick={() => setShowPlatformModal(false)}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-flame/20 to-flame-light/20 rounded-xl flex items-center justify-center group-hover:from-flame/30 group-hover:to-flame-light/30">
+                    <i className="fab fa-instagram text-flame text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white group-hover:text-flame">
+                      Instagram
+                    </h4>
+                    <p className="text-gray-400 text-sm">@justasushant</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://discord.com/users/1054399503052050512"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-gray-800/50 hover:bg-flame/20 border border-gray-700/50 hover:border-flame/30 rounded-xl p-4 flex items-center space-x-4 transition-all duration-300 group"
+                  onClick={() => setShowPlatformModal(false)}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-flame/20 to-flame-light/20 rounded-xl flex items-center justify-center group-hover:from-flame/30 group-hover:to-flame-light/30">
+                    <i className="fab fa-discord text-flame text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white group-hover:text-flame">
+                      Discord
+                    </h4>
+                    <p className="text-gray-400 text-sm">Justasushant</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

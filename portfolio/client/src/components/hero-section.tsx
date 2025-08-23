@@ -55,6 +55,15 @@ export default function HeroSection() {
               <i className="fab fa-instagram text-xl" aria-hidden="true"></i>
             </a>
             <a 
+              href="https://github.com/Justasushant" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
+              aria-label="View my GitHub profile - Justasushant"
+            >
+              <i className="fab fa-github text-xl" aria-hidden="true"></i>
+            </a>
+            <a 
               href="mailto:sushantsharma5128@gmail.com" 
               className="social-btn w-12 h-12 bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-flame transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-flame/25"
               aria-label="Send me an email at sushantsharma5128@gmail.com"
@@ -78,21 +87,10 @@ export default function HeroSection() {
         {/* Right Content - Profile Area */}
         <div className="flex justify-center lg:justify-end">
           <div className="relative">
-            {/* Circular Ring Effects */}
-            <div className="absolute inset-0 animate-spin-slow">
-              <div className="w-96 h-96 rounded-full border-2 border-flame/30 border-dashed"></div>
-            </div>
-            <div className="absolute inset-4 animate-spin-reverse-slow">
-              <div className="w-88 h-88 rounded-full border border-flame-light/20 border-dotted"></div>
-            </div>
-            <div className="absolute inset-8">
-              <div className="w-80 h-80 rounded-full border border-flame/10"></div>
-            </div>
-
             {/* Profile Container */}
-            <div className="w-80 h-80 rounded-full flex items-center justify-center relative overflow-hidden group">
+            <div className="w-96 h-96 rounded-full flex items-center justify-center relative overflow-hidden group">
               {/* Profile Image */}
-              <div className="relative z-10 w-72 h-72 rounded-full overflow-hidden">
+              <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-flame/20">
                 <img 
                   src="https://i.postimg.cc/WpKWkCNx/cartoon-image-removebg-preview.png" 
                   alt="Sushant Profile"
@@ -100,11 +98,6 @@ export default function HeroSection() {
                 />
               </div>
             </div>
-
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-flame rounded-full animate-ping opacity-75"></div>
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-flame-light rounded-full animate-pulse"></div>
-            <div className="absolute top-1/2 -left-8 w-4 h-4 bg-flame/60 rounded-full animate-bounce delay-300"></div>
           </div>
         </div>
       </div>
