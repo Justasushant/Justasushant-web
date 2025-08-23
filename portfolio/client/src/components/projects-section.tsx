@@ -81,11 +81,11 @@ export default function ProjectsSection() {
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6">
-            Featured Projects
+            Sushant Sharma's Featured Projects
           </h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Here are some of the projects I've worked on, showcasing my skills
-            in full-stack development and creative problem-solving.
+            Here are some of the projects Sushant Sharma has worked on, showcasing expertise
+            in React, TypeScript, Python, full-stack development and creative problem-solving.
           </p>
         </div>
 

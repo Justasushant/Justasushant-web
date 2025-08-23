@@ -42,13 +42,13 @@ function ContactSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6">
-          Get In Touch
+          Contact Sushant Sharma
         </h2>
 
         <p className="text-gray-300 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-          Ready to bring your ideas to life? Let's collaborate and create
+          Ready to bring your ideas to life? Contact Sushant Sharma to collaborate and create
           something amazing together. I'm always excited to work on new and
-          challenging projects.
+          challenging React, TypeScript, and Python development projects.
         </p>
 
         {/* Contact Methods */}

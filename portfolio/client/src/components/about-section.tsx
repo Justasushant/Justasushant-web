@@ -37,13 +37,12 @@ export default function AboutSection() {
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6">
-            About Me
+            About Sushant Sharma
           </h2>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
-            I'm a passionate developer who loves creating innovative digital
-            solutions. With expertise in modern web technologies and a keen eye
-            for design, I transform ideas into powerful, user-friendly
-            applications that make a difference.
+            I'm Sushant Sharma, a passionate frontend developer who loves creating innovative digital
+            solutions. With expertise in React, TypeScript, Python, and modern web technologies, I have a keen eye
+            for design and transform ideas into powerful, user-friendly applications that make a real difference.
           </p>
         </div>
 

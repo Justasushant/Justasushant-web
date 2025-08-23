@@ -1,6 +1,8 @@
-import Typewriter from "./typewriter";
+import { memo, lazy, Suspense } from "react";
 
-export default function HeroSection() {
+const Typewriter = lazy(() => import("./typewriter"));
+
+const HeroSection = memo(() => {
   const skills = ["Web Developer", "UI/UX Designer"];
 
   const handleDownloadCV = () => {
@@ -21,17 +23,19 @@ export default function HeroSection() {
           <div className="space-y-2">
             <p className="text-flame text-lg font-medium animate-fade-in">Hello, It's Me</p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-poppins font-bold text-white animate-slide-up">
-              Sushant
+              Sushant Sharma
             </h1>
             <div className="text-xl sm:text-2xl lg:text-3xl font-poppins font-semibold h-16">
-              <span className="text-white">And I'm a </span>
-              <Typewriter texts={skills} />
+              <span className="text-white">Frontend Developer & </span>
+              <Suspense fallback={<span className="text-flame">Web Developer</span>}>
+                <Typewriter texts={skills} />
+              </Suspense>
             </div>
           </div>
 
           <p className="text-gray-300 text-lg max-w-lg mx-auto lg:mx-0 animate-fade-in-delay">
-            Passionate frontend developer creating beautiful, responsive web applications with modern technologies. 
-            Specializing in React, TypeScript, and user experience design.
+            Sushant Sharma - Passionate frontend developer creating beautiful, responsive web applications with modern technologies. 
+            Specializing in React, TypeScript, Python development, and exceptional user experience design.
           </p>
 
           {/* Social Media Links */}
@@ -103,4 +107,8 @@ export default function HeroSection() {
       </div>
     </section>
   );
-}
+});
+
+HeroSection.displayName = 'HeroSection';
+
+export default HeroSection;
