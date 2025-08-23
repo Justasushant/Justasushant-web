@@ -133,3 +133,5 @@ function ContactSection() {
     </section>
   );
 }
+
+export default ContactSection;
