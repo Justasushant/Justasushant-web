@@ -6,8 +6,8 @@ const HeroSection = memo(() => {
   const skills = ["Web Developer", "UI/UX Designer"];
 
   const handleDownloadCV = () => {
-    // In a real application, this would trigger a download of the CV
-    alert("CV download would be implemented here");
+    // This will trigger the download of the CV
+    window.open('/CV.pdf', '_blank');
   };
 
   return (
