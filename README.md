@@ -1,24 +1,24 @@
-<!-- Banner or background-style image -->
+<!-- Banner -->
 <p align="center">
   <img src="https://i.postimg.cc/hjszvxtk/PHEONIXBANNEr.png" width="100%" />
 </p>
 
-<h1 align="center" style="color:orange;">🔥 Hi, I'm <span style="color:#FF4500;">Justasushant</span> 🔥</h1>
+<h1 align="center" style="color:orange;">🔥 Hi, I'm <span style="color:#FF4500;">SUSHANT</span> 🔥</h1>
 <p align="center"><b>Web Designer • Creative Mind • Anime Fanatic 🌀</b></p>
 
 ---
 
-### 🔥 About Me
+## 🔥 About Me
 
-- 🎨 Passionate about **Web Designing**  
-- 🤝 Always up to **collaborate on exciting design projects**  
+- 🎨 Passionate about **Web Designing & Development**  
+- 🤝 Love collaborating on **exciting design & coding projects**  
 - 🌐 Exploring the infinite world of **UI/UX & front-end magic**
 
 ---
 
-### 🧪 Projects I've Built
+## 🧪 Projects I've Built
 
-#### 🌐 Web Development Projects
+### 🌐 Web Development Projects
 
 1. 🎯 **Spin Wheel, Redeem Code, Leaderboard, Economy & Withdrawal System**  
    🔗 [Desigamblers.in](https://desigamblers.in)  
@@ -26,23 +26,31 @@
 
 2. 🏆 **HomeyRewards — Full Website from Scratch**  
    🔗 [homeyrewards.pro](https://homeyrewards.pro)  
-   🛠️ Designed and developed the full frontend + backend systems.
+   🛠️ Designed and developed the complete frontend + backend systems.
+
+3. 📱 **ShreeshyamMobile — Ecommerce Website for Mobile Store**  
+   🔗 [shreeshyammobile.com](https://shreeshyammobile.com)  
+   🛒 Full ecommerce solution tailored for a retail mobile shop.
+
+4. 🏢 **Coneiz — Parent Company Website**  
+   🔗 [coneiz.com](https://coneiz.com)  
+   🌍 Built and designed a corporate-style website for the parent brand.
 
 ---
 
-#### 🤖 Discord Bot Project
+### 🤖 Discord Bot Project
 
-3. 🧙‍♂️ **AnimeSensei Bot — The Ultimate Anime Battle Bot**  
+5. 🧙‍♂️ **AnimeSensei Bot — The Ultimate Anime Battle Bot**  
    🚀 Features:
    - 🎴 1000+ summonable anime characters  
    - ⚔️ Turn-based battles (Pokétwo-style)  
    - 🧠 Custom logic, status effects, and evolution (Genin → Chunin)  
-   - 🧩 MongoDB, JSON, discord.py powered  
+   - 🧩 Powered by MongoDB, JSON, discord.py  
    📌 **Status:** Actively being developed!
 
 ---
 
-### 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=html,css,js,react,ai,firebase,python,mongodb,replit,github,vscode" />
@@ -50,15 +58,13 @@
 
 ---
 
-### 📫 Contact Me
+## 📫 Contact Me
 
-- 💬 Discord: `__phoenix5128`  
+- 💬 Discord: `justasushant`  
 - 🧠 Let’s collab, brainstorm, and build cool anime-inspired dev stuff!
 
 ---
 
-### ⚡ Fun Fact
+## ⚡ Fun Fact
 
 > *“I turn pixels into experiences and coffee into code ☕🖥️”*
-
----
