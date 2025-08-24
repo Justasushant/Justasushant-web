@@ -3,11 +3,11 @@ import { memo, lazy, Suspense } from "react";
 const Typewriter = lazy(() => import("./typewriter"));
 
 const HeroSection = memo(() => {
-  const skills = ["Web Developer", "Python Developer"];
+  const skills = ["Web Developer", "UI/UX Designer"];
 
   const handleDownloadCV = () => {
-    // This will trigger the download of the CV
-    window.open('/CV.pdf', '_blank');
+    // In a real application, this would trigger a download of the CV
+    alert("CV download would be implemented here");
   };
 
   return (
