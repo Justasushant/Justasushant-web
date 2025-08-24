@@ -61,6 +61,9 @@
 ## 📫 Contact Me
 
 - 💬 Discord: `justasushant`  
+- 📷 Insta: instagram.com/justasushant
+- 🌐 Website: sushantsharma.me
+- 📧 Email: contact@sushantsharma.me
 - 🧠 Let’s collab, brainstorm, and build cool anime-inspired dev stuff!
 
 ---
