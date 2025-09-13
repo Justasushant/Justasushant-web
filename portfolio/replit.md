@@ -103,6 +103,24 @@ This is a modern full-stack portfolio application built with React and Express, 
 
 ```
 Changelog:
+- September 13, 2025. Complete website transformation to dark theme with orange accents:
+  * Implemented professional dark theme with proper black backgrounds (#000000, #111111 surfaces)
+  * Replaced all blue accents with vibrant orange (#F97316) as secondary color
+  * Updated all CSS variables and Tailwind configuration for dark theme compatibility
+  * Fixed CSS variable collisions between custom styles and shadcn UI components
+  * Changed from grey tones to true black for better contrast and professional appearance
+  * Maintained full accessibility and contrast ratios with new color palette
+  * All pages now feature cohesive black theme with orange interactive elements
+- September 13, 2025. Complete website redesign transformation:
+  * Replaced boring black/grey theme with engaging professional blue color palette
+  * Implemented multi-page routing (/work, /about, /contact) replacing single-page scroll
+  * Created individual page components (Home, Work, About, Contact) with rich content
+  * Refactored navigation to use proper Link-based routing with active states
+  * Built Layout component for consistent page structure across all routes
+  * Added modern professional design elements (cards, gradients, smooth transitions)
+  * Fixed CV download functionality across all pages with correct "/CV.pdf" path
+  * Resolved DOM nesting warnings and ensured clean SPA navigation
+  * Added comprehensive CSS utility classes for consistent styling
 - July 08, 2025. Initial setup
 ```
 

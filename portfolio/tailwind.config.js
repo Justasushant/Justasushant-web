@@ -4,8 +4,7 @@ module.exports = {
   content: [
     "./client/index.html",
     "./client/src/**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./**/*.{js,ts,jsx,tsx,html}"
+    "./server/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -29,9 +28,6 @@ module.exports = {
         destructive: "hsl(var(--destructive))",
         "destructive-foreground": "hsl(var(--destructive-foreground))",
         ring: "hsl(var(--ring))",
-        flame: "hsl(var(--flame))",
-        "flame-light": "hsl(var(--flame-light))",
-        "flame-dark": "hsl(var(--flame-dark))",
       },
       borderRadius: {
         lg: "var(--radius)",
