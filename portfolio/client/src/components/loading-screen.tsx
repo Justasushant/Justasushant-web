@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function LoadingScreen() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-surface">
+    <div className="fixed inset-0 z-50 flex items-center justify-center" style={{backgroundColor: '#0F0F0F'}}>
       <div className="flex space-x-2">
         {[0, 1, 2, 3].map((index) => (
           <div

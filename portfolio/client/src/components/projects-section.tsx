@@ -1,10 +1,18 @@
+import { useState } from "react";
+import { Link } from "wouter";
+import ProjectModal from "./project-modal";
+
 export default function ProjectsSection() {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const projects = [
     {
       id: 1,
       title: "Desigambler.in",
       description:
         "Economy, spin & redeem, daily reward, redeem code coins system created",
+      longDescription: "Desigambler.in is a comprehensive gaming platform featuring a robust economy system with coin-based transactions, engaging spin and redeem mechanics, daily reward systems to keep users coming back, and flexible redeem code functionality. Built with modern web technologies to ensure smooth performance and user experience.",
       status: "Development Completed",
       statusColor: "bg-warning/20 text-warning border-warning/30",
       features: [
@@ -16,12 +24,14 @@ export default function ProjectsSection() {
       tech: ["React", "Node.js", "MongoDB", "Socket.io"],
       icon: "fas fa-coins",
       image: "https://i.postimg.cc/FsQ1sQF8/image.png",
+      videoFile: "/assets/Desigamblers.mp4",
     },
     {
       id: 2,
       title: "Homeyrewards.pro",
       description:
         "Created whole website including all features from first website",
+      longDescription: "Homeyrewards.pro is a complete rewards platform built from the ground up, featuring comprehensive user management systems, sophisticated reward mechanisms, and a powerful admin panel for seamless platform administration. This full-stack application demonstrates expertise in modern web development practices.",
       status: "Live & Running",
       statusColor: "bg-success/20 text-success border-success/30",
       features: [
@@ -34,11 +44,13 @@ export default function ProjectsSection() {
       icon: "fas fa-home",
       link: "https://homeyrewards.pro",
       image: "https://i.postimg.cc/15cX8Yft/image.png",
+      videoFile: "/assets/homey.mp4",
     },
     {
       id: 3,
       title: "Shreeshyammobile.com",
       description: "Mobile shopping website online ecommerce platform",
+      longDescription: "Shreeshyammobile.com is a feature-rich e-commerce platform specialized for mobile device sales. It includes comprehensive product catalogs, secure payment processing through Stripe integration, efficient order management systems, and responsive design optimized for all devices to provide the best shopping experience.",
       status: "Live & Running",
       statusColor: "bg-success/20 text-success border-success/30",
       features: [
@@ -51,12 +63,14 @@ export default function ProjectsSection() {
       icon: "fas fa-mobile-alt",
       link: "https://shreeshyammobile.com",
       image: "https://i.postimg.cc/LsyZnQQf/image.png",
+      videoFile: "/assets/ShreeShyamMobile.mp4",
     },
     {
       id: 4,
       title: "Coneiz",
       description:
         "Parent company platform providing comprehensive business solutions",
+      longDescription: "Coneiz serves as a comprehensive parent company platform designed to provide end-to-end business solutions. The platform features advanced client management systems, digital solution frameworks, and scalable architecture built with modern technologies to support growing business needs.",
       status: "Live & Running",
       statusColor: "bg-success/20 text-success border-success/30",
       features: [
@@ -69,6 +83,7 @@ export default function ProjectsSection() {
       icon: "fas fa-building",
       link: "https://coneiz.com",
       image: "https://i.postimg.cc/MTVxhvBT/image.png",
+      videoFile: "/assets/coneiz.mp4",
     },
   ];
 
@@ -97,8 +112,12 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-accent/30 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-accent/10"
+              className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-accent/30 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-accent/10 cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => {
+                setSelectedProject(project);
+                setIsModalOpen(true);
+              }}
             >
               {/* Project Image */}
               {project.image && (
@@ -174,22 +193,31 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Project Link */}
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-accent hover:text-accent-light transition-colors group/link"
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-2">
+                <Link
+                  href={`/work/${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                  className="btn-secondary text-sm px-4 py-2 w-full text-center"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <span className="text-sm font-medium">View Project</span>
-                  <i className="fas fa-external-link-alt text-xs group-hover/link:translate-x-1 transition-transform"></i>
-                </a>
-              )}
+                  View More Details
+                </Link>
+                <div className="flex items-center space-x-2 text-accent/60 group-hover:text-accent transition-colors">
+                  <span className="text-sm font-medium">Click card for quick preview</span>
+                  <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </div>
+              </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Project Modal */}
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </div>
     </section>
   );

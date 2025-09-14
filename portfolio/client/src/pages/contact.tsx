@@ -90,25 +90,25 @@ export default function Contact() {
                 href={method.link}
                 target={method.link.startsWith("http") ? "_blank" : undefined}
                 rel={method.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="card p-8 group hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                className="card p-4 sm:p-8 group hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 ${method.bgColor} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <i className={`${method.icon} text-lg sm:text-xl ${method.color}`} />
+                  <div className={`w-10 h-10 sm:w-14 sm:h-14 ${method.bgColor} rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+                    <i className={`${method.icon} text-base sm:text-xl ${method.color}`} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg sm:text-xl font-ranade font-bold text-text mb-2 group-hover:text-accent transition-colors">
+                  <div className="flex-1 min-w-0 overflow-hidden">
+                    <h3 className="text-base sm:text-xl font-ranade font-bold text-text mb-1 sm:mb-2 group-hover:text-accent transition-colors">
                       {method.title}
                     </h3>
-                    <p className="text-accent font-medium mb-2 break-all sm:break-normal">
+                    <p className="text-accent font-medium mb-1 sm:mb-2 text-xs sm:text-base break-all overflow-hidden">
                       {method.value}
                     </p>
-                    <p className="text-muted text-sm">
+                    <p className="text-muted text-xs sm:text-sm leading-relaxed">
                       {method.description}
                     </p>
                   </div>
-                  <i className="fas fa-arrow-right text-muted group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 hidden sm:block" />
+                  <i className="fas fa-arrow-right text-muted group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 hidden sm:block text-sm" />
                 </div>
               </a>
             ))}
@@ -146,7 +146,7 @@ export default function Contact() {
           {/* Platform Selection Modal */}
           {showPlatformModal && (
             <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-              <div className="bg-surface rounded-2xl p-8 border border-border max-w-md w-full relative shadow-2xl">
+              <div className="bg-surface rounded-2xl p-6 sm:p-8 border border-border max-w-md w-full relative shadow-2xl" style={{ backgroundColor: '#0F0F0F' }}>
                 <button
                   onClick={() => setShowPlatformModal(false)}
                   className="absolute top-4 right-4 text-muted hover:text-text transition-colors p-2"
@@ -165,17 +165,18 @@ export default function Contact() {
                       href={method.link}
                       target={method.link.startsWith("http") ? "_blank" : undefined}
                       rel={method.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="w-full bg-surface-2 hover:bg-accent-50 border border-border-light hover:border-accent/30 rounded-xl p-4 flex items-center space-x-4 transition-all duration-300 group"
+                      className="w-full bg-surface-2 hover:bg-accent-50 border border-border-light hover:border-accent/30 rounded-xl p-3 sm:p-4 flex items-center space-x-3 sm:space-x-4 transition-all duration-300 group"
                       onClick={() => setShowPlatformModal(false)}
+                      style={{ backgroundColor: '#1A1A1A' }}
                     >
-                      <div className={`w-12 h-12 ${method.bgColor} rounded-xl flex items-center justify-center`}>
-                        <i className={`${method.icon} text-lg ${method.color}`} />
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 ${method.bgColor} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                        <i className={`${method.icon} text-base sm:text-lg ${method.color}`} />
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-text group-hover:text-accent transition-colors">
+                      <div className="min-w-0 overflow-hidden">
+                        <h4 className="font-semibold text-text group-hover:text-accent transition-colors text-sm sm:text-base">
                           {method.title}
                         </h4>
-                        <p className="text-muted text-sm">
+                        <p className="text-muted text-xs sm:text-sm break-all">
                           {method.value}
                         </p>
                       </div>

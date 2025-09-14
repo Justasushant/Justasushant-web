@@ -7,14 +7,16 @@ import Home from "./pages/home";
 import Work from "./pages/work";
 import About from "./pages/about";
 import Contact from "./pages/contact";
+import ProjectDetail from "./pages/project-detail";
 import NotFound from "./pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/work" component={Work} />
       <Route path="/about" component={About} />
+      <Route path="/work" component={Work} />
+      <Route path="/work/:projectName" component={ProjectDetail} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
