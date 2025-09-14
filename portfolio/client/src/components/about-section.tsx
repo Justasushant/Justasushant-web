@@ -1,3 +1,6 @@
+import { calculateExperience } from "../lib/calculateExperience";
+import AnimatedCounter from "./animated-counter";
+
 export default function AboutSection() {
   const skills = [
     {
@@ -30,13 +33,13 @@ export default function AboutSection() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-flame/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-flame-light/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-light/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-ranade font-bold mb-6">
             About Sushant Sharma
           </h2>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -50,21 +53,21 @@ export default function AboutSection() {
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="group bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-flame/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-flame/10"
+              className="group bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-accent/30 transition-all duration-500 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div
-                className="w-16 h-16 bg-gradient-to-br from-flame/20 to-flame-light/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-flame/30 group-hover:to-flame-light/30 transition-all duration-300"
+                className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-accent/20 transition-all duration-300"
                 role="img"
                 aria-label={`${skill.title} icon`}
               >
                 <i
-                  className={`${skill.icon} text-2xl text-flame group-hover:scale-110 transition-transform duration-300`}
+                  className={`${skill.icon} text-2xl text-accent group-hover:scale-110 transition-transform duration-300`}
                   aria-hidden="true"
                 ></i>
               </div>
 
-              <h3 className="text-xl font-poppins font-bold mb-4 text-center group-hover:text-flame transition-colors">
+              <h3 className="text-xl font-ranade font-bold mb-4 text-center group-hover:text-accent transition-colors">
                 {skill.title}
               </h3>
 
@@ -77,7 +80,7 @@ export default function AboutSection() {
                 {skill.technologies.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1 bg-flame/10 text-flame text-xs font-medium rounded-full border border-flame/20 hover:bg-flame/20 transition-colors"
+                    className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full border border-accent/20 hover:bg-accent/20 transition-colors"
                   >
                     {tech}
                   </span>
@@ -88,15 +91,16 @@ export default function AboutSection() {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-4 gap-8">
           {[
-            { number: "4+", label: "Projects Completed" },
-            { number: "5+", label: "Clients Served" },
+            { number: calculateExperience(), label: calculateExperience().includes('month') ? "Experience in Months" : "Experience" },
+            { number: "7+", label: "Projects Completed" },
+            { number: "4+", label: "Clients Served" },
             { number: "100%", label: "Client Satisfaction" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-flame mb-2">
-                {stat.number}
+              <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">
+                <AnimatedCounter end={stat.number} />
               </div>
               <div className="text-gray-400 font-medium">{stat.label}</div>
             </div>

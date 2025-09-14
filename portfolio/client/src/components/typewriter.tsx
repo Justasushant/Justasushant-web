@@ -35,9 +35,9 @@ export default function Typewriter({ texts, className = "" }: TypewriterProps) {
   }, [currentTextIndex, currentCharIndex, isDeleting, texts]);
 
   return (
-    <span className={`${className} text-flame-gradient`}>
+    <span className={`${className} text-accent-gradient`}>
       {displayText}
-      <span className="typewriter-cursor text-flame">|</span>
+      <span className="typewriter-cursor text-accent">|</span>
     </span>
   );
 }

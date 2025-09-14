@@ -24,7 +24,7 @@ export function RotatingText({ texts, interval = 3000 }: RotatingTextProps) {
 
   return (
     <span 
-      className={`text-flame transition-all duration-300 ${
+      className={`text-accent transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
       }`}
     >
