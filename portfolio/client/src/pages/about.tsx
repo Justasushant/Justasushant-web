@@ -131,6 +131,80 @@ export default function About() {
               </div>
             </div>
           </div>
+
+          {/* Project Timeline */}
+          <div className="mt-20">
+            <h3 className="text-3xl sm:text-4xl font-ranade font-bold text-center mb-16 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Project Milestones
+            </h3>
+            <div className="relative max-w-5xl mx-auto px-4">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-accent via-accent-light to-accent hidden md:block"></div>
+              
+              {/* Timeline Items */}
+              <div className="space-y-12 md:space-y-16">
+                {/* Desigamblers */}
+                <div className="relative flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2 md:text-right md:pr-12">
+                    <div className="card p-6 border border-gray-700/30 hover:border-accent/30 transition-all duration-300 bg-gray-800/30 backdrop-blur-sm">
+                      <h4 className="text-2xl font-ranade font-bold text-white mb-2">Desigamblers</h4>
+                      <p className="text-accent font-semibold mb-3">May 2025</p>
+                      <p className="text-gray-300 text-sm">My first major project - a creative platform showcasing design and development skills.</p>
+                    </div>
+                  </div>
+                  <div className="relative z-10 flex items-center justify-center">
+                    <div className="w-6 h-6 bg-accent rounded-full border-4 border-background shadow-lg shadow-accent/50"></div>
+                  </div>
+                  <div className="md:w-1/2"></div>
+                </div>
+
+                {/* Homey */}
+                <div className="relative flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2"></div>
+                  <div className="relative z-10 flex items-center justify-center">
+                    <div className="w-6 h-6 bg-accent-light rounded-full border-4 border-background shadow-lg shadow-accent-light/50"></div>
+                  </div>
+                  <div className="md:w-1/2 md:pl-12">
+                    <div className="card p-6 border border-gray-700/30 hover:border-accent-light/30 transition-all duration-300 bg-gray-800/30 backdrop-blur-sm">
+                      <h4 className="text-2xl font-ranade font-bold text-white mb-2">Homey</h4>
+                      <p className="text-accent-light font-semibold mb-3">July 2025</p>
+                      <p className="text-gray-300 text-sm">A rewards platform connecting users with exclusive benefits and experiences.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ShreeShyamMobile */}
+                <div className="relative flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2 md:text-right md:pr-12">
+                    <div className="card p-6 border border-gray-700/30 hover:border-accent/30 transition-all duration-300 bg-gray-800/30 backdrop-blur-sm">
+                      <h4 className="text-2xl font-ranade font-bold text-white mb-2">ShreeShyamMobile</h4>
+                      <p className="text-accent font-semibold mb-3">July 2025</p>
+                      <p className="text-gray-300 text-sm">A mobile retail business website with modern e-commerce features.</p>
+                    </div>
+                  </div>
+                  <div className="relative z-10 flex items-center justify-center">
+                    <div className="w-6 h-6 bg-accent rounded-full border-4 border-background shadow-lg shadow-accent/50"></div>
+                  </div>
+                  <div className="md:w-1/2"></div>
+                </div>
+
+                {/* CONEIZ */}
+                <div className="relative flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2"></div>
+                  <div className="relative z-10 flex items-center justify-center">
+                    <div className="w-6 h-6 bg-accent-light rounded-full border-4 border-background shadow-lg shadow-accent-light/50 animate-pulse"></div>
+                  </div>
+                  <div className="md:w-1/2 md:pl-12">
+                    <div className="card p-6 border border-gray-700/30 hover:border-accent-light/30 transition-all duration-300 bg-gray-800/30 backdrop-blur-sm">
+                      <h4 className="text-2xl font-ranade font-bold text-white mb-2">CONEIZ</h4>
+                      <p className="text-accent-light font-semibold mb-3">September 2025</p>
+                      <p className="text-gray-300 text-sm">Latest project - an innovative platform pushing the boundaries of web development.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
