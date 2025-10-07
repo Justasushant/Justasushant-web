@@ -18,7 +18,7 @@ export default function Navigation() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="fixed w-full top-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800/50 hidden md:block">
+      <nav className="fixed w-full top-0 z-50 bg-black/30 backdrop-blur-xl border-b border-white/10 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -39,7 +39,7 @@ export default function Navigation() {
 
             {/* Desktop Navigation */}
             <div className="flex">
-              <div className="bg-gray-900/80 backdrop-blur-sm rounded-full px-2 py-2 border border-gray-700/50">
+              <div className="bg-white/5 backdrop-blur-md rounded-full px-2 py-2 border border-white/10 shadow-lg shadow-black/20">
                 <div className="flex space-x-1">
                   {navItems.map((item) => (
                     <Link
@@ -47,14 +47,11 @@ export default function Navigation() {
                       href={item.href}
                       className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         isActive(item.href)
-                          ? "text-black bg-orange-500 shadow-lg shadow-orange-500/25"
-                          : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+                          ? "text-white bg-white/20 shadow-lg shadow-black/20"
+                          : "text-gray-400 hover:text-white hover:bg-white/10"
                       }`}
                     >
                       {item.label}
-                      {isActive(item.href) && (
-                        <div className="absolute inset-0 rounded-full bg-orange-500/20 animate-pulse" />
-                      )}
                     </Link>
                   ))}
                 </div>
@@ -65,7 +62,7 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile Top Bar with Logo Only */}
-      <nav className="fixed w-full top-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800/50 md:hidden">
+      <nav className="fixed w-full top-0 z-50 bg-black/30 backdrop-blur-xl border-b border-white/10 md:hidden">
         <div className="px-4 py-3">
           <div className="flex justify-center">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
@@ -85,7 +82,7 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-t border-gray-800/50 md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-xl border-t border-white/10 md:hidden">
         <div className="grid grid-cols-4 py-2">
           {navItems.map((item) => (
             <Link
@@ -93,14 +90,14 @@ export default function Navigation() {
               href={item.href}
               className={`flex flex-col items-center py-2 px-1 transition-all duration-300 ${
                 isActive(item.href)
-                  ? "text-orange-500"
-                  : "text-gray-400 hover:text-white"
+                  ? "text-white"
+                  : "text-gray-400 hover:text-gray-200"
               }`}
             >
               <div className={`p-2 rounded-full transition-all duration-300 ${
                 isActive(item.href)
-                  ? "bg-orange-500/20"
-                  : "hover:bg-gray-800/50"
+                  ? "bg-white/20"
+                  : "hover:bg-white/10"
               }`}>
                 <i className={`${item.icon} text-lg`} />
               </div>

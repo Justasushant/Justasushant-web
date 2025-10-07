@@ -40,12 +40,11 @@ export default function Work() {
       title: "Homeyrewards.pro",
       description: "Created whole website including all features from first website",
       longDescription: "Homeyrewards.pro is a complete rewards platform built from the ground up, featuring comprehensive user management systems, sophisticated reward mechanisms, and a powerful admin panel for seamless platform administration. This full-stack application demonstrates expertise in modern web development practices.",
-      status: "Live & Running",
-      statusColor: "bg-success/20 text-success border-success/30",
+      status: "No Longer Active",
+      statusColor: "bg-gray-500/20 text-gray-400 border-gray-500/30",
       features: ["Full Stack Development", "User Management", "Reward System", "Admin Panel"],
       tech: ["React", "Express", "PostgreSQL", "Redis"],
       icon: "fas fa-home",
-      link: "https://homeyrewards.pro",
       image: "https://i.postimg.cc/15cX8Yft/image.png",
       videoFile: "/assets/homey.mp4",
     },
@@ -193,18 +192,22 @@ export default function Work() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary inline-flex items-center space-x-2 group/link"
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation();
+                      }}
                     >
                       <span>View Live Project</span>
                       <i className="fas fa-external-link-alt text-sm group-hover/link:translate-x-1 transition-transform" />
                     </a>
-                  )}</div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
       {isModalOpen && selectedProject && (
-        <ProjectModal project={selectedProject} onClose={handleCloseModal} />
+        <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={handleCloseModal} />
       )}
     </Layout>
   );

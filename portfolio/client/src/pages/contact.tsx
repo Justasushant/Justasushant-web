@@ -74,11 +74,12 @@ export default function Contact() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-ranade font-bold text-text mb-6">
-              Let's Connect
+              Let's Create Together
             </h1>
-            <p className="text-xl text-muted max-w-2xl mx-auto">
-              Ready to bring your ideas to life? I'd love to hear about your project and 
-              discuss how we can create something amazing together.
+            <p className="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+              Have a project in mind or just want to chat about web development? 
+              I'm always excited to collaborate on new ideas and bring creative visions to life. 
+              Let's connect and build something extraordinary.
             </p>
           </div>
 
@@ -115,28 +116,35 @@ export default function Contact() {
           </div>
 
           {/* CTA Section */}
-          <div className="card p-12 text-center bg-gradient-to-br from-accent-50 to-accent-100/50">
-            <div className="max-w-2xl mx-auto">
+          <div className="card p-12 text-center bg-gradient-to-br from-accent-50 to-accent-100/50 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-accent rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent-light rounded-full blur-3xl"></div>
+            </div>
+            <div className="max-w-2xl mx-auto relative z-10">
+              <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-rocket text-4xl text-accent" />
+              </div>
               <h2 className="text-3xl font-ranade font-bold text-text mb-4">
-                Ready to Start Your Project?
+                Ready to Start Your Journey?
               </h2>
-              <p className="text-lg text-muted mb-8">
-                Whether you need a new website, web application, or want to improve 
-                an existing project, I'm here to help bring your vision to life.
+              <p className="text-lg text-muted mb-8 leading-relaxed">
+                Whether you need a stunning website, a powerful web application, or innovative digital solutions, 
+                I'm here to transform your ideas into reality. Let's collaborate and create something exceptional.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={() => setShowPlatformModal(true)}
-                  className="btn-primary text-lg px-8 py-4"
+                  className="btn-primary text-lg px-8 py-4 group"
                 >
-                  <i className="fas fa-paper-plane mr-2" />
+                  <i className="fas fa-paper-plane mr-2 group-hover:translate-x-1 transition-transform" />
                   Get In Touch
                 </button>
                 <Link
                   href="/work"
-                  className="btn-secondary text-lg px-8 py-4"
+                  className="btn-secondary text-lg px-8 py-4 group"
                 >
-                  <i className="fas fa-eye mr-2" />
+                  <i className="fas fa-eye mr-2 group-hover:scale-110 transition-transform" />
                   View My Work
                 </Link>
               </div>

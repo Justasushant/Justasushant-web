@@ -44,8 +44,8 @@ export default function ProjectDetail() {
       description: "Created whole website including all features from first website",
       longDescription: "Homeyrewards.pro is a complete rewards platform built from the ground up, featuring comprehensive user management systems, sophisticated reward mechanisms, and a powerful admin panel for seamless platform administration. This full-stack application demonstrates expertise in modern web development practices.",
       detailedDescription: "Homeyrewards.pro stands as a testament to full-stack development expertise, built entirely from scratch to provide a comprehensive rewards ecosystem. The platform features an advanced user management system that handles registration, authentication, and profile management with sophisticated security measures. The reward system is designed to be flexible and scalable, allowing administrators to create various types of rewards and manage distribution efficiently. The admin panel provides complete control over platform operations, user management, and analytics, making it a powerful tool for business operations.",
-      status: "Live & Running",
-      statusColor: "bg-success/20 text-success border-success/30",
+      status: "No Longer Active",
+      statusColor: "bg-gray-500/20 text-gray-400 border-gray-500/30",
       features: [
         "Complete Full Stack Development",
         "Advanced User Management System",
@@ -58,11 +58,10 @@ export default function ProjectDetail() {
       ],
       tech: ["React", "Express", "PostgreSQL", "Redis", "JWT", "Chart.js"],
       icon: "fas fa-home",
-      link: "https://homeyrewards.pro",
       image: "https://i.postimg.cc/15cX8Yft/image.png",
       videoFile: "/assets/homey.mp4",
       challenges: "Creating a scalable reward system that could handle multiple reward types and user tiers.",
-      outcome: "Deployed a fully functional rewards platform serving active users with positive feedback."
+      outcome: "Successfully developed a fully functional rewards platform with comprehensive features."
     },
     {
       id: 3,
