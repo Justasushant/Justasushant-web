@@ -1,10 +1,8 @@
 import Layout from "../components/Layout";
-import { useState, useEffect } from "react";
-import LoadingScreen from "../components/loading-screen";
+import { useState } from "react";
 import { Link } from "wouter";
 
 export default function Contact() {
-  const [isLoading, setIsLoading] = useState(true);
   const [showPlatformModal, setShowPlatformModal] = useState(false);
 
   const contactMethods = [
@@ -54,18 +52,6 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
 
   return (
     <Layout>

@@ -1,25 +1,11 @@
 import Layout from "../components/Layout";
 import ProjectModal from "../components/project-modal";
-import { useState, useEffect } from "react";
-import LoadingScreen from "../components/loading-screen";
+import { useState } from "react";
 import { Link } from "wouter";
 
 export default function Work() {
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
 
   const projects = [
     {

@@ -3,21 +3,9 @@ import AnimatedCounter from "./animated-counter";
 
 export default function AboutSection() {
   const technologies = [
-    { name: "Python", icon: "fab fa-python", color: "text-[#3776AB]", bg: "bg-[#3776AB]/10" },
-    { name: "HTML5", icon: "fab fa-html5", color: "text-[#E34F26]", bg: "bg-[#E34F26]/10" },
-    { name: "CSS3", icon: "fab fa-css3-alt", color: "text-[#1572B6]", bg: "bg-[#1572B6]/10" },
-    { name: "JavaScript", icon: "fab fa-js-square", color: "text-[#F7DF1E]", bg: "bg-[#F7DF1E]/10" },
-    { name: "React", icon: "fab fa-react", color: "text-[#61DAFB]", bg: "bg-[#61DAFB]/10" },
-    { name: "Node.js", icon: "fab fa-node-js", color: "text-[#339933]", bg: "bg-[#339933]/10" },
-    { name: "Git", icon: "fab fa-git-alt", color: "text-[#F05032]", bg: "bg-[#F05032]/10" },
-    { name: "GitHub", icon: "fab fa-github", color: "text-[#E6EDF3]", bg: "bg-gray-800/30" },
-    { name: "VS Code", icon: "fas fa-code", color: "text-[#007ACC]", bg: "bg-[#007ACC]/10" },
-    { name: "Firebase", icon: "fas fa-fire", color: "text-[#FFCA28]", bg: "bg-[#FFCA28]/10" },
-    { name: "MongoDB", icon: "fas fa-leaf", color: "text-[#47A248]", bg: "bg-[#47A248]/10" },
-    { name: "PostgreSQL", icon: "fas fa-database", color: "text-[#336791]", bg: "bg-[#336791]/10" },
-    { name: "Docker", icon: "fab fa-docker", color: "text-[#2496ED]", bg: "bg-[#2496ED]/10" },
-    { name: "AWS", icon: "fab fa-aws", color: "text-[#FF9900]", bg: "bg-[#FF9900]/10" },
-    { name: "TypeScript", icon: "fab fa-js-square", color: "text-[#3178C6]", bg: "bg-[#3178C6]/10" },
+    "python", "html", "css", "js", "react", "nodejs", "tailwind",
+    "git", "github", "mongodb", "firebase", "figma", "illustrator",
+    "vscode", "replit", "vercel", "cursor", "chatgpt", "claude", "warp"
   ];
 
   return (
@@ -51,17 +39,22 @@ export default function AboutSection() {
           
           {/* Tech Logo Loop */}
           <div className="relative overflow-hidden py-12 w-full">
-            <div className="flex animate-scroll gap-12 sm:gap-16">
+            {/* Gradient overlays for fade effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-r from-[#0F0F0F] via-[#0F0F0F] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-l from-[#0F0F0F] via-[#0F0F0F] to-transparent z-10 pointer-events-none"></div>
+            
+            <div className="flex animate-scroll gap-8 sm:gap-12">
               {[...technologies, ...technologies].map((tech, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 group cursor-pointer flex flex-col items-center"
-                  title={tech.name}
+                  className="flex-shrink-0 group cursor-pointer flex items-center justify-center"
+                  title={tech}
                 >
-                  <i className={`${tech.icon} text-5xl sm:text-6xl ${tech.color} group-hover:scale-110 transition-all duration-300`} />
-                  <p className="text-center text-xs sm:text-sm text-gray-400 mt-3 font-medium group-hover:text-accent transition-colors">
-                    {tech.name}
-                  </p>
+                  <img 
+                    src={`https://go-skill-icons.vercel.app/api/icons?i=${tech}`}
+                    alt={tech}
+                    className="w-14 h-14 sm:w-16 sm:h-16 object-contain group-hover:scale-110 transition-all duration-300"
+                  />
                 </div>
               ))}
             </div>
