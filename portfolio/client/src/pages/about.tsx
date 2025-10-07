@@ -42,8 +42,8 @@ export default function About() {
             {/* Tech Logo Loop */}
             <div className="relative overflow-hidden py-16 w-full">
               {/* Gradient overlays for fade effect */}
-              <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-r from-[#0F0F0F] via-[#0F0F0F] to-transparent z-10 pointer-events-none"></div>
-              <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-40 bg-gradient-to-l from-[#0F0F0F] via-[#0F0F0F] to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute left-0 top-0 bottom-0 w-48 sm:w-64 md:w-80 bg-gradient-to-r from-background via-background to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-48 sm:w-64 md:w-80 bg-gradient-to-l from-background via-background to-transparent z-10 pointer-events-none"></div>
               
               <div className="flex animate-scroll gap-8 sm:gap-12">
                 {[...technologies, ...technologies].map((tech, index) => (
