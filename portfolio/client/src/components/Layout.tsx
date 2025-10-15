@@ -12,25 +12,43 @@ export default function Layout({ children }: LayoutProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Check if user has visited before
-    const loaded = sessionStorage.getItem('hasLoadedBefore');
+    // Check if user has visited before and when
+    const lastLoadTime = localStorage.getItem('lastLoadTime');
+    const now = Date.now();
+    const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+    const twoHours = 2 * oneHour; // 2 hours in milliseconds
     
-    if (!loaded) {
+    if (!lastLoadTime) {
+      // First time visiting
       setIsLoading(true);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        sessionStorage.setItem('hasLoadedBefore', 'true');
-        setHasLoadedBefore(true);
-      }, 1000);
-
-      return () => clearTimeout(timer);
     } else {
-      setHasLoadedBefore(true);
+      const timeSinceLastLoad = now - parseInt(lastLoadTime);
+      
+      // Random time between 1-2 hours
+      const minTime = oneHour;
+      const maxTime = twoHours;
+      
+      if (timeSinceLastLoad >= minTime && timeSinceLastLoad <= maxTime) {
+        // Show loading screen if it's been between 1-2 hours
+        setIsLoading(true);
+      } else if (timeSinceLastLoad > maxTime) {
+        // Definitely show if it's been more than 2 hours
+        setIsLoading(true);
+      } else {
+        // Less than 1 hour, skip loading screen
+        setHasLoadedBefore(true);
+      }
     }
   }, []);
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    localStorage.setItem('lastLoadTime', Date.now().toString());
+    setHasLoadedBefore(true);
+  };
+
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
   }
 
   return (

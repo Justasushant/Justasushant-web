@@ -1,10 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import ProjectModal from "./project-modal";
+import { motion } from "framer-motion";
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const projects = [
     {
@@ -89,6 +113,7 @@ export default function ProjectsSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/20 relative overflow-hidden"
     >
@@ -98,22 +123,40 @@ export default function ProjectsSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-ranade font-bold mb-6">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h2 
+            className="text-3xl sm:text-4xl lg:text-5xl font-ranade font-bold mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Featured Projects
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-gray-300 text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             Here are some of the projects Sushant Sharma has worked on, showcasing expertise
             in React, TypeScript, Python, full-stack development and creative problem-solving.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-accent/30 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-accent/10 cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-accent/30 transition-all duration-500 cursor-pointer"
+              initial={{ opacity: 0, y: 50 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+              whileHover={{ y: -12, scale: 1.02, boxShadow: "0 25px 50px -12px rgba(249, 115, 22, 0.25)" }}
               onClick={() => {
                 setSelectedProject(project);
                 setIsModalOpen(true);
@@ -133,82 +176,82 @@ export default function ProjectsSection() {
 
               <div className="p-6">
                 {/* Project Header */}
-                <div className="flex items-start justify-between mb-4"></div>
-                <div
-                  className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent/20 transition-colors"
-                  role="img"
-                  aria-label={`${project.title} project icon`}
-                >
-                  <i
-                    className={`${project.icon} text-xl text-accent`}
-                    aria-hidden="true"
-                  ></i>
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent/20 transition-colors"
+                    role="img"
+                    aria-label={`${project.title} project icon`}
+                  >
+                    <i
+                      className={`${project.icon} text-xl text-accent`}
+                      aria-hidden="true"
+                    ></i>
+                  </div>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium border ${project.statusColor}`}
+                  >
+                    {project.status}
+                  </span>
                 </div>
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-medium border ${project.statusColor}`}
-                >
-                  {project.status}
-                </span>
-              </div>
 
-              {/* Project Info */}
-              <h3 className="text-xl font-ranade font-bold mb-3 group-hover:text-accent transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                {project.description}
-              </p>
+                {/* Project Info */}
+                <h3 className="text-xl font-ranade font-bold mb-3 group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                  {project.description}
+                </p>
 
-              {/* Features */}
-              <div className="mb-4">
-                <h4 className="text-sm font-semibold text-gray-300 mb-2">
-                  Key Features:
-                </h4>
-                <div className="flex flex-wrap gap-1">
-                  {project.features.map((feature, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-1 bg-gray-800/50 text-xs text-gray-300 rounded-md"
-                    >
-                      {feature}
-                    </span>
-                  ))}
+                {/* Features */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-gray-300 mb-2">
+                    Key Features:
+                  </h4>
+                  <div className="flex flex-wrap gap-1">
+                    {project.features.map((feature, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 bg-gray-800/50 text-xs text-gray-300 rounded-md"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tech Stack */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-gray-300 mb-2">
+                    Tech Stack:
+                  </h4>
+                  <div className="flex flex-wrap gap-1">
+                    {project.tech.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 bg-accent/10 text-xs text-accent rounded-md border border-accent/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col gap-2">
+                  <Link
+                    href={`/work/${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
+                    className="btn-secondary text-sm px-4 py-2 w-full text-center"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    View More Details
+                  </Link>
+                  <div className="flex items-center space-x-2 text-accent/60 group-hover:text-accent transition-colors">
+                    <span className="text-sm font-medium">Click card for quick preview</span>
+                    <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                  </div>
                 </div>
               </div>
-
-              {/* Tech Stack */}
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold text-gray-300 mb-2">
-                  Tech Stack:
-                </h4>
-                <div className="flex flex-wrap gap-1">
-                  {project.tech.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2 py-1 bg-accent/10 text-xs text-accent rounded-md border border-accent/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-2">
-                <Link
-                  href={`/work/${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
-                  className="btn-secondary text-sm px-4 py-2 w-full text-center"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  View More Details
-                </Link>
-                <div className="flex items-center space-x-2 text-accent/60 group-hover:text-accent transition-colors">
-                  <span className="text-sm font-medium">Click card for quick preview</span>
-                  <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

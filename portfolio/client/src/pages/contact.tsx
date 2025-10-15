@@ -12,8 +12,8 @@ export default function Contact() {
       value: "contact@sushantsharma.me",
       link: "mailto:contact@sushantsharma.me",
       description: "Send me an email for professional inquiries",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
+      color: "text-blue-400",
+      bgColor: "bg-blue-500/10",
     },
     {
       icon: "fab fa-discord",
@@ -21,8 +21,8 @@ export default function Contact() {
       value: "Justasushant",
       link: "https://discord.com/users/1054399503052050512",
       description: "Quick chat and project discussions",
-      color: "text-indigo-600",
-      bgColor: "bg-indigo-50",
+      color: "text-indigo-400",
+      bgColor: "bg-indigo-500/10",
     },
     {
       icon: "fab fa-instagram",
@@ -30,8 +30,8 @@ export default function Contact() {
       value: "@justasushant",
       link: "https://instagram.com/justasushant",
       description: "Follow my creative journey",
-      color: "text-pink-600",
-      bgColor: "bg-pink-50",
+      color: "text-pink-400",
+      bgColor: "bg-pink-500/10",
     },
     {
       icon: "fab fa-github",
@@ -39,8 +39,8 @@ export default function Contact() {
       value: "@Justasushant",
       link: "https://github.com/Justasushant",
       description: "Check out my open source work",
-      color: "text-gray-700",
-      bgColor: "bg-gray-50",
+      color: "text-gray-300",
+      bgColor: "bg-gray-500/10",
     },
   ];
 
@@ -81,8 +81,8 @@ export default function Contact() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className={`w-10 h-10 sm:w-14 sm:h-14 ${method.bgColor} rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
-                    <i className={`${method.icon} text-base sm:text-xl ${method.color}`} />
+                  <div className="flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0 mt-1 sm:mt-2">
+                    <i className={`${method.icon} text-3xl sm:text-5xl ${method.color}`} />
                   </div>
                   <div className="flex-1 min-w-0 overflow-hidden">
                     <h3 className="text-base sm:text-xl font-ranade font-bold text-text mb-1 sm:mb-2 group-hover:text-accent transition-colors">

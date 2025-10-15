@@ -1,7 +1,9 @@
 import { Link, useLocation } from "wouter";
+import { useSound } from "../contexts/sound-context";
 
 export default function Navigation() {
   const [location] = useLocation();
+  const { playHoverSound, playClickSound } = useSound();
 
   const navItems = [
     { href: "/", label: "Home", icon: "fas fa-home" },
@@ -45,6 +47,8 @@ export default function Navigation() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      onMouseEnter={playHoverSound}
+                      onClick={playClickSound}
                       className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         isActive(item.href)
                           ? "text-white bg-white/20 shadow-lg shadow-black/20"
@@ -88,6 +92,8 @@ export default function Navigation() {
             <Link
               key={item.href}
               href={item.href}
+              onMouseEnter={playHoverSound}
+              onClick={playClickSound}
               className={`flex flex-col items-center py-2 px-1 transition-all duration-300 ${
                 isActive(item.href)
                   ? "text-white"
