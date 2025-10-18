@@ -1,15 +1,16 @@
 import { useEffect, useRef } from "react";
 
 const skills = [
-  { name: "Node.js", icon: "nodejs" },
-  { name: "Python", icon: "py" },
-  { name: "TypeScript", icon: "ts" },
   { name: "HTML", icon: "html" },
+  { name: "CSS", icon: "css" },
   { name: "JavaScript", icon: "js" },
   { name: "React", icon: "react" },
-  { name: "Next.js", icon: "nextjs" },
-  { name: "Tailwind CSS", icon: "tailwind" },
-  { name: "CSS", icon: "css" },
+  { name: "Adobe Illustrator", icon: "ai" },
+  { name: "Firebase", icon: "firebase" },
+  { name: "Python", icon: "py" },
+  { name: "MongoDB", icon: "mongodb" },
+  { name: "GitHub", icon: "github" },
+  { name: "VS Code", icon: "vscode" },
 ];
 
 const Skills = () => {
@@ -71,7 +72,7 @@ const Skills = () => {
                     className="w-20 h-20"
                   />
                 </div>
-                <span className="text-sm font-medium text-muted-foreground group-hover:text-sky-400 transition-colors font-mono">
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-accent transition-colors font-mono">
                   {skill.name}
                 </span>
               </div>

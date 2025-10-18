@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 199 89% 48%;
+    --accent: 16 100% 60%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,7 +34,7 @@ All colors MUST be HSL.
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 199 89% 48%;
+    --ring: 16 100% 60%;
 
     --radius: 0.75rem;
   }

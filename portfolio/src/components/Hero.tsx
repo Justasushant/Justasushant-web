@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import profileImage from "@/assets/profile.jpg";
 import heroBanner from "@/assets/hero-banner.jpg";
 
-const roles = ["Student", "Editor", "DevOps Enthusiast", "Freelancer"];
+const roles = ["Frontend & UX/UI", "Freelancer", "Student"];
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
@@ -51,9 +51,9 @@ const Hero = () => {
           />
           <div className="flex-1">
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-mono">
-              Hi, I'm <span className="text-foreground font-medium">Kartikey Tiwari</span>, also known as JustaKartik.
+              Hi, I'm <span className="text-foreground font-medium">Sushant Sharma</span>, also known as Pheonix/justasushant.
               <br />
-              I'm a passionate Full Stack Developer from Delhi, India.
+              I'm a passionate Web Designer & Developer turning pixels into experiences.
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const Hero = () => {
         {/* Title Section */}
         <div className="space-y-6">
           <h1 className="text-4xl md:text-7xl font-bold leading-tight">
-            Full Stack <span className="text-muted-foreground">&</span>
+            Web Designer <span className="text-muted-foreground">&</span>
             <br />
             <span className="inline-flex items-baseline">
               {displayText}
@@ -81,11 +81,11 @@ const Hero = () => {
           {/* Info Grid */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-8 border-t border-b border-border text-sm">
             <div className="flex flex-col gap-1">
-              <span className="text-foreground font-medium">Delhi, India</span>
-              <span className="text-muted-foreground text-xs">UTC+05:30</span>
+              <span className="text-foreground font-medium">India</span>
+              <span className="text-muted-foreground text-xs">Creative Mind & Anime Fanatic</span>
             </div>
-            <span className="flex items-center gap-2 text-sky-400 font-medium">
-              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+            <span className="flex items-center gap-2 text-accent font-medium">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               AVAILABLE FOR WORK
             </span>
           </div>

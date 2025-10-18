@@ -1,4 +1,4 @@
-import { Mail, Github, Twitter } from "lucide-react";
+import { Mail, Github, Twitter, Instagram } from "lucide-react";
 import profileImage from "@/assets/profile.jpg";
 
 const Footer = () => {
@@ -8,40 +8,40 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">Let's work together</h3>
-            <p className="text-muted-foreground">Get in touch for opportunities or just to say hi!</p>
+            <p className="text-muted-foreground font-mono">Get in touch for opportunities or just to say hi!</p>
           </div>
           
           <div className="flex flex-wrap gap-4">
             <a
-              href="mailto:contact@justakartik.com"
-              className="w-12 h-12 rounded-full bg-secondary hover:bg-sky-400 hover:text-background flex items-center justify-center transition-all hover:scale-110"
+              href="mailto:contact@sushantsharma.me"
+              className="w-12 h-12 rounded-full bg-secondary hover:bg-accent hover:text-background flex items-center justify-center transition-all hover:scale-110"
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />
             </a>
             <a
-              href="https://github.com/justakartik"
+              href="https://github.com/justasushant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-secondary hover:bg-sky-400 hover:text-background flex items-center justify-center transition-all hover:scale-110"
+              className="w-12 h-12 rounded-full bg-secondary hover:bg-accent hover:text-background flex items-center justify-center transition-all hover:scale-110"
               aria-label="GitHub"
             >
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://twitter.com/justakartik"
+              href="https://instagram.com/justasushant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-secondary hover:bg-sky-400 hover:text-background flex items-center justify-center transition-all hover:scale-110"
-              aria-label="Twitter"
+              className="w-12 h-12 rounded-full bg-secondary hover:bg-accent hover:text-background flex items-center justify-center transition-all hover:scale-110"
+              aria-label="Instagram"
             >
-              <Twitter className="w-5 h-5" />
+              <Instagram className="w-5 h-5" />
             </a>
             <a
-              href="https://discord.com/users/724533169964974112"
+              href="https://discord.com/users/justasushant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-secondary hover:bg-sky-400 hover:text-background flex items-center justify-center transition-all hover:scale-110"
+              className="w-12 h-12 rounded-full bg-secondary hover:bg-accent hover:text-background flex items-center justify-center transition-all hover:scale-110"
               aria-label="Discord"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,8 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2025 JustaKartik. All rights reserved.</p>
+          <p>© 2025 Sushant Sharma. All rights reserved.</p>
+          <p className="mt-2 italic font-mono">"Turning pixels into experiences and coffee into code ☕🖥️"</p>
         </div>
       </div>
     </footer>

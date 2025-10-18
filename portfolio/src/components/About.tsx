@@ -4,13 +4,12 @@ const About = () => {
       <div className="container mx-auto max-w-4xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center font-mono">About Me</h2>
         <p className="text-base md:text-xl text-muted-foreground leading-relaxed mb-6 font-mono">
-          I'm an 18-year-old developer from Delhi, India, with a passion for both frontend and backend development. 
-          As a science stream student, I've cultivated a deep interest in technology and how it can be harnessed to create impactful digital solutions.
+          Hi! I'm Sushant Sharma, a passionate Web Designer and Developer who loves turning creative ideas into reality. 
+          I'm deeply invested in the world of UI/UX design and front-end development, constantly exploring new ways to make the web more beautiful and functional.
         </p>
         <p className="text-base md:text-xl text-muted-foreground leading-relaxed font-mono">
-          My journey in tech began with a fascination for the inner workings of the internet. Over the years, I've developed a diverse skill set, 
-          ranging from programming languages and design tools to various technologies like MySQL, MongoDB, Linux, networking, and Docker. 
-          Currently, I'm working with RudraCloud, a hosting company I founded, and I'm excited to start a new journey with Coneiz.
+          I specialize in building interactive web experiences using HTML, CSS, JavaScript, and React. I also love collaborating on exciting design and coding projects. 
+          When I'm not coding, you'll find me immersed in anime or brainstorming the next big idea. Let's build something amazing together!
         </p>
       </div>
     </section>
