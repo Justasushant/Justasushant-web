@@ -1,46 +1,27 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import project1 from "@/assets/project1.jpg";
 import project2 from "@/assets/project2.jpg";
-import project3 from "@/assets/project3.jpg";
-import project4 from "@/assets/project4.jpg";
 
 const projects = [
   {
     id: 1,
-    title: "Desigamblers.in",
-    tools: "HTML, CSS, JavaScript, Full Stack",
-    tags: ["WEB DESIGN", "INTERACTIVE", "GAME FEATURES"],
+    title: "Audiflix",
+    tools: "React, Vite, Tailwind",
+    tags: ["AUDIO STREAMING", "UI", "VERCEL"],
     image: project1,
-    slug: "desigamblers",
-    link: "https://desigamblers.in",
+    slug: "audiflix",
+    repo: "https://github.com/Justasushant/Audiflix",
+    live: "https://audiflix.vercel.app",
   },
   {
     id: 2,
-    title: "HomeyRewards",
-    tools: "Full Stack, Frontend + Backend",
-    tags: ["WEB DEVELOPMENT", "DESIGN", "COMPLETE SOLUTION"],
+    title: "Animplex",
+    tools: "React, Vite, Tailwind",
+    tags: ["VIDEO STREAMING", "ANIME", "VERCEL"],
     image: project2,
-    slug: "homeyrewards",
-    link: "https://homeyrewards.pro",
-  },
-  {
-    id: 3,
-    title: "ShreeshyamMobile",
-    tools: "Ecommerce, Full Stack",
-    tags: ["ECOMMERCE", "RETAIL", "WEB DESIGN"],
-    image: project3,
-    slug: "shreeshyammobile",
-    link: "https://shreeshyammobile.com",
-  },
-  {
-    id: 4,
-    title: "Coneiz Corporate",
-    tools: "Web Design, Corporate",
-    tags: ["CORPORATE", "DESIGN", "BUSINESS"],
-    image: project4,
-    slug: "coneiz",
-    link: "https://coneiz.com",
+    slug: "animplex",
+    repo: "https://github.com/Justasushant/Animplex",
+    live: "https://animplex.vercel.app",
   },
 ];
 
@@ -48,7 +29,7 @@ const Projects = () => {
   return (
     <section id="work" className="py-20 px-6">
       <div className="container mx-auto max-w-7xl">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center font-mono">Clients</h2>
+  <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center font-mono">My projects</h2>
         
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
@@ -75,15 +56,24 @@ const Projects = () => {
               <div className="p-6 md:p-8 space-y-4">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors">
-                    {project.title}
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      {project.title}
+                    </a>
                   </h3>
-                  <Link
-                    to={`/project/${project.slug}`}
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex-shrink-0 text-muted-foreground hover:text-accent transition-all p-2 hover:bg-secondary rounded-lg hover:scale-110 flex items-center gap-1"
                   >
-                    <span className="text-xs font-mono hidden md:inline">View More</span>
+                    <span className="text-xs font-mono hidden md:inline">View on GitHub</span>
                     <ArrowRight className="w-5 h-5" />
-                  </Link>
+                  </a>
                 </div>
 
                 <p className="text-sm text-muted-foreground font-mono">{project.tools}</p>
@@ -97,6 +87,18 @@ const Projects = () => {
                       {tag}
                     </span>
                   ))}
+                </div>
+
+                {/* Live preview link */}
+                <div className="mt-2">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-mono text-accent hover:underline"
+                  >
+                    Live preview — {project.live.replace("https://", "")}
+                  </a>
                 </div>
               </div>
             </div>
