@@ -1,6 +1,4 @@
 import { ArrowRight } from "lucide-react";
-import project1 from "@/assets/project1.jpg";
-import project2 from "@/assets/project2.jpg";
 
 const projects = [
   {
@@ -8,7 +6,8 @@ const projects = [
     title: "Audiflix",
     tools: "React, Vite, Tailwind",
     tags: ["AUDIO STREAMING", "UI", "VERCEL"],
-    image: project1,
+    description:
+      "Audiflix is an audio streaming web app with playlist management, search, and a clean, responsive UI. Built with React and deployed on Vercel.",
     slug: "audiflix",
     repo: "https://github.com/Justasushant/Audiflix",
     live: "https://audiflix.vercel.app",
@@ -18,7 +17,8 @@ const projects = [
     title: "Animplex",
     tools: "React, Vite, Tailwind",
     tags: ["VIDEO STREAMING", "ANIME", "VERCEL"],
-    image: project2,
+    description:
+      "Animplex is a video streaming front-end focused on anime discovery and playback. It includes search, categories, and fast navigation—deployed on Vercel.",
     slug: "animplex",
     repo: "https://github.com/Justasushant/Animplex",
     live: "https://animplex.vercel.app",
@@ -41,18 +41,7 @@ const Projects = () => {
                 animationDelay: `${index * 150}ms`,
               }}
             >
-              {/* Image Container */}
-              <div className="relative h-[280px] md:h-[320px] overflow-hidden bg-secondary">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-
-              {/* Content */}
+              {/* Content (removed image — show description instead) */}
               <div className="p-6 md:p-8 space-y-4">
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="text-xl md:text-2xl font-bold group-hover:text-accent transition-colors">
@@ -75,8 +64,10 @@ const Projects = () => {
                     <ArrowRight className="w-5 h-5" />
                   </a>
                 </div>
-
                 <p className="text-sm text-muted-foreground font-mono">{project.tools}</p>
+
+                {/* Project description */}
+                <p className="text-base text-foreground leading-relaxed">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
@@ -90,7 +81,7 @@ const Projects = () => {
                 </div>
 
                 {/* Live preview link */}
-                <div className="mt-2">
+                <div className="mt-2 flex flex-col gap-2">
                   <a
                     href={project.live}
                     target="_blank"
@@ -98,6 +89,14 @@ const Projects = () => {
                     className="text-sm font-mono text-accent hover:underline"
                   >
                     Live preview — {project.live.replace("https://", "")}
+                  </a>
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-mono text-muted-foreground hover:underline"
+                  >
+                    Source — {project.repo.replace("https://", "")}
                   </a>
                 </div>
               </div>

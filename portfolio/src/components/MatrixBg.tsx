@@ -10,12 +10,14 @@ const MatrixBg = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
 
-    const columns = Math.floor(width / 14);
-    const drops: number[] = [];
-    for (let i = 0; i < columns; i++) drops[i] = Math.random() * height;
+  const columnWidth = (w: number) => (w <= 768 ? 18 : 14);
+  let cw = columnWidth(width);
+  let columns = Math.floor(width / cw);
+  const drops: number[] = [];
+  for (let i = 0; i < columns; i++) drops[i] = Math.random() * height;
 
     // choose random subsets of columns for orange and black effects
     const orangeCols = new Set<number>();
@@ -45,8 +47,8 @@ const MatrixBg = () => {
 
     let animationId: number;
 
-  // periodically reseed which columns are orange/black
-  const colsInterval = setInterval(() => seedCols(), 4000);
+    // periodically reseed which columns are orange/black
+    const colsInterval = setInterval(() => seedCols(), 4000);
 
     const draw = () => {
       if (!ctx) return;
@@ -56,9 +58,22 @@ const MatrixBg = () => {
   ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
       ctx.fillRect(0, 0, width, height);
 
-      ctx.font = "12px monospace";
+      const isMobile = width <= 768;
+      ctx.font = isMobile ? "10px monospace" : "12px monospace";
+
+
+      // find hero rect to avoid drawing over the hero banner (improves hero image visibility on mobile)
+      const heroEl = document.querySelector<HTMLElement>(".hero-banner");
+      const heroRect = heroEl ? heroEl.getBoundingClientRect() : null;
+
+      // adjust column width & speed for mobile
+      cw = columnWidth(width);
+      columns = Math.floor(width / cw);
 
       for (let i = 0; i < drops.length; i++) {
+        // if columns changed due to resize, ensure drops array length matches
+        if (i >= columns) break;
+
         // pick a single-character token
         const token = chars[Math.floor(Math.random() * chars.length)];
 
@@ -67,14 +82,29 @@ const MatrixBg = () => {
         if (orangeCols.has(i)) color = "#ff8a00"; // orange
         else if (blackCols.has(i)) color = "#000000"; // black (will blend into background)
 
+        const x = i * cw;
+        const y = drops[i];
+
+        // if the token would be drawn over the hero banner, skip drawing it
+        if (heroRect) {
+          if (x >= heroRect.left - 8 && x <= heroRect.right + 8 && y >= heroRect.top && y <= heroRect.bottom) {
+            // still advance the drop, but don't draw
+            if (drops[i] > height && Math.random() > 0.975) {
+              drops[i] = 0;
+            }
+            drops[i] += cw * (isMobile ? (0.2 + Math.random() * 0.3) : (0.5 + Math.random() * 0.8));
+            continue;
+          }
+        }
+
         ctx.fillStyle = color;
-        ctx.fillText(token, i * 14, drops[i]);
+        ctx.fillText(token, x, y);
 
         if (drops[i] > height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        drops[i] += 14 * (0.5 + Math.random() * 0.8);
+        drops[i] += cw * (isMobile ? (0.2 + Math.random() * 0.3) : (0.5 + Math.random() * 0.8));
       }
 
       animationId = requestAnimationFrame(draw);
@@ -83,6 +113,18 @@ const MatrixBg = () => {
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+
+      // recalc column width/columns and ensure drops array matches new column count
+      cw = columnWidth(width);
+      const newColumns = Math.floor(width / cw);
+      if (newColumns > columns) {
+        for (let i = columns; i < newColumns; i++) drops[i] = Math.random() * height;
+      } else if (newColumns < columns) {
+        drops.splice(newColumns);
+      }
+      columns = newColumns;
+      // reseed orange/black columns after resize
+      seedCols();
     };
 
   window.addEventListener("resize", handleResize);

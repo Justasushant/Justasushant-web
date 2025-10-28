@@ -59,7 +59,7 @@ const Hero = () => {
         </div>
 
         {/* Hero Banner */}
-        <div className="relative mb-16 overflow-hidden rounded-2xl animate-scale-in">
+        <div className="hero-banner relative mb-16 overflow-hidden rounded-2xl animate-scale-in">
           <img 
             src={heroBanner} 
             alt="Hero banner" 
@@ -70,7 +70,7 @@ const Hero = () => {
         {/* Title Section */}
         <div className="space-y-6">
           <h1 className="text-4xl md:text-7xl font-bold leading-tight">
-            Web Designer <span className="text-muted-foreground">&</span>
+            Web Developer <span className="text-muted-foreground">&</span>
             <br />
             <span className="inline-flex items-baseline">
               {displayText}
