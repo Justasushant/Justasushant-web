@@ -17,6 +17,18 @@
 
 ---
 
+## Work & Experience
+
+- Worked with **Sarcaster** to design and develop a high-conversion workshop website  
+  🌐 https://sarcaster.in  
+  📺 https://www.youtube.com/@sarcaaster  
+
+- Built multiple **client websites and digital platforms** focused on performance and UI/UX  
+
+- Delivered production-ready solutions for **businesses, creators, and agencies**
+
+---
+
 ## Tech Stack
 
 <p align="center">
@@ -26,6 +38,14 @@
 <p align="center">
   <b>AI Tools:</b> Claude • ChatGPT • GitHub Copilot
 </p>
+
+---
+
+## What I Build
+
+- Modern **SaaS dashboards and web applications**
+- High-converting **landing pages and marketing websites**
+- Scalable **frontend architectures using React / Next.js**
 
 ---
 
@@ -40,6 +60,6 @@
 
 ## Focus
 
-- Building **modern SaaS interfaces**
-- Developing **client-focused web solutions**
-- Improving **development speed and code quality using AI tools**
+- Building **real-world products and client solutions**
+- Improving **development speed with AI-assisted workflows**
+- Continuously shipping and refining **production-level code**
