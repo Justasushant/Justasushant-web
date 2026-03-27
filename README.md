@@ -16,43 +16,10 @@
 
 ---
 
-## 🧪 Projects I've Built
-
-### 🌐 Web Development Projects
-
-1. 🎯 **Spin Wheel, Redeem Code, Leaderboard, Economy & Withdrawal System**  
-   🔗 [Desigamblers.in](https://desigamblers.in)  
-   ✨ Built interactive game-like features for a full-stack platform.
-
-2. 🏆 **HomeyRewards — Full Website from Scratch**  
-   🔗 [homeyrewards.pro](https://homeyrewards.pro)  
-   🛠️ Designed and developed the complete frontend + backend systems.
-
-3. 📱 **ShreeshyamMobile — Ecommerce Website for Mobile Store**  
-   🔗 [shreeshyammobile.com](https://shreeshyammobile.com)  
-   🛒 Full ecommerce solution tailored for a retail mobile shop.
-
-4. 🏢 **Coneiz — Parent Company Website**  
-   🔗 [coneiz.com](https://coneiz.com)  
-   🌍 Built and designed a corporate-style website for the parent brand.
-
----
-
-### 🤖 Discord Bot Project
-
-5. 🧙‍♂️ **AnimeSensei Bot — The Ultimate Anime Battle Bot**  
-   🚀 Features:
-   - 🎴 1000+ summonable anime characters  
-   - ⚔️ Turn-based battles (Pokétwo-style)  
-   - 🧠 Custom logic, status effects, and evolution (Genin → Chunin)  
-   - 🧩 Powered by MongoDB, JSON, discord.py  
-   📌 **Status:** Actively being developed!
-
----
-
 ## 🛠️ Tech Stack
 
 <p align="center">
+  “Actively integrating AI tools into development workflows”
   <img src="https://skillicons.dev/icons?i=html,css,js,react,ai,firebase,python,mongodb,replit,github,vscode" />
 </p>
 
