@@ -3,38 +3,43 @@
   <img src="https://i.postimg.cc/hjszvxtk/PHEONIXBANNEr.png" width="100%" />
 </p>
 
-<h1 align="center" style="color:orange;">🔥 Hi, I'm <span style="color:#FF4500;">SUSHANT</span> 🔥</h1>
-<p align="center"><b>Web Designer • Creative Mind • Anime Fanatic 🌀</b></p>
+<h1 align="center">Hi, I'm Sushant Sharma</h1>
+<p align="center"><b>Frontend Developer • UI/UX Focused • Building Scalable Web Experiences</b></p>
 
 ---
 
-## 🔥 About Me
+## About Me
 
-- 🎨 Passionate about **Web Designing & Development**  
-- 🤝 Love collaborating on **exciting design & coding projects**  
-- 🌐 Exploring the infinite world of **UI/UX & front-end magic**
+- Frontend developer focused on building **high-quality, scalable web applications**
+- Experience working on **real client projects and production-level websites**
+- Strong focus on **performance, accessibility, and clean UI/UX**
+- Continuously improving workflows using **modern development and AI tools**
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 <p align="center">
-  “Actively integrating AI tools into development workflows”
-  <img src="https://skillicons.dev/icons?i=html,css,js,react,ai,firebase,python,mongodb,replit,github,vscode" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,react,nextjs,tailwind,firebase,mongodb,python,github,vscode" />
+</p>
+
+<p align="center">
+  <b>AI Tools:</b> Claude • ChatGPT • GitHub Copilot
 </p>
 
 ---
 
-## 📫 Contact Me
+## Contact
 
-- 💬 Discord: `justasushant`  
-- 📷 Instagram: `justasushant`
-- 🌐 Website: `www.sushantsharma.me`
-- 📧 Email: `contact@sushantsharma.me`
-- 🧠 Let’s collab, brainstorm, and build cool anime-inspired dev stuff!
+- 🌐 Website: https://www.sushantsharma.me  
+- 📧 Email: sushant@coneiz.com  
+- 📷 Instagram: https://instagram.com/justasushant  
+- 💬 Discord: justasushant  
 
 ---
 
-## ⚡ Fun Fact
+## Focus
 
-> *“I turn pixels into experiences and coffee into code ☕🖥️”*
+- Building **modern SaaS interfaces**
+- Developing **client-focused web solutions**
+- Improving **development speed and code quality using AI tools**
