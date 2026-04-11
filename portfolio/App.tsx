@@ -65,7 +65,7 @@ const App: React.FC = () => {
             </section>
 
             <section id="work">
-              <Work onNavigate={navigate} />
+              <Work />
             </section>
 
             <section id="about">

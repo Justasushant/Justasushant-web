@@ -1,12 +1,8 @@
 
 import React from 'react';
-import { COMPANY_PROJECTS, FEATURED_CLIENTS } from '../constants';
+import { COMPANY_PROJECTS, PROJECT_TYPE_SHOWCASE } from '../constants';
 
-interface WorkProps {
-  onNavigate: (path: string) => void;
-}
-
-const Work: React.FC<WorkProps> = ({ onNavigate }) => {
+const Work: React.FC = () => {
   return (
     <div className="py-24 px-6 md:px-12 lg:px-20 bg-white/40">
       <div className="max-w-[1440px] mx-auto">
@@ -57,24 +53,19 @@ const Work: React.FC<WorkProps> = ({ onNavigate }) => {
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-primary/5 pb-8">
           <div>
-            <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-primary/30 mb-4">Clients</h3>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Selected Works</h2>
+            <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-primary/30 mb-4">Project Types</h3>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">What We Build With Our Team</h2>
+            <p className="text-primary/60 text-sm md:text-base mt-4 max-w-2xl">
+              We can create any type of website based on your goals.
+            </p>
           </div>
-          <button
-            onClick={() => onNavigate('/clients')}
-            className="flex items-center gap-2 text-sm font-bold text-primary group"
-          >
-            <span>View All Clients</span>
-            <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
-          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
-          {FEATURED_CLIENTS.map((project, idx) => (
+          {PROJECT_TYPE_SHOWCASE.map((project, idx) => (
             <div 
               key={project.id} 
-              onClick={() => onNavigate(project.link)}
-              className={`flex flex-col gap-6 group cursor-pointer ${idx % 2 !== 0 ? 'md:mt-24' : ''}`}
+              className={`flex flex-col gap-6 group ${idx % 2 !== 0 ? 'md:mt-24' : ''}`}
             >
               <div className="relative overflow-hidden rounded-2xl bg-cream-dark aspect-[4/3] shadow-sm transition-all duration-500 group-hover:shadow-2xl">
                 <img 
@@ -88,7 +79,7 @@ const Work: React.FC<WorkProps> = ({ onNavigate }) => {
               
               <div className="flex flex-col gap-3">
                 <div className="flex justify-between items-center">
-                  <h4 className="text-2xl font-bold group-hover:underline decoration-1 underline-offset-8 transition-all">
+                  <h4 className="text-2xl font-bold">
                     {project.title}
                   </h4>
                   <span className="px-3 py-1 rounded-full bg-primary/5 text-[10px] font-bold text-primary/40">
@@ -98,15 +89,9 @@ const Work: React.FC<WorkProps> = ({ onNavigate }) => {
                 <p className="text-primary/50 text-base leading-relaxed max-w-md">
                   {project.description}
                 </p>
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="text-xs font-bold uppercase tracking-widest text-primary hover:underline"
-                >
-                  {project.liveUrl.replace('https://', '')}
-                </a>
+                <p className="text-xs font-bold uppercase tracking-widest text-primary/70">
+                  Team Focus: {project.teamFocus}
+                </p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {project.tags.map(tag => (
                     <span key={tag} className="text-[10px] font-bold uppercase tracking-widest text-primary/30">

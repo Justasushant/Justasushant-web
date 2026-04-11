@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#F7F4EE"/>
+  <circle cx="1020" cy="150" r="170" fill="#EEE3D1"/>
+  <rect x="130" y="130" width="940" height="540" rx="34" fill="white" stroke="#0D1B2A" stroke-opacity="0.08" stroke-width="2"/>
+  <rect x="130" y="130" width="940" height="70" rx="34" fill="#1D3557" fill-opacity="0.12"/>
+  <circle cx="190" cy="166" r="8" fill="#1D3557" fill-opacity="0.35"/>
+  <circle cx="220" cy="166" r="8" fill="#1D3557" fill-opacity="0.22"/>
+  <circle cx="250" cy="166" r="8" fill="#1D3557" fill-opacity="0.15"/>
+  <rect x="190" y="240" width="220" height="370" rx="20" fill="#F5EFE5"/>
+  <rect x="450" y="240" width="560" height="160" rx="20" fill="#F1E8D9"/>
+  <rect x="490" y="282" width="260" height="22" rx="11" fill="#0D1B2A" fill-opacity="0.14"/>
+  <rect x="490" y="320" width="170" height="16" rx="8" fill="#0D1B2A" fill-opacity="0.1"/>
+  <rect x="450" y="430" width="270" height="180" rx="20" fill="#F8F5EF"/>
+  <rect x="740" y="430" width="270" height="180" rx="20" fill="#F8F5EF"/>
+  <path d="M500 560c45-25 70-55 112-66 43-11 66 5 92 19v54H500v-7Z" fill="#1D3557" fill-opacity="0.26"/>
+  <path d="M790 565c36-22 67-42 98-44 31-2 54 12 76 24v47H790v-27Z" fill="#1D3557" fill-opacity="0.2"/>
+  <text x="180" y="730" fill="#1D3557" fill-opacity="0.55" font-size="34" font-family="Arial, sans-serif">SaaS Applications</text>
+</svg>

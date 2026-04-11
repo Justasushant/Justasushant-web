@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#F8F5EF"/>
+  <circle cx="1050" cy="120" r="180" fill="#F1E7D5"/>
+  <circle cx="150" cy="700" r="220" fill="#EFE5D2"/>
+  <rect x="140" y="140" width="920" height="520" rx="32" fill="white" stroke="#0D1B2A" stroke-opacity="0.08" stroke-width="2"/>
+  <rect x="190" y="210" width="500" height="44" rx="12" fill="#0D1B2A" fill-opacity="0.08"/>
+  <rect x="190" y="284" width="400" height="20" rx="10" fill="#0D1B2A" fill-opacity="0.14"/>
+  <rect x="190" y="322" width="300" height="20" rx="10" fill="#0D1B2A" fill-opacity="0.10"/>
+  <rect x="190" y="388" width="220" height="68" rx="18" fill="#1D3557"/>
+  <text x="252" y="430" fill="white" font-size="26" font-family="Arial, sans-serif">Buy Now</text>
+  <rect x="760" y="230" width="240" height="220" rx="20" fill="#F6F2EA" stroke="#0D1B2A" stroke-opacity="0.09"/>
+  <circle cx="880" cy="300" r="54" fill="#1D3557" fill-opacity="0.16"/>
+  <path d="M840 340h80l-10 52h-60l-10-52z" fill="#1D3557" fill-opacity="0.3"/>
+  <circle cx="860" cy="408" r="10" fill="#1D3557" fill-opacity="0.5"/>
+  <circle cx="900" cy="408" r="10" fill="#1D3557" fill-opacity="0.5"/>
+  <text x="190" y="610" fill="#1D3557" fill-opacity="0.55" font-size="34" font-family="Arial, sans-serif">E-commerce Platforms</text>
+</svg>

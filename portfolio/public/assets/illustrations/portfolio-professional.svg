@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#F7F4EE"/>
+  <path d="M0 660C180 560 340 760 560 670C760 590 930 500 1200 620V800H0V660Z" fill="#EFE5D5"/>
+  <rect x="150" y="120" width="900" height="560" rx="34" fill="white" stroke="#0D1B2A" stroke-opacity="0.08" stroke-width="2"/>
+  <circle cx="350" cy="280" r="88" fill="#1D3557" fill-opacity="0.16"/>
+  <rect x="470" y="220" width="460" height="36" rx="10" fill="#0D1B2A" fill-opacity="0.12"/>
+  <rect x="470" y="276" width="360" height="18" rx="9" fill="#0D1B2A" fill-opacity="0.10"/>
+  <rect x="470" y="310" width="320" height="18" rx="9" fill="#0D1B2A" fill-opacity="0.09"/>
+  <rect x="250" y="430" width="700" height="170" rx="20" fill="#F7F4EE"/>
+  <rect x="290" y="468" width="180" height="96" rx="14" fill="#1D3557" fill-opacity="0.16"/>
+  <rect x="500" y="468" width="180" height="96" rx="14" fill="#1D3557" fill-opacity="0.11"/>
+  <rect x="710" y="468" width="180" height="96" rx="14" fill="#1D3557" fill-opacity="0.08"/>
+  <text x="180" y="720" fill="#1D3557" fill-opacity="0.55" font-size="34" font-family="Arial, sans-serif">Portfolio and Professional Websites</text>
+</svg>

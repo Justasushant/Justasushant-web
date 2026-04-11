@@ -123,6 +123,45 @@ export const COMPANY_PROJECTS: Company[] = [
 
 export const FEATURED_CLIENTS = CLIENT_PROJECTS.slice(0, 4);
 
+export const PROJECT_TYPE_SHOWCASE = [
+  {
+    id: 'pt-1',
+    title: 'E-commerce Platforms',
+    year: '2023-2026',
+    description: 'We build modern e-commerce experiences with smooth product discovery, conversion-first UI, and fast page performance across devices.',
+    tags: ['Storefront UI', 'Product Catalog', 'Checkout Experience'],
+    imageUrl: '/assets/illustrations/ecommerce-platforms.svg',
+    teamFocus: 'Conversion design, performance, and mobile shopping journeys'
+  },
+  {
+    id: 'pt-2',
+    title: 'Portfolio and Professional Websites',
+    year: '2024-2026',
+    description: 'We craft portfolio and professional websites that highlight expertise, build credibility, and create strong first impressions.',
+    tags: ['Case Study Layouts', 'Professional Branding', 'Personal Branding'],
+    imageUrl: '/assets/illustrations/portfolio-professional.svg',
+    teamFocus: 'Visual storytelling, authority building, and clean presentation'
+  },
+  {
+    id: 'pt-3',
+    title: 'Business Websites',
+    year: '2025-2026',
+    description: 'We build business websites focused on trust, service clarity, and lead generation with polished UI and scalable frontend code.',
+    tags: ['Company Presence', 'Service Pages', 'Lead Ready'],
+    imageUrl: '/assets/illustrations/business-websites.svg',
+    teamFocus: 'Business messaging, structure, and conversion flow'
+  },
+  {
+    id: 'pt-4',
+    title: 'SaaS Applications',
+    year: '2023-2026',
+    description: 'We create SaaS applications and product websites with user-focused flows, modular UI systems, and growth-ready frontend foundations.',
+    tags: ['Product UI', 'Dashboard UX', 'Scalable Architecture'],
+    imageUrl: '/assets/illustrations/saas-applications.svg',
+    teamFocus: 'Product thinking, modular frontend, and long-term scalability'
+  }
+];
+
 export const STATS: Stat[] = [
   { value: 'Since 2023', label: 'Coding' },
   { value: '10+', label: 'Projects' },
@@ -133,21 +172,21 @@ export const EXPERTISE: ExpertiseItem[] = [
   {
     icon: 'code',
     title: 'Frontend Development',
-    description: 'Building scalable SPAs using React, Vue, and modern JavaScript frameworks with a focus on performance.'
+    description: 'I build website pages and components using React and TypeScript.'
   },
   {
     icon: 'design_services',
     title: 'UI/UX Implementation',
-    description: 'Translating Figma designs into responsive, interactive, and pixel-perfect web interfaces.'
+    description: 'I convert design files into clean, responsive website sections.'
   },
   {
     icon: 'devices',
     title: 'Responsive Design',
-    description: 'Ensuring your website looks and functions perfectly across all devices, from mobile to ultra-wide monitors.'
+    description: 'I make sure websites work well on mobile, tablet, and desktop.'
   },
   {
     icon: 'accessibility_new',
     title: 'Accessibility',
-    description: 'Building inclusive web experiences that adhere to WCAG standards and are usable by everyone.'
+    description: 'I try to keep websites clear, readable, and easy to use for everyone.'
   }
 ];

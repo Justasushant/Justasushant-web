@@ -18,21 +18,18 @@ const About: React.FC = () => {
            <div className="bg-white rounded-[2rem] p-10 md:p-16 shadow-xl border border-primary/5 relative overflow-hidden group">
               <div className="relative z-10 flex flex-col gap-10">
                 <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary leading-[1.1]">
-                  Young, focused, and committed to building better every year.
+                  I am learning and improving with every project.
                 </h2>
                 
                 <div className="flex flex-col gap-6 max-w-2xl">
                   <p className="text-xl md:text-2xl text-primary/80 font-medium leading-relaxed">
-                    I'm a young frontend developer based in Ajmer, Rajasthan, working full-time on real client websites and digital products.
+                    I am a frontend developer based in Ajmer, Rajasthan.
                   </p>
                   <p className="text-lg text-primary/50 leading-relaxed">
-                    I work with speed, discipline, and attention to detail—focused on responsive UI, clean frontend architecture, and strong project delivery.
+                    Right now, I am learning by building real websites with my team.
                   </p>
                   <p className="text-lg text-primary/50 leading-relaxed">
-                    My approach is simple: understand each client's business deeply, then build web experiences that are practical, premium, and growth-ready.
-                  </p>
-                  <p className="text-lg text-primary/50 leading-relaxed">
-                    I want to keep growing with every collaboration—working on bigger products, stronger systems, and long-term partnerships through CONEIZ.
+                    I focus on simple, responsive UI and clean code, and I keep improving step by step.
                   </p>
                 </div>
 
@@ -75,7 +72,7 @@ const About: React.FC = () => {
                 <span className="material-symbols-outlined">rocket_launch</span>
               </div>
               <h3 className="text-2xl font-extrabold mb-1">Current Focus</h3>
-              <p className="text-sm font-bold text-primary/40 uppercase tracking-widest">Agency growth, premium delivery, and product-scale execution</p>
+              <p className="text-sm font-bold text-primary/40 uppercase tracking-widest">Learning frontend better and building useful websites</p>
            </div>
 
            <div className="bg-primary p-8 rounded-2xl shadow-2xl relative overflow-hidden group">

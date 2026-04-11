@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 pb-20 px-6 md:px-12 lg:px-20 min-h-[90vh] flex flex-col justify-center max-w-[1440px] mx-auto">
+    <div className="pt-28 pb-16 px-6 md:px-12 lg:px-20 min-h-[86vh] flex flex-col justify-center max-w-[1440px] mx-auto">
       <div className="mb-10 inline-flex items-center gap-2 border border-primary/10 bg-white/50 px-3 py-1.5 rounded-full w-fit">
         <span className="flex h-1.5 w-1.5 relative">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -17,12 +17,12 @@ const Hero: React.FC = () => {
         <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-primary/60">Available to connect</span>
       </div>
 
-      <h1 className="font-manrope font-extrabold text-[12vw] leading-[0.85] tracking-tighter text-primary whitespace-nowrap lg:whitespace-normal mb-20 opacity-95">
+      <h1 className="font-manrope font-extrabold text-[10vw] md:text-[8.2vw] leading-[0.88] tracking-tighter text-primary whitespace-nowrap lg:whitespace-normal mb-14 opacity-95">
         SUSHANT <br className="hidden lg:block"/>
         <span className="lg:ml-24">SHARMA</span>
       </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         <div className="lg:col-span-7 flex flex-col gap-10">
           <div className="flex flex-col gap-5">
             <h2 className="text-2xl md:text-4xl font-light text-primary/80 leading-snug">
@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-5 flex flex-col items-start lg:items-end gap-12">
+        <div className="lg:col-span-5 flex flex-col items-start lg:items-end gap-8 lg:-mt-8">
           <div className="relative group w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden bg-white shadow-lg">
              <img 
                src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800" 
