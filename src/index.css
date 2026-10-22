@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* Lab components live in src/registry — make sure Tailwind scans them */
+@source "./registry";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-accent: #c6f432;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-zinc-950 font-sans text-zinc-100 antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #09090b;
+}
+
+/* Thin, quiet scrollbars for the Lab panels */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 transparent;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Vertical marquee used by the hero's component wall */
+@keyframes marquee-up {
+  to { transform: translateY(-50%); }
+}
+
+/* Loading shimmer for "coming soon" previews */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.06), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
