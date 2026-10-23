@@ -6,29 +6,35 @@ import { projects } from '../data/site.js'
 // While nothing has shipped, the whole section is taped off like a crime scene
 const underConstruction = projects.every((p) => p.status !== 'live')
 
-const tapeWords = ['Under construction', 'Do not cross', 'Work in progress', 'Coming soon']
+// Each tape alternates these two phrases, starting from the fold
+const tapePhrases = ['Do not cross', 'Under construction']
 
-function TapeText({ reverse }) {
+// The text is static and anchored to the fold, so every word at the centre is
+// whole: the right half reads outward from the fold, the left half ends at it.
+function TapeText({ side, offset }) {
+  const items = Array.from({ length: 8 }, (_, i) => tapePhrases[(i + offset) % 2])
+  // On the left, the phrase nearest the fold is the last item
+  const ordered = side === 'left' ? [...items].reverse() : items
   return (
     <div
-      className="flex w-max whitespace-nowrap text-base font-black uppercase tracking-tight text-zinc-950 sm:text-2xl"
-      style={{ animation: `tape-scroll 45s linear infinite${reverse ? ' reverse' : ''}` }}
+      className={`flex w-max whitespace-nowrap text-base font-black uppercase tracking-tight text-zinc-950 sm:text-2xl ${
+        side === 'left' ? 'ml-auto' : ''
+      }`}
     >
-      {Array.from({ length: 6 }, (_, i) =>
-        tapeWords.map((word) => (
-          <span key={`${i}-${word}`} className="flex items-center gap-6 px-6 sm:gap-8 sm:px-8">
-            {word}
-            <span className="text-sm text-zinc-950/35 sm:text-lg">✦</span>
-          </span>
-        )),
-      )}
+      {ordered.map((phrase, i) => (
+        <span key={i} className="flex items-center gap-5 px-5 sm:gap-8 sm:px-8">
+          {side === 'left' && <span className="text-sm text-zinc-950/35 sm:text-lg">✦</span>}
+          {phrase}
+          {side === 'right' && <span className="text-sm text-zinc-950/35 sm:text-lg">✦</span>}
+        </span>
+      ))}
     </div>
   )
 }
 
 // One broad strip of tape folded in the middle: two halves pinned at the
 // centre at opposite angles. A positive angle makes a V, a negative one a Λ.
-function FoldedTape({ angle, reverse = false, layer }) {
+function FoldedTape({ angle, offset = 0, layer }) {
   const half = (left) => (
     <div
       className="absolute top-0 w-[78vw] overflow-hidden bg-gradient-to-b from-[#fef08a] via-[#fde047] to-[#eab308] py-3 shadow-[0_18px_40px_rgba(0,0,0,0.6)] sm:py-4"
@@ -38,11 +44,11 @@ function FoldedTape({ angle, reverse = false, layer }) {
         transform: `translateY(-50%) rotate(${left ? angle : -angle}deg)`,
       }}
     >
-      <TapeText reverse={reverse} />
+      <TapeText side={left ? 'left' : 'right'} offset={offset} />
       {/* A soft shadow where the tape bends */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 w-32"
+        className="pointer-events-none absolute inset-y-0 w-24"
         style={{
           [left ? 'right' : 'left']: 0,
           background: `linear-gradient(to ${left ? 'left' : 'right'}, rgba(0, 0, 0, 0.22), transparent)`,
@@ -163,7 +169,6 @@ export default function Work() {
         )
       }
     >
-      <style>{`@keyframes tape-scroll { to { transform: translateX(-50%) } }`}</style>
       <div className="relative">
         {/* Behind the tape: the planned projects, dimmed and out of reach */}
         <div
@@ -189,8 +194,8 @@ export default function Work() {
 
         {underConstruction && (
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <FoldedTape angle={-4} reverse layer={1} />
-            <FoldedTape angle={4} layer={2} />
+            <FoldedTape angle={-4} offset={1} layer={1} />
+            <FoldedTape angle={4} offset={0} layer={2} />
           </div>
         )}
       </div>
