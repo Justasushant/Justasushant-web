@@ -1,0 +1,112 @@
+// Where each Lab component's look came from. Shown at the top of its Lab page.
+// These are the closest visual references, so fix any that are wrong by
+// changing the site key next to the slug.
+
+export const inspirationNote =
+  'Only the look was borrowed. All the development work was done with AI.'
+
+const sites = {
+  aceternity: { name: 'Aceternity UI', url: 'https://ui.aceternity.com/components' },
+  magic: { name: 'Magic UI', url: 'https://magicui.design/docs/components' },
+  reactbits: { name: 'React Bits', url: 'https://reactbits.dev' },
+  skiper: { name: 'Skiper UI', url: 'https://skiper-ui.com' },
+  uiverse: { name: 'uiverse.io', url: 'https://uiverse.io' },
+  shadcn: { name: 'shadcn/ui', url: 'https://ui.shadcn.com/docs/components' },
+}
+
+const bySlug = {
+  // Backgrounds
+  aurora: 'aceternity',
+  'dot-grid': 'reactbits',
+  'flickering-grid': 'magic',
+  'flow-field': 'reactbits',
+  'gradient-follow': 'reactbits',
+  'grain-gradient': 'skiper',
+  'grid-beams': 'aceternity',
+  'hover-grid': 'aceternity',
+  'matrix-rain': 'reactbits',
+  meteors: 'aceternity',
+  particles: 'magic',
+  'retro-grid': 'magic',
+  'starfield-warp': 'reactbits',
+  'warp-lines': 'skiper',
+  // Buttons
+  'brutal-button': 'uiverse',
+  'confetti-button': 'magic',
+  'copy-button': 'shadcn',
+  'glow-border-button': 'uiverse',
+  'hold-button': 'skiper',
+  'magnetic-button': 'reactbits',
+  'ripple-button': 'magic',
+  'shimmer-button': 'magic',
+  'slide-fill-button': 'uiverse',
+  'sparkle-button': 'uiverse',
+  'spring-toggle': 'uiverse',
+  'text-roll-button': 'skiper',
+  // Cards
+  'border-beam-card': 'magic',
+  'chat-loop': 'skiper',
+  'deploy-loop': 'skiper',
+  'expand-panels': 'uiverse',
+  'flip-card': 'uiverse',
+  'focus-cards': 'aceternity',
+  'folder-card': 'uiverse',
+  'glass-card': 'uiverse',
+  'holo-card': 'reactbits',
+  'music-card': 'uiverse',
+  'spotlight-card': 'aceternity',
+  'stack-cards': 'reactbits',
+  'terminal-loop': 'magic',
+  'tilt-card': 'aceternity',
+  // Elements
+  accordion: 'shadcn',
+  'animated-tabs': 'aceternity',
+  'avatar-stack': 'aceternity',
+  'command-palette': 'shadcn',
+  'compare-slider': 'aceternity',
+  dock: 'magic',
+  'orbiting-circles': 'magic',
+  rating: 'uiverse',
+  'toast-stack': 'shadcn',
+  tooltip: 'aceternity',
+  // Loaders
+  'bars-loader': 'uiverse',
+  'cube-loader': 'uiverse',
+  'dots-loader': 'uiverse',
+  'grid-loader': 'uiverse',
+  'infinity-loader': 'uiverse',
+  'morph-loader': 'uiverse',
+  'orbit-loader': 'uiverse',
+  'pulse-loader': 'uiverse',
+  'ring-loader': 'uiverse',
+  'text-loader': 'uiverse',
+  // Text
+  'blur-in-text': 'magic',
+  'flashlight-text': 'skiper',
+  'glitch-text': 'reactbits',
+  'gradient-text': 'reactbits',
+  'highlight-text': 'aceternity',
+  'marquee-text': 'magic',
+  'number-ticker': 'magic',
+  'scramble-text': 'reactbits',
+  'shiny-text': 'reactbits',
+  typewriter: 'aceternity',
+  'wavy-text': 'magic',
+  'word-rotate': 'magic',
+  // Transitions
+  'blur-switch': 'skiper',
+  'book-flip': 'skiper',
+  'circle-reveal': 'skiper',
+  'cube-rotate': 'skiper',
+  'glitch-switch': 'skiper',
+  'horizontal-scroll': 'skiper',
+  'mosaic-switch': 'skiper',
+  'parallax-scroll': 'aceternity',
+  'snap-scroll': 'skiper',
+  'split-reveal': 'skiper',
+  'stack-scroll': 'aceternity',
+  'swing-switch': 'skiper',
+  'zoom-switch': 'skiper',
+}
+
+export const inspirationFor = (slug) => sites[bySlug[slug]] ?? sites.uiverse

@@ -7,7 +7,7 @@ export const site = {
   company: 'CONEIZ Enterprises',
   companyRole: 'Co-founder',
   tagline:
-    'I build interfaces that move: components, motion and micro-interactions you can feel. The best ones I find, remix and fine-tune end up in the Lab, free to copy.',
+    'I build websites, and I sweat the small parts that make them nice to use. The best UI I come across, I rebuild and put in the Lab for anyone to copy.',
 
   email: 'sushant@coneiz.com',
   whatsapp: {
@@ -23,7 +23,7 @@ export const site = {
   ],
 
   about: [
-    "I'm Sushant — co-founder of CONEIZ Enterprises and a frontend developer obsessed with the small things: the easing on a hover, the weight of a headline, the half-second a page takes to feel ready.",
+    "I'm Sushant, a frontend developer and co-founder of CONEIZ Enterprises. I care about the small stuff: how a hover eases in, how heavy a headline feels, how long a page takes before it feels ready.",
     "The Lab is my workbench, and I'll be honest about what's on it: I collect the best components I come across on the internet, take inspiration from them, rebuild and fine-tune them with the help of AI, and present them here for you. It isn't all my original work. It's curated and polished by me. Stay tuned, it keeps growing.",
   ],
   // Shown at the top of the Lab, so nobody mistakes curation for invention
@@ -32,7 +32,7 @@ export const site = {
   inspirations: ['Aceternity UI', 'Magic UI', 'React Bits', 'Skiper UI', 'uiverse.io', 'shadcn/ui'],
   stack: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'HTML & CSS', 'Canvas', 'Vite', 'Git'],
   now: [
-    'Growing the Lab — new components every week',
+    'Adding a few new components to the Lab every week',
     'Building products at CONEIZ Enterprises',
     'Shipping my first public projects',
   ],

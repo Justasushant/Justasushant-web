@@ -147,9 +147,17 @@ function TextControl({ control, value, onChange }) {
   )
 }
 
-const tones = ['default', 'success', 'error', 'muted']
+// Row fields for the list editor. Terminal lines are the default.
+const terminalSchema = {
+  main: ['command', 'Command'],
+  sub: ['output', 'Response (optional)'],
+  toneKey: 'tone',
+  tones: ['default', 'success', 'error', 'muted'],
+  blank: { command: 'echo "hello"', output: 'hello', tone: 'default' },
+}
 
 function LinesControl({ control, value, onChange }) {
+  const { main, sub, toneKey, tones, blank } = { ...terminalSchema, ...control.schema }
   const update = (i, patch) => onChange(value.map((line, j) => (j === i ? { ...line, ...patch } : line)))
 
   return (
@@ -161,9 +169,9 @@ function LinesControl({ control, value, onChange }) {
             <div className="flex items-center gap-1.5">
               <span className="w-4 shrink-0 font-mono text-[10px] text-zinc-500">{i + 1}</span>
               <input
-                value={line.command}
-                placeholder="Command"
-                onChange={(e) => update(i, { command: e.target.value })}
+                value={line[main[0]] ?? ''}
+                placeholder={main[1]}
+                onChange={(e) => update(i, { [main[0]]: e.target.value })}
                 className={`${inputClass} min-w-0 flex-1 font-mono`}
               />
               <button
@@ -174,31 +182,35 @@ function LinesControl({ control, value, onChange }) {
                 ✕
               </button>
             </div>
-            <input
-              value={line.output ?? ''}
-              placeholder="Response (optional)"
-              onChange={(e) => update(i, { output: e.target.value })}
-              className={`${inputClass} ml-5 w-[calc(100%-1.25rem)] font-mono`}
-            />
-            <div className="ml-5 flex flex-wrap gap-1">
-              {tones.map((tone) => (
-                <button
-                  key={tone}
-                  onClick={() => update(i, { tone })}
-                  className={`rounded px-1.5 py-0.5 font-mono text-[10px] transition-colors ${
-                    (line.tone ?? 'default') === tone
-                      ? 'bg-white/15 text-white'
-                      : 'text-zinc-500 hover:text-zinc-200'
-                  }`}
-                >
-                  {tone}
-                </button>
-              ))}
-            </div>
+            {sub && (
+              <input
+                value={line[sub[0]] ?? ''}
+                placeholder={sub[1]}
+                onChange={(e) => update(i, { [sub[0]]: e.target.value })}
+                className={`${inputClass} ml-5 w-[calc(100%-1.25rem)] font-mono`}
+              />
+            )}
+            {tones && (
+              <div className="ml-5 flex flex-wrap gap-1">
+                {tones.map((tone) => (
+                  <button
+                    key={tone}
+                    onClick={() => update(i, { [toneKey]: tone })}
+                    className={`rounded px-1.5 py-0.5 font-mono text-[10px] transition-colors ${
+                      (line[toneKey] ?? tones[0]) === tone
+                        ? 'bg-white/15 text-white'
+                        : 'text-zinc-500 hover:text-zinc-200'
+                    }`}
+                  >
+                    {tone}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         ))}
         <button
-          onClick={() => onChange([...value, { command: 'echo "hello"', output: 'hello', tone: 'default' }])}
+          onClick={() => onChange([...value, { ...blank }])}
           className="w-full rounded-lg border border-dashed border-white/15 py-2 text-xs text-zinc-400 transition-colors hover:border-accent/60 hover:text-accent"
         >
           + Add line

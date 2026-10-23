@@ -14,7 +14,8 @@ export const colors = (label, value) => ({ type: 'colors', label, default: value
 export const select = (label, value, options) => ({ type: 'select', label, default: value, options })
 export const bool = (label, value) => ({ type: 'boolean', label, default: value })
 export const text = (label, value) => ({ type: 'text', label, default: value })
-export const lines = (label, value) => ({ type: 'lines', label, default: value })
+// A list editor. `schema` says which fields each row has (defaults to terminal lines)
+export const lines = (label, value, schema) => ({ type: 'lines', label, default: value, schema })
 
 export const defaultsOf = (controls = {}) =>
   Object.fromEntries(Object.entries(controls).map(([key, control]) => [key, control.default]))

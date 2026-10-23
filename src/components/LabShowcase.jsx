@@ -9,14 +9,9 @@ export default function LabShowcase() {
   return (
     <Section
       id="lab"
-      index="01"
       label="Lab"
-      title={
-        <>
-          Fresh from the <span className="font-serif font-normal italic text-accent">Lab</span>
-        </>
-      }
-      intro="The best interactive components I've found, remixed and fine-tuned. Play with them right here, or open one to get the code in TSX or JSX."
+      title="From the Lab"
+      intro="A few favourites. They're live, so play with them here, or open one to get the code."
       action={
         <Link
           to="/lab"

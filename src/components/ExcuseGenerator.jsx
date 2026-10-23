@@ -64,7 +64,7 @@ export default function ExcuseGenerator({
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
-      {/* Backdrop: a faint grid and a glow */}
+      {/* Backdrop: a faint grid */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -75,14 +75,6 @@ export default function ExcuseGenerator({
           maskImage: 'radial-gradient(ellipse at 20% 0%, black, transparent 70%)',
           WebkitMaskImage: 'radial-gradient(ellipse at 20% 0%, black, transparent 70%)',
         }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-20 -top-24 size-72 rounded-full bg-fuchsia-500/20 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-24 right-10 size-72 rounded-full bg-accent/10 blur-3xl"
       />
 
       <div className="relative p-6 sm:p-10">
@@ -135,7 +127,7 @@ export default function ExcuseGenerator({
 
           <div className="flex flex-wrap items-center gap-2">
             <ConfettiButton onClick={generate} className="bg-white! text-zinc-950!">
-              🎲 {buttonLabel}
+              {buttonLabel}
             </ConfettiButton>
             <button
               onClick={copy}

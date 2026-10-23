@@ -80,9 +80,9 @@ export const demoPages = (label) =>
         >
           {i + 1}
         </span>
-        <h2 className="relative font-semibold leading-[0.9] tracking-tighter" style={{ fontSize: '12cqw' }}>
+        <p className="relative font-semibold leading-[0.9] tracking-tighter" style={{ fontSize: '12cqw' }}>
           {page.title}
-        </h2>
+        </p>
         <p className="relative opacity-75" style={{ fontSize: 'max(11px, 1.7cqw)', maxWidth: '55cqw' }}>
           {page.note}
         </p>

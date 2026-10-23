@@ -87,7 +87,7 @@ function ProjectCard({ project, index }) {
 
       <div className="flex flex-1 flex-col p-5">
         <p className="font-mono text-xs text-zinc-500">
-          {String(index + 1).padStart(2, '0')} — {project.hint}
+          {String(index + 1).padStart(2, '0')} · {project.hint}
         </p>
         <h3 className="mt-2 text-xl font-semibold tracking-tight">{project.title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-zinc-400">{project.description}</p>
@@ -123,19 +123,13 @@ export default function Work() {
   return (
     <Section
       id="work"
-      index="02"
       label="Work"
       className="overflow-x-clip"
-      title={
-        <>
-          Selected <span className="font-serif font-normal italic">projects</span>
-        </>
-      }
-      intro="Bigger things I'm building right now. Each one ships with a live demo, the code and a write-up of how it was made."
+      title="Projects"
+      intro="What I'm building next. Each one will ship with a live demo, the code and a short write-up."
       action={
         underConstruction && (
           <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-2 font-mono text-xs uppercase tracking-widest text-amber-300">
-            <span className="size-2 animate-pulse rounded-full bg-amber-400" />
             Under construction
           </span>
         )

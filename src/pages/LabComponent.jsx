@@ -7,6 +7,7 @@ import LabSidebar from '../components/LabSidebar.jsx'
 import { Stage } from '../components/Preview.jsx'
 import { components, getComponent, loadSource, usageSnippet } from '../registry/index.jsx'
 import { defaultsOf } from '../registry/controls.js'
+import { inspirationFor, inspirationNote } from '../data/inspirations.js'
 
 const sourceCache = new Map()
 
@@ -93,13 +94,6 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
       cancelled = true
     }
   }, [item.slug, lang])
-
-  useEffect(() => {
-    document.title = `${item.name} — Lab · Sushant Sharma`
-    return () => {
-      document.title = 'Sushant Sharma — Frontend Developer & UI Engineer'
-    }
-  }, [item.name])
 
   useEffect(() => {
     if (!fullscreen) return
@@ -198,6 +192,21 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
             </div>
           </div>
 
+          {/* Credit for where the look came from */}
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 border-b border-white/10 bg-white/[0.02] px-4 py-2 text-xs text-zinc-400 sm:px-5">
+            <span className="font-mono uppercase tracking-widest text-zinc-500">Inspired by</span>
+            <a
+              href={inspirationFor(item.slug).url}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-accent hover:underline"
+            >
+              {inspirationFor(item.slug).name} ↗
+            </a>
+            <span className="text-zinc-600">·</span>
+            <span>{inspirationNote}</span>
+          </p>
+
           {/* Code panel */}
           <section
             className="flex max-h-[60vh] min-h-0 flex-col bg-[#1e2127] lg:h-[var(--code-h)] lg:max-h-none"
@@ -286,7 +295,7 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
                         : 'border-white/10 bg-zinc-900/80 text-zinc-300 hover:text-white'
                     }`}
                   >
-                    ⚙ Customize
+                    Customize
                   </button>
                 )}
                 <button

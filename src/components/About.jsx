@@ -6,13 +6,8 @@ export default function About() {
   return (
     <Section
       id="about"
-      index="03"
       label="About"
-      title={
-        <>
-          Details are the <span className="font-serif font-normal italic">design</span>
-        </>
-      }
+      title="Details are the design."
     >
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal className="space-y-5 md:col-span-3">

@@ -10,7 +10,25 @@ import FocusCards from '../components/focus-cards.tsx'
 import FolderCard from '../components/folder-card.tsx'
 import MusicCard from '../components/music-card.tsx'
 import TerminalLoop from '../components/terminal-loop.tsx'
+import ChatLoop from '../components/chat-loop.tsx'
+import DeployLoop from '../components/deploy-loop.tsx'
 import { ossTerminalLines as terminalLines } from '../../data/opensource.js'
+
+const chatMessages = [
+  { from: 'them', text: 'Hey, is the open-source page live yet?' },
+  { from: 'me', text: 'Almost! Just polishing one more button.' },
+  { from: 'them', text: 'You said that last week.' },
+  { from: 'me', text: 'It was a different button.' },
+  { from: 'them', text: '😂 fair' },
+]
+
+const deploySteps = [
+  { label: 'Cloning repository', detail: 'github.com/Justasushant/Justasushant-web' },
+  { label: 'Installing dependencies', detail: '214 packages in 6.2s' },
+  { label: 'Building', detail: '86 pages generated' },
+  { label: 'Running checks', detail: 'all passed' },
+  { label: 'Assigning domain', detail: 'sushant.coneiz.com' },
+]
 import { bool, color, colors, jsx, lines, num, select, text } from '../controls.js'
 
 const Icon = ({ children }) => (
@@ -172,6 +190,49 @@ export default [
     },
     demo: ({ props }) => <TerminalLoop {...props} className="mx-6" />,
     usage: (p) => jsx('TerminalLoop', p),
+  },
+  {
+    slug: 'chat-loop',
+    name: 'Chat Loop',
+    category: 'Cards',
+    description: 'A chat that plays itself, typing dots and all. Write the conversation and copy the code.',
+    controls: {
+      messages: lines('Messages', chatMessages, {
+        main: ['text', 'Message'],
+        sub: null,
+        toneKey: 'from',
+        tones: ['them', 'me'],
+        blank: { from: 'them', text: 'Hey!' },
+      }),
+      contact: text('Contact name', 'Sushant'),
+      status: text('Status', 'online'),
+      typingTime: num('Typing time (ms)', 1100, 200, 4000, 100),
+      pause: num('Pause before looping (ms)', 3500, 500, 10000, 250),
+      accent: color('Your bubble colour', '#c6f432'),
+    },
+    demo: ({ props }) => <ChatLoop {...props} className="mx-6" />,
+    usage: (p) => jsx('ChatLoop', p),
+  },
+  {
+    slug: 'deploy-loop',
+    name: 'Deploy Loop',
+    category: 'Cards',
+    description: 'A deploy log that ticks through its steps to "Ready", then starts again. Write your own steps.',
+    controls: {
+      steps: lines('Steps', deploySteps, {
+        main: ['label', 'Step'],
+        sub: ['detail', 'Detail when done (optional)'],
+        tones: null,
+        blank: { label: 'Running tests', detail: '42 passed' },
+      }),
+      project: text('Project', 'portfolio'),
+      url: text('URL when ready', 'sushant.coneiz.com'),
+      stepTime: num('Time per step (ms)', 1200, 200, 5000, 100),
+      pause: num('Pause before looping (ms)', 3500, 500, 10000, 250),
+      accent: color('Accent colour', '#c6f432'),
+    },
+    demo: ({ props }) => <DeployLoop {...props} className="mx-6" />,
+    usage: (p) => jsx('DeployLoop', p),
   },
   {
     slug: 'stack-cards',

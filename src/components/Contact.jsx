@@ -9,14 +9,9 @@ export default function Contact() {
   return (
     <Section
       id="contact"
-      index="04"
       label="Contact"
-      title={
-        <>
-          Let’s build <span className="font-serif font-normal italic text-accent">something</span>
-        </>
-      }
-      intro="Have an idea, a project or an opportunity? Drop me an email or a WhatsApp message."
+      title="Let’s build something."
+      intro="Email is best for anything detailed. WhatsApp works for a quick hello, messages only."
     >
       <Reveal className="grid gap-5 md:grid-cols-2">
         <SpotlightCard className="h-full">

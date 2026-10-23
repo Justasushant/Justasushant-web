@@ -39,7 +39,7 @@ export default function TemplatesSoon() {
               onClick={() => setPresses((n) => n + 1)}
               className="rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-3 text-sm font-medium text-amber-200 transition-colors hover:bg-amber-400/20"
             >
-              🔔 Remind me
+              Remind me
             </button>
           }
         >
@@ -50,7 +50,6 @@ export default function TemplatesSoon() {
               className="mt-5 inline-flex max-w-2xl items-start gap-2 rounded-2xl border border-amber-400/20 bg-amber-400/[0.06] px-4 py-3 text-sm text-amber-100"
               style={{ animation: 'excuse-land 0.45s cubic-bezier(.2,.8,.2,1)' }}
             >
-              <span aria-hidden>🔔</span>
               <span>
                 {reply}
                 {presses > 1 && <span className="ml-2 font-mono text-xs text-amber-300/60">×{presses}</span>}

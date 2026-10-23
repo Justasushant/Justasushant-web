@@ -8,8 +8,11 @@ import ScrambleText from '../registry/components/scramble-text.tsx'
 import WordRotate from '../registry/components/word-rotate.tsx'
 import ShimmerButton from '../registry/components/shimmer-button.tsx'
 import SlideFillButton from '../registry/components/slide-fill-button.tsx'
-import NumberTicker from '../registry/components/number-ticker.tsx'
 import MarqueeText from '../registry/components/marquee-text.tsx'
+
+// The marquee lists the Lab's real categories
+const categoryNames = { Elements: 'UI elements', Text: 'Text effects', Transitions: 'Page transitions' }
+const marqueeItems = [...categories.map((c) => categoryNames[c] ?? c), 'Templates (soon)']
 
 // A tiny seeded random generator (mulberry32): same seed, same sequence
 function seededRandom(seed) {
@@ -117,11 +120,6 @@ function ComponentWall() {
 
 export default function Hero() {
   const navigate = useNavigate()
-  const counts = [
-    { value: components.length, suffix: '+', label: 'components' },
-    { value: 2, label: 'flavours · TSX & JSX' },
-    { value: 0, label: 'extra dependencies' },
-  ]
 
   return (
     <section id="top" className="relative isolate min-h-[100svh] overflow-hidden">
@@ -137,12 +135,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-zinc-950 to-transparent" />
 
       <div className="pointer-events-none relative z-10 mx-auto flex min-h-[100svh] flex-col justify-center px-4 pb-36 pt-28 sm:px-6 lg:px-10 2xl:px-16">
-        <p className="pointer-events-auto inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-zinc-950/60 px-3 py-1.5 font-mono text-xs text-zinc-300 backdrop-blur">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-accent" />
-          </span>
-          {site.companyRole} @ {site.company}
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+          {site.companyRole}, {site.company}
         </p>
 
         <h1 className="pointer-events-auto mt-8 text-[clamp(3.6rem,13vw,10.5rem)] font-semibold leading-[0.85] tracking-tighter">
@@ -153,12 +147,12 @@ export default function Hero() {
         </h1>
 
         <p className="mt-8 text-2xl tracking-tight text-zinc-300 sm:text-4xl">
-          I craft{' '}
+          I build{' '}
           <WordRotate
-            words={['interfaces', 'motion', 'micro-interactions', 'components', 'experiments']}
+            words={['websites', 'buttons', 'backgrounds', 'loaders', 'page transitions', 'text effects']}
             className="font-serif italic text-accent"
           />{' '}
-          for the web.
+          in React.
         </p>
 
         <p className="mt-5 max-w-lg leading-relaxed text-zinc-400">{site.tagline}</p>
@@ -170,22 +164,15 @@ export default function Hero() {
           <SlideFillButton onClick={() => navigate('/#contact')}>Get in touch</SlideFillButton>
         </div>
 
-        <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4">
-          {counts.map((c) => (
-            <div key={c.label}>
-              <dt className="sr-only">{c.label}</dt>
-              <dd className="text-3xl font-semibold tracking-tight text-white">
-                <NumberTicker value={c.value} suffix={c.suffix} duration={1600} />
-              </dd>
-              <dd className="font-mono text-[11px] uppercase tracking-wider text-zinc-500">{c.label}</dd>
-            </div>
-          ))}
-        </dl>
+        <p className="mt-10 text-sm text-zinc-500">
+          {components.length} components in the Lab right now, each with TSX and JSX code.
+        </p>
       </div>
 
+      {/* What's actually in the Lab, rather than buzzwords */}
       <div className="absolute inset-x-0 bottom-0 z-10 border-y border-white/10 bg-zinc-950/80 py-4 backdrop-blur">
         <MarqueeText
-          items={['Interfaces', 'Motion', 'React', 'Micro-interactions', 'Tailwind', 'Canvas', 'Details']}
+          items={marqueeItems}
           speed={35}
           className="text-2xl font-semibold uppercase tracking-tight text-white sm:text-3xl"
         />
