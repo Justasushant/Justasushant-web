@@ -6,6 +6,11 @@ export const site = {
   role: 'Frontend Developer & UI Engineer',
   company: 'CONEIZ Enterprises',
   companyRole: 'Co-founder',
+  companyLogo: '/coneiz-logo.webp',
+  companyUrl: 'https://coneiz.com',
+  // One or two lines about the company, shown in the About section
+  companyBlurb:
+    'The company I co-founded. We build software and digital products, and a lot of what I learn there ends up in the Lab.',
   tagline:
     'I build websites, and I sweat the small parts that make them nice to use. The best UI I come across, I rebuild and put in the Lab for anyone to copy.',
 

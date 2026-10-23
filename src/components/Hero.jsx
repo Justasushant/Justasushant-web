@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router'
 import { site } from '../data/site.js'
 import { categories, components } from '../registry/index.jsx'
 import { Stage } from './Preview.jsx'
+import ConeizLogo from './ConeizLogo.jsx'
 import FlickeringGrid from '../registry/components/flickering-grid.tsx'
 import ScrambleText from '../registry/components/scramble-text.tsx'
 import WordRotate from '../registry/components/word-rotate.tsx'
@@ -193,7 +194,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-zinc-950 to-transparent" />
 
       <div className="pointer-events-none relative z-10 mx-auto flex flex-col justify-center px-4 pb-28 pt-24 sm:px-6 sm:pt-28 lg:min-h-[100svh] lg:px-10 lg:pb-36 2xl:px-16">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400 sm:text-xs">
+        <p className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400 sm:text-xs">
+          <ConeizLogo className="size-5" />
           {site.companyRole}, {site.company}
         </p>
 

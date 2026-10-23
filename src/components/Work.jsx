@@ -6,26 +6,54 @@ import { projects } from '../data/site.js'
 // While nothing has shipped, the whole section is taped off like a crime scene
 const underConstruction = projects.every((p) => p.status !== 'live')
 
-// One strip of police tape, wider than the screen, scrolling along its length
-function Tape({ top, angle, reverse = false }) {
+const tapeWords = ['Under construction', 'Do not cross', 'Work in progress', 'Coming soon']
+
+function TapeText({ reverse }) {
   return (
     <div
-      className="absolute left-1/2 w-[160vw] border-y-[3px] border-zinc-950 bg-gradient-to-b from-[#fef08a] via-[#fde047] to-[#facc15] py-2 shadow-[0_14px_40px_rgba(0,0,0,0.65)] sm:py-3"
-      style={{ top, transform: `translate(-50%, -50%) rotate(${angle}deg)` }}
+      className="flex w-max whitespace-nowrap text-base font-black uppercase tracking-tight text-zinc-950 sm:text-2xl"
+      style={{ animation: `tape-scroll 45s linear infinite${reverse ? ' reverse' : ''}` }}
     >
-      <div
-        className="flex w-max whitespace-nowrap text-sm font-black uppercase tracking-tight text-zinc-950 sm:text-lg"
-        style={{ animation: `tape-scroll 40s linear infinite${reverse ? ' reverse' : ''}` }}
-      >
-        {Array.from({ length: 16 }, (_, i) => (
-          <span key={i} className="flex items-center gap-4 px-4">
-            Under construction
-            <span className="text-xs sm:text-sm">✕</span>
-            Do not cross
-            <span className="text-xs sm:text-sm">✕</span>
+      {Array.from({ length: 6 }, (_, i) =>
+        tapeWords.map((word) => (
+          <span key={`${i}-${word}`} className="flex items-center gap-6 px-6 sm:gap-8 sm:px-8">
+            {word}
+            <span className="text-sm text-zinc-950/35 sm:text-lg">✦</span>
           </span>
-        ))}
-      </div>
+        )),
+      )}
+    </div>
+  )
+}
+
+// One broad strip of tape folded in the middle: two halves pinned at the
+// centre at opposite angles. A positive angle makes a V, a negative one a Λ.
+function FoldedTape({ angle, reverse = false, layer }) {
+  const half = (left) => (
+    <div
+      className="absolute top-0 w-[78vw] overflow-hidden bg-gradient-to-b from-[#fef08a] via-[#fde047] to-[#eab308] py-3 shadow-[0_18px_40px_rgba(0,0,0,0.6)] sm:py-4"
+      style={{
+        [left ? 'right' : 'left']: '50%',
+        transformOrigin: left ? 'right center' : 'left center',
+        transform: `translateY(-50%) rotate(${left ? angle : -angle}deg)`,
+      }}
+    >
+      <TapeText reverse={reverse} />
+      {/* A soft shadow where the tape bends */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 w-32"
+        style={{
+          [left ? 'right' : 'left']: 0,
+          background: `linear-gradient(to ${left ? 'left' : 'right'}, rgba(0, 0, 0, 0.22), transparent)`,
+        }}
+      />
+    </div>
+  )
+  return (
+    <div className="absolute inset-x-0 top-1/2" style={{ zIndex: layer }}>
+      {half(true)}
+      {half(false)}
     </div>
   )
 }
@@ -161,15 +189,15 @@ export default function Work() {
 
         {underConstruction && (
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <Tape top="46%" angle={-7} />
-            <Tape top="52%" angle={5} reverse />
+            <FoldedTape angle={-4} reverse layer={1} />
+            <FoldedTape angle={4} layer={2} />
           </div>
         )}
       </div>
 
       {underConstruction && (
         <p className="mt-12 text-center text-sm text-zinc-400">
-          These are still being built. Nothing to see here yet, officer.{' '}
+          These are still being built.{' '}
           <Link to="/lab" className="font-medium text-accent hover:underline">
             The Lab is open though →
           </Link>

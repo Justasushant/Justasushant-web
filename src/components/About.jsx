@@ -1,5 +1,6 @@
 import Reveal from './Reveal.jsx'
 import Section from './Section.jsx'
+import ConeizLogo from './ConeizLogo.jsx'
 import { site } from '../data/site.js'
 
 export default function About() {
@@ -16,10 +17,28 @@ export default function About() {
               {paragraph}
             </p>
           ))}
-          <div className="!mt-8 inline-block rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
-            <p className="text-sm font-medium text-white">{site.company}</p>
-            <p className="text-xs text-zinc-500">{site.companyRole}</p>
-          </div>
+          <a
+            href={site.companyUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group !mt-10 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-colors hover:border-white/25 hover:bg-white/[0.05] sm:gap-5 sm:p-5"
+          >
+            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-white p-2 shadow-lg shadow-black/40 sm:size-16">
+              <ConeizLogo className="size-full" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+                {site.companyRole}
+              </span>
+              <span className="block text-lg font-semibold tracking-tight text-white sm:text-xl">
+                {site.company}
+              </span>
+              <span className="mt-1 block text-sm leading-relaxed text-zinc-400">{site.companyBlurb}</span>
+            </span>
+            <span className="self-start text-zinc-500 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
+              ↗
+            </span>
+          </a>
         </Reveal>
 
         <Reveal delay={100} className="space-y-10 md:col-span-2">
