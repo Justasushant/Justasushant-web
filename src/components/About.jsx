@@ -12,7 +12,7 @@ export default function About() {
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal className="space-y-5 md:col-span-3">
           {site.about.map((paragraph) => (
-            <p key={paragraph} className="text-lg leading-relaxed text-zinc-400">
+            <p key={paragraph} className="text-base leading-relaxed text-zinc-400 sm:text-lg">
               {paragraph}
             </p>
           ))}

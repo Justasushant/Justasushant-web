@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { site } from '../data/site.js'
 import { categories, components } from '../registry/index.jsx'
 import { Stage } from './Preview.jsx'
 import FlickeringGrid from '../registry/components/flickering-grid.tsx'
-import Aurora from '../registry/components/aurora.tsx'
 import ScrambleText from '../registry/components/scramble-text.tsx'
 import WordRotate from '../registry/components/word-rotate.tsx'
 import ShimmerButton from '../registry/components/shimmer-button.tsx'
@@ -56,12 +56,56 @@ function todaysWall() {
 
 const wallColumns = todaysWall()
 
-function WallTile({ item }) {
+function WallTile({ item, className = 'mb-5', tabIndex = -1 }) {
   return (
     <Link
       to={`/lab/${item.slug}`}
-      tabIndex={-1}
-      className="mb-5 block w-64 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/90 shadow-2xl shadow-black/50 transition-colors hover:border-accent/70"
+      tabIndex={tabIndex}
+      className={`${className} block w-64 overflow-hidden`}
+      style={{ contain: 'paint' }}
+    >
+      <TileBody item={item} />
+    </Link>
+  )
+}
+
+// Phones get a smaller copy of the 3D wall at the bottom of the hero,
+// below the text instead of behind it (fewer tiles, so it stays light)
+function MobileWall() {
+  const columns = wallColumns.slice(0, 3).map((column) => column.slice(0, 3))
+  const fade = 'linear-gradient(to bottom, transparent, black 20%, black 75%, transparent)'
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none relative -mx-4 mt-6 h-[360px] overflow-hidden sm:-mx-6"
+      style={{ perspective: '1100px', maskImage: fade, WebkitMaskImage: fade }}
+    >
+      <div
+        className="absolute left-1/2 top-1/2 flex gap-4"
+        style={{ transform: 'translate(-50%, -50%) rotateX(38deg) rotateY(-12deg) rotateZ(20deg)' }}
+      >
+        {columns.map((column, i) => (
+          <div
+            key={i}
+            style={{
+              animation: `marquee-up ${40 + i * 8}s linear infinite`,
+              animationDirection: i % 2 ? 'reverse' : 'normal',
+            }}
+          >
+            {[...column, ...column].map((item, j) => (
+              <WallTile key={j} item={item} className="mb-4" />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function TileBody({ item }) {
+  return (
+    <div
+      className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/90 shadow-2xl shadow-black/50 transition-colors hover:border-accent/70"
     >
       {/* The demo renders at a bigger size and is scaled down, so it fits the tile */}
       <div className="pointer-events-none relative h-40 overflow-hidden">
@@ -75,8 +119,20 @@ function WallTile({ item }) {
         </span>
         <span className="text-accent">↗</span>
       </p>
-    </Link>
+    </div>
   )
+}
+
+// True on screens at least `query` wide; follows resizes and rotation
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches)
+  useEffect(() => {
+    const list = window.matchMedia(query)
+    const onChange = () => setMatches(list.matches)
+    list.addEventListener('change', onChange)
+    return () => list.removeEventListener('change', onChange)
+  }, [query])
+  return matches
 }
 
 function ComponentWall() {
@@ -120,61 +176,79 @@ function ComponentWall() {
 
 export default function Hero() {
   const navigate = useNavigate()
+  // The 3D wall of live demos is desktop only: on a phone it sits behind the
+  // text, looks muddy and runs dozens of animations for nothing
+  const isDesktop = useMediaQuery('(min-width: 1024px)')
 
   return (
-    <section id="top" className="relative isolate min-h-[100svh] overflow-hidden">
+    <section id="top" className="relative isolate overflow-hidden lg:min-h-[100svh]">
       <FlickeringGrid
         maxOpacity={0.22}
         className="[mask-image:radial-gradient(ellipse_at_25%_45%,black,transparent_70%)]"
       />
-      <Aurora className="opacity-50" />
-      <ComponentWall />
+      {isDesktop && <ComponentWall />}
 
       {/* Keep the text readable over the wall */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-transparent lg:block" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-zinc-950 to-transparent" />
 
-      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[100svh] flex-col justify-center px-4 pb-36 pt-28 sm:px-6 lg:px-10 2xl:px-16">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+      <div className="pointer-events-none relative z-10 mx-auto flex flex-col justify-center px-4 pb-28 pt-24 sm:px-6 sm:pt-28 lg:min-h-[100svh] lg:px-10 lg:pb-36 2xl:px-16">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400 sm:text-xs">
           {site.companyRole}, {site.company}
         </p>
 
-        <h1 className="pointer-events-auto mt-8 text-[clamp(3.6rem,13vw,10.5rem)] font-semibold leading-[0.85] tracking-tighter">
+        <h1 className="pointer-events-auto mt-6 text-[clamp(3.5rem,19vw,6rem)] font-semibold leading-[0.85] tracking-tighter sm:mt-8 sm:text-[clamp(3.6rem,13vw,10.5rem)]">
           <ScrambleText text="Sushant" duration={1100} className="block" />
           <span className="block text-transparent transition-colors duration-500 [-webkit-text-stroke:1.5px_rgba(255,255,255,0.55)] hover:text-accent hover:[-webkit-text-stroke:1.5px_#c6f432]">
             Sharma<span className="text-accent [-webkit-text-stroke:0]">.</span>
           </span>
         </h1>
 
-        <p className="mt-8 text-2xl tracking-tight text-zinc-300 sm:text-4xl">
+        {/* On phones the rotating word gets its own line, so the sentence never has a hole in it */}
+        <p className="mt-7 text-[1.75rem] leading-tight tracking-tight text-zinc-300 sm:mt-8 sm:text-4xl">
           I build{' '}
-          <WordRotate
-            words={['websites', 'buttons', 'backgrounds', 'loaders', 'page transitions', 'text effects']}
-            className="font-serif italic text-accent"
-          />{' '}
+          <span className="block min-h-[1.2em] sm:inline">
+            <WordRotate
+              words={['websites', 'buttons', 'backgrounds', 'loaders', 'page transitions', 'text effects']}
+              className="font-serif italic text-accent"
+            />
+          </span>{' '}
           in React.
         </p>
 
-        <p className="mt-5 max-w-lg leading-relaxed text-zinc-400">{site.tagline}</p>
+        <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-zinc-400 sm:text-base">
+          {site.tagline}
+        </p>
 
-        <div className="pointer-events-auto mt-9 flex flex-wrap gap-3">
-          <ShimmerButton onClick={() => navigate('/lab')} shimmerColor="#c6f432">
+        <div className="pointer-events-auto mt-8 grid grid-cols-2 gap-3 sm:mt-9 sm:flex sm:flex-wrap">
+          <ShimmerButton
+            onClick={() => navigate('/lab')}
+            shimmerColor="#c6f432"
+            className="whitespace-nowrap px-3 text-[13px] sm:px-6 sm:text-sm"
+          >
             Explore the Lab →
           </ShimmerButton>
-          <SlideFillButton onClick={() => navigate('/#contact')}>Get in touch</SlideFillButton>
+          <SlideFillButton
+            onClick={() => navigate('/#contact')}
+            className="justify-center whitespace-nowrap px-3 text-[13px] sm:px-6 sm:text-sm"
+          >
+            Get in touch
+          </SlideFillButton>
         </div>
 
-        <p className="mt-10 text-sm text-zinc-500">
+        <p className="mt-8 text-sm text-zinc-500 sm:mt-10">
           {components.length} components in the Lab right now, each with TSX and JSX code.
         </p>
+
+        {!isDesktop && <MobileWall />}
       </div>
 
       {/* What's actually in the Lab, rather than buzzwords */}
-      <div className="absolute inset-x-0 bottom-0 z-10 border-y border-white/10 bg-zinc-950/80 py-4 backdrop-blur">
+      <div className="absolute inset-x-0 bottom-0 z-10 border-y border-white/10 bg-zinc-950/80 py-3 backdrop-blur sm:py-4">
         <MarqueeText
           items={marqueeItems}
           speed={35}
-          className="text-2xl font-semibold uppercase tracking-tight text-white sm:text-3xl"
+          className="text-xl font-semibold uppercase tracking-tight text-white sm:text-3xl"
         />
       </div>
     </section>
