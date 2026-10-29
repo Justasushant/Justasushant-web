@@ -11,6 +11,7 @@ import MosaicSwitch from '../components/mosaic-switch.tsx'
 import GlitchSwitch from '../components/glitch-switch.tsx'
 import SwingSwitch from '../components/swing-switch.tsx'
 import ParallaxScroll from '../components/parallax-scroll.tsx'
+import TearReveal from '../components/tear-reveal.tsx'
 import { bool, color, num } from '../controls.js'
 import { demoPages, pagesUsage, pascal } from './shared.jsx'
 
@@ -36,6 +37,18 @@ const transition = (slug, name, Component, description, controls) => ({
 })
 
 export default [
+  transition(
+    'tear-reveal',
+    'Tear Reveal',
+    TearReveal,
+    'Scroll and the page tears into shifting ribbons and code, which fall away to reveal the next page.',
+    {
+      duration: num('Duration (ms)', 1800, 600, 4000, 100),
+      intensity: num('Tear intensity', 0.6, 0.2, 1, 0.05),
+      tint: color('Tint colour', '#9bbbc7'),
+      showCode: bool('Code ribbons', true),
+    },
+  ),
   transition(
     'blur-switch',
     'Blur Switch',

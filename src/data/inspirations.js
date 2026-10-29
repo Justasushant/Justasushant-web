@@ -10,6 +10,7 @@ const sites = {
   magic: { name: 'Magic UI', url: 'https://magicui.design/docs/components' },
   reactbits: { name: 'React Bits', url: 'https://reactbits.dev' },
   skiper: { name: 'Skiper UI', url: 'https://skiper-ui.com' },
+  kimi: { name: 'Kimi K3.1 Pro blog', url: 'https://www.kimi.ai/blog/kimi-k3-1-pro' },
   uiverse: { name: 'uiverse.io', url: 'https://uiverse.io' },
   shadcn: { name: 'shadcn/ui', url: 'https://ui.shadcn.com/docs/components' },
 }
@@ -106,6 +107,7 @@ const bySlug = {
   'split-reveal': 'skiper',
   'stack-scroll': 'aceternity',
   'swing-switch': 'skiper',
+  'tear-reveal': 'kimi',
   'zoom-switch': 'skiper',
 }
 
