@@ -7,27 +7,178 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Dela Gothic One", "Inter", ui-sans-serif, sans-serif;
   --color-accent: #c6f432;
+  --color-ink: #22211f;
+  --color-paper: #f2efe6;
+}
+
+/*
+  Manga theme.
+  The site is black ink on paper. Rather than rewrite every class, the neutral
+  palette is flipped here: "white" becomes ink, "zinc-950" becomes paper, and so
+  on. Corners go square like manga panels, and the accent becomes plain ink.
+  Lab previews (.ink-stage) get the original dark palette back, so every
+  component still looks the way its code says it does.
+*/
+body {
+  --color-white: #22211f;
+  --color-black: #f2efe6;
+  --color-zinc-50: #22211f;
+  --color-zinc-100: #161514;
+  --color-zinc-200: #1f1e1c;
+  --color-zinc-300: #2b2a27;
+  --color-zinc-400: #45433f;
+  --color-zinc-500: #67645d;
+  --color-zinc-600: #8a867d;
+  --color-zinc-700: #b3aea3;
+  --color-zinc-800: #d3cec2;
+  --color-zinc-900: #e6e2d7;
+  --color-zinc-950: #f2efe6;
+  --color-accent: #22211f;
+  /* Status colours turn into ink too: everything is black and white */
+  --color-amber-100: #22211f;
+  --color-amber-200: #22211f;
+  --color-amber-300: #22211f;
+  --color-amber-400: #22211f;
+  --color-cyan-300: #22211f;
+  --color-cyan-400: #22211f;
+  --color-rose-400: #22211f;
+  --color-rose-500: #22211f;
+  --color-emerald-400: #22211f;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.125rem;
+  --radius-lg: 0.2rem;
+  --radius-xl: 0.25rem;
+  --radius-2xl: 0.25rem;
+  --radius-3xl: 0.25rem;
+}
+
+/* Lab previews: back to the original dark palette */
+.ink-stage {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-zinc-50: oklch(98.5% 0 0);
+  --color-zinc-100: oklch(96.7% 0.001 286.375);
+  --color-zinc-200: oklch(92% 0.004 286.32);
+  --color-zinc-300: oklch(87.1% 0.006 286.286);
+  --color-zinc-400: oklch(70.5% 0.015 286.067);
+  --color-zinc-500: oklch(55.2% 0.016 285.938);
+  --color-zinc-600: oklch(44.2% 0.017 285.786);
+  --color-zinc-700: oklch(37% 0.013 285.805);
+  --color-zinc-800: oklch(27.4% 0.006 286.033);
+  --color-zinc-900: oklch(21% 0.006 285.885);
+  --color-zinc-950: oklch(14.1% 0.005 285.823);
+  --color-accent: #c6f432;
+  --color-amber-100: oklch(96.2% 0.059 95.617);
+  --color-amber-200: oklch(92.4% 0.12 95.746);
+  --color-amber-300: oklch(87.9% 0.169 91.605);
+  --color-amber-400: oklch(82.8% 0.189 84.429);
+  --color-cyan-300: oklch(86.5% 0.127 207.078);
+  --color-cyan-400: oklch(78.9% 0.154 211.53);
+  --color-rose-400: oklch(71.2% 0.194 13.428);
+  --color-rose-500: oklch(64.5% 0.246 16.439);
+  --color-emerald-400: oklch(76.5% 0.177 163.223);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   @apply bg-zinc-950 font-sans text-zinc-100 antialiased;
 }
 
+/* Paper grain over everything, like a scanned printed page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
-  background: var(--color-accent);
-  color: #09090b;
+  background: #22211f;
+  color: #f2efe6;
+}
+
+/* ─── Manga building blocks ─────────────────────────────────────────── */
+
+@layer components {
+/* A panel: thick ink border and a hard offset shadow */
+.panel {
+  border: 3px solid var(--color-ink);
+  background: var(--color-paper);
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+
+/* Screentone: the printed dot pattern used for shading */
+.tone {
+  background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.3px);
+  background-size: 7px 7px;
+}
+.tone-fade {
+  background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.3px);
+  background-size: 7px 7px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* Focus lines bursting out from a point */
+.speed-lines {
+  background: repeating-conic-gradient(from 0deg at var(--sx, 50%) var(--sy, 50%), var(--color-ink) 0deg 0.8deg, transparent 0.8deg 4deg, var(--color-ink) 4deg 4.4deg, transparent 4.4deg 9deg);
+  mask-image: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), transparent 30%, black 75%);
+}
+
+/* An ink button that presses down onto its own shadow */
+.ink-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.7rem 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 4px 4px 0 var(--color-ink);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s, color 0.15s;
+}
+.ink-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-ink);
+}
+.ink-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--color-ink);
+}
+.ink-btn.ghost {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
 }
 
 /* Thin, quiet scrollbars for the Lab panels */
 .scroll-thin {
   scrollbar-width: thin;
+  scrollbar-color: #8a867d transparent;
+}
+.ink-stage .scroll-thin,
+.ink-stage.scroll-thin {
   scrollbar-color: #3f3f46 transparent;
 }
 
@@ -53,7 +204,7 @@ body {
   to { background-position: -200% 0; }
 }
 .shimmer {
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.06), transparent);
+  background: linear-gradient(90deg, transparent, rgb(34 33 31 / 0.08), transparent);
   background-size: 200% 100%;
   animation: shimmer 2.4s linear infinite;
 }

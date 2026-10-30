@@ -16,7 +16,7 @@ export default function TemplatesSoon() {
             <span className="size-1.5 animate-pulse rounded-full bg-amber-400" />
             Coming soon
           </p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
+          <h2 className="mt-4 font-display text-4xl uppercase tracking-tight sm:text-6xl">
             Templates <span className="font-mono text-2xl text-zinc-500 sm:text-3xl">(0 / 0)</span>
           </h2>
           <p className="mt-3 max-w-xl text-zinc-400">

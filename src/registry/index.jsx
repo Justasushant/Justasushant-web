@@ -9,6 +9,9 @@ import text from './catalog/text.jsx'
 import cards from './catalog/cards.jsx'
 import elements from './catalog/elements.jsx'
 import loaders from './catalog/loaders.jsx'
+import footers from './catalog/footers.jsx'
+// Templates are built (see ./catalog/templates.jsx) but not published yet
+import heroes from './catalog/heroes.jsx'
 import { defaultsOf, indent } from './controls.js'
 
 // Categories A→Z, and components A→Z inside each category
@@ -17,6 +20,8 @@ export const components = [
   ...buttons,
   ...cards,
   ...elements,
+  ...footers,
+  ...heroes,
   ...loaders,
   ...text,
   ...transitions,

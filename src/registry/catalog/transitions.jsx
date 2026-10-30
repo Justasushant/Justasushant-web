@@ -1,3 +1,8 @@
+import PanelSwitch from '../components/panel-switch.tsx'
+import DiagonalSwitch from '../components/diagonal-switch.tsx'
+import TearSwitch from '../components/tear-switch.tsx'
+import DepthZoom from '../components/depth-zoom.tsx'
+import PortalSwitch from '../components/portal-switch.tsx'
 import BlurSwitch from '../components/blur-switch.tsx'
 import HorizontalScroll from '../components/horizontal-scroll.tsx'
 import SnapScroll from '../components/snap-scroll.tsx'
@@ -13,7 +18,8 @@ import SwingSwitch from '../components/swing-switch.tsx'
 import ParallaxScroll from '../components/parallax-scroll.tsx'
 import TearReveal from '../components/tear-reveal.tsx'
 import { bool, color, num } from '../controls.js'
-import { demoPages, pagesUsage, pascal } from './shared.jsx'
+import { pagesUsage, pascal } from './shared.jsx'
+import { demoPagesFor } from './transition-pages.jsx'
 
 const autoPlay = num('Auto-play every (ms, 0 = off)', 0, 0, 8000, 250)
 const duration = (value) => num('Duration (ms)', value, 200, 3000, 50)
@@ -30,7 +36,7 @@ const transition = (slug, name, Component, description, controls) => ({
   controls: { ...controls, autoPlay },
   demo: ({ preview, props }) => (
     <Component {...props} autoPlay={preview ? 2600 : props.autoPlay || undefined}>
-      {demoPages(name)}
+      {demoPagesFor(slug, name)}
     </Component>
   ),
   usage: (p) => pagesUsage(pascal(slug), { ...p, autoPlay: p.autoPlay || undefined }),
@@ -144,4 +150,26 @@ export default [
     'Content drifts slower than the scroll while floating shapes move on their own layers.',
     { showShapes: bool('Floating shapes', true) },
   ),
+  transition('diagonal-switch', 'Diagonal Switch', DiagonalSwitch, 'A bright slash cuts across the screen and the next page wipes in diagonally behind it.', {
+    duration: duration(900),
+    slashColor: color('Slash colour', '#f2efe6'),
+  }),
+  transition('tear-switch', 'Tear Switch', TearSwitch, 'The page rips in two from a random spot and the wind blows both halves away.', {
+    duration: num('Duration (ms)', 1300, 600, 3000, 50),
+    wind: num('Wind strength', 0.7, 0.2, 1, 0.05),
+  }),
+  transition('depth-zoom', 'Depth Zoom', DepthZoom, 'Pages hang one behind another in 3D. Scrolling flies you forward through them, like moving through a video.', {
+    depth: num('Gap between pages (px)', 1400, 400, 3000, 50),
+    smoothing: num('Smoothness', 0.08, 0.02, 0.3, 0.01),
+  }),
+  transition('portal-switch', 'Portal Switch', PortalSwitch, "A ring of spinning sparks opens like a sorcerer's portal, with the next page on the other side.", {
+    duration: num('Duration (ms)', 1800, 800, 4000, 50),
+    color: color('Spark colour', '#f97316'),
+    hotColor: color('Hot spark colour', '#fde68a'),
+  }),
+  transition('panel-switch', 'Panel Switch', PanelSwitch, 'The next page arrives as manga panels: the screen turns to paper, panels slam in one by one, then the gutters close up.', {
+    duration: num('Duration (ms)', 1400, 700, 3000, 50),
+    ink: color('Ink colour', '#22211f'),
+    paper: color('Gutter colour', '#f2efe6'),
+  }),
 ]

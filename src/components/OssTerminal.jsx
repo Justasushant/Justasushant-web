@@ -83,7 +83,7 @@ function BusyPreview({ project }) {
 }
 
 function LabPreview() {
-  const picks = ['blur-switch', 'holo-card', 'flow-field'].map(getComponent)
+  const picks = ['blur-switch', 'comic-card', 'flow-field'].map(getComponent)
   return (
     <div className="flex size-full flex-col gap-3 p-4 font-sans">
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-3 sm:grid-cols-3">
@@ -329,7 +329,7 @@ export default function OssTerminal({ onExit }) {
         return print(out(`“${excuses[Math.floor(Math.random() * excuses.length)]}”`, 'warn'))
       case 'chai':
       case 'coffee':
-        return print(out('☕ Brewing… done. Productivity +2%. Open-sourcing progress +0%.', 'accent'))
+        return print(out('Brewing… done. Productivity +2%. Open-sourcing progress +0%.', 'accent'))
       case 'sudo':
         return print(out(`${site.name.split(' ')[0].toLowerCase()} is not in the sudoers file. This incident will be reported to his mom.`, 'err'))
       case 'rm':

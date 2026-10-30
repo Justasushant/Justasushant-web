@@ -1,3 +1,4 @@
+import SpeedLines from '../components/speed-lines.tsx'
 import DotGrid from '../components/dot-grid.tsx'
 import Aurora from '../components/aurora.tsx'
 import Particles from '../components/particles.tsx'
@@ -12,6 +13,7 @@ import GrainGradient from '../components/grain-gradient.tsx'
 import RetroGrid from '../components/retro-grid.tsx'
 import Meteors from '../components/meteors.tsx'
 import MatrixRain from '../components/matrix-rain.tsx'
+import WebShooter from '../components/web-shooter.tsx'
 import { bool, color, colors, jsx, num, select } from '../controls.js'
 import { BgTitle, bgUsage, pascal } from './shared.jsx'
 
@@ -218,4 +220,46 @@ export default [
       fps: num('Frames per second', 24, 4, 60),
     },
   ),
+  {
+    ...background(
+      'web-shooter',
+      'Web Shooter',
+      WebShooter,
+      'Spider-Man style: click to shoot an orb web, drag to string a zip line. The spider abseils down to inspect each one.',
+      'Thwip!',
+      'click to shoot a web',
+      {
+        webColor: color('Web colour', '#f4f4f5'),
+        spiderColor: color('Spider colour', '#e11d48'),
+        lifetime: num('Web lasts (s)', 5, 1, 15),
+        spider: bool('Dangling spider', true),
+        autoShoot: num('Auto-shoot every (ms, 0 = off)', 0, 0, 5000, 100),
+        sound: bool('Comic sound effects', true),
+      },
+    ),
+    demo: ({ preview, props }) => (
+      <>
+        <WebShooter {...props} autoShoot={preview ? 900 : props.autoShoot} />
+        <BgTitle sub="click to shoot · drag to string a line">Thwip!</BgTitle>
+      </>
+    ),
+  },
+  {
+    ...background('speed-lines', 'Speed Lines', SpeedLines, 'Manga speed lines in tapered ink: focus lines rushing to a point, or motion streaks. They shimmer like hand inking.', '', '', {
+      mode: select('Style', 'focus', ['focus', 'motion']),
+      lines: num('Lines', 160, 30, 400, 10),
+      focus: num('Calm area size', 0.3, 0.05, 0.7, 0.01),
+      follow: bool('Follow the cursor', true),
+      color: color('Ink colour', '#22211f'),
+      background: color('Paper colour', '#f2efe6'),
+    }),
+    demo: ({ props }) => (
+      <>
+        <SpeedLines {...props} />
+        <p className="pointer-events-none relative z-10 rounded-[50%] border-[3px] border-[#22211f] bg-[#f2efe6] px-8 py-5 text-2xl font-black uppercase text-[#22211f]">
+          Here it comes!
+        </p>
+      </>
+    ),
+  },
 ]

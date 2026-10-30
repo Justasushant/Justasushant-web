@@ -20,7 +20,7 @@ const menuLinks = [
 
 const pill = ({ isActive }) =>
   `flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm transition-colors ${
-    isActive ? 'bg-white/10 text-white' : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+    isActive ? 'bg-ink text-paper' : 'text-zinc-400 hover:bg-white/5 hover:text-white'
   }`
 
 export default function Nav({ solid = false }) {
@@ -52,12 +52,12 @@ export default function Nav({ solid = false }) {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-          filled ? 'border-white/10 bg-zinc-950/80 backdrop-blur-xl' : 'border-transparent'
+          filled ? 'border-b-[3px] border-ink bg-paper/95 backdrop-blur' : 'border-transparent'
         }`}
       >
         <nav className="mx-auto flex h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10 2xl:px-16">
           <Link to="/" className="group flex items-baseline gap-2 whitespace-nowrap">
-            <span className="text-[15px] font-semibold tracking-tight text-white">{site.name}</span>
+            <span className="font-display text-[15px] uppercase tracking-tight text-white">{site.name}</span>
             <span className="inline-block size-1.5 rounded-full bg-accent transition-transform group-hover:scale-150" />
           </Link>
 
@@ -65,7 +65,7 @@ export default function Nav({ solid = false }) {
           <div className="hidden items-center gap-1 md:flex">
             <NavLink to="/lab" className={pill}>
               Lab
-              <span className="rounded-full bg-accent px-1.5 font-mono text-[10px] font-semibold leading-4 text-zinc-950">
+              <span className="rounded-full border border-current px-1.5 font-mono text-[10px] font-semibold leading-4">
                 {components.length}
               </span>
             </NavLink>
@@ -119,7 +119,7 @@ export default function Nav({ solid = false }) {
               >
                 <span className="flex items-baseline gap-3">
                   <span className="font-mono text-xs text-zinc-600">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="text-4xl font-semibold tracking-tight text-white transition-colors group-active:text-accent">
+                  <span className="font-display text-4xl uppercase tracking-tight text-white">
                     {label}
                   </span>
                 </span>
@@ -134,7 +134,7 @@ export default function Nav({ solid = false }) {
             <a href={`mailto:${site.email}`} className="block text-zinc-300">
               {site.email}
             </a>
-            <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="block text-[#25d366]">
+            <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="block font-semibold text-white underline">
               WhatsApp {site.whatsapp.display}
             </a>
           </div>

@@ -44,7 +44,7 @@ export const site = {
 }
 
 // Components shown on the home page (the rest live in the Lab)
-export const featured = ['blur-switch', 'flow-field', 'holo-card', 'glitch-text']
+export const featured = ['blur-switch', 'flow-field', 'web-shooter', 'split-flap']
 
 // status: 'soon' shows the "Updating soon" card.
 // When a project ships, set status: 'live' and fill in the links + image.

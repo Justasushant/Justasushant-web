@@ -6,64 +6,6 @@ import { projects } from '../data/site.js'
 // While nothing has shipped, the whole section is taped off like a crime scene
 const underConstruction = projects.every((p) => p.status !== 'live')
 
-// Each tape alternates these two phrases, starting from the fold
-const tapePhrases = ['Do not cross', 'Under construction']
-
-// The text is static and anchored to the fold, so every word at the centre is
-// whole: the right half reads outward from the fold, the left half ends at it.
-function TapeText({ side, offset }) {
-  const items = Array.from({ length: 8 }, (_, i) => tapePhrases[(i + offset) % 2])
-  // On the left, the phrase nearest the fold is the last item
-  const ordered = side === 'left' ? [...items].reverse() : items
-  return (
-    <div
-      className={`flex w-max whitespace-nowrap text-base font-black uppercase tracking-tight text-zinc-950 sm:text-2xl ${
-        side === 'left' ? 'ml-auto' : ''
-      }`}
-    >
-      {ordered.map((phrase, i) => (
-        <span key={i} className="flex items-center gap-5 px-5 sm:gap-8 sm:px-8">
-          {side === 'left' && <span className="text-sm text-zinc-950/35 sm:text-lg">✦</span>}
-          {phrase}
-          {side === 'right' && <span className="text-sm text-zinc-950/35 sm:text-lg">✦</span>}
-        </span>
-      ))}
-    </div>
-  )
-}
-
-// One broad strip of tape folded in the middle: two halves pinned at the
-// centre at opposite angles. A positive angle makes a V, a negative one a Λ.
-function FoldedTape({ angle, offset = 0, layer }) {
-  const half = (left) => (
-    <div
-      className="absolute top-0 w-[78vw] overflow-hidden bg-gradient-to-b from-[#fef08a] via-[#fde047] to-[#eab308] py-3 shadow-[0_18px_40px_rgba(0,0,0,0.6)] sm:py-4"
-      style={{
-        [left ? 'right' : 'left']: '50%',
-        transformOrigin: left ? 'right center' : 'left center',
-        transform: `translateY(-50%) rotate(${left ? angle : -angle}deg)`,
-      }}
-    >
-      <TapeText side={left ? 'left' : 'right'} offset={offset} />
-      {/* A soft shadow where the tape bends */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 w-24"
-        style={{
-          [left ? 'right' : 'left']: 0,
-          background: `linear-gradient(to ${left ? 'left' : 'right'}, rgba(0, 0, 0, 0.22), transparent)`,
-        }}
-      />
-    </div>
-  )
-  return (
-    <div className="absolute inset-x-0 top-1/2" style={{ zIndex: layer }}>
-      {half(true)}
-      {half(false)}
-    </div>
-  )
-}
-
 // A rough wireframe sketch of the project, so the card shows "planned", not "loading"
 function Wireframe({ index }) {
   const line = 'rounded border border-dashed border-white/15'
@@ -74,7 +16,7 @@ function Wireframe({ index }) {
         className="absolute inset-0 opacity-60"
         style={{
           backgroundImage:
-            'linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px)',
+            'linear-gradient(rgb(34 33 31 / 0.06) 1px, transparent 1px), linear-gradient(90deg, rgb(34 33 31 / 0.06) 1px, transparent 1px)',
           backgroundSize: '20px 20px',
         }}
       />
@@ -106,8 +48,8 @@ function ProjectCard({ project, index }) {
   const live = project.status === 'live'
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/40 transition duration-300 hover:-translate-y-1 hover:border-white/20">
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-zinc-900">
+    <article className="panel group flex h-full flex-col overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden border-b-[3px] border-ink bg-zinc-900">
         {live ? (
           <img
             src={project.image}
@@ -115,7 +57,12 @@ function ProjectCard({ project, index }) {
             className="size-full object-cover transition duration-500 group-hover:scale-105"
           />
         ) : (
-          <Wireframe index={index} />
+          <>
+            <Wireframe index={index} />
+            <span className="absolute right-3 top-3 -rotate-6 border-[3px] border-ink bg-paper px-2 py-1 font-display text-xs uppercase shadow-[3px_3px_0_var(--color-ink)]">
+              In progress
+            </span>
+          </>
         )}
       </div>
 
@@ -123,7 +70,7 @@ function ProjectCard({ project, index }) {
         <p className="font-mono text-xs text-zinc-500">
           {String(index + 1).padStart(2, '0')} · {project.hint}
         </p>
-        <h3 className="mt-2 text-xl font-semibold tracking-tight">{project.title}</h3>
+        <h3 className="mt-2 font-display text-xl uppercase tracking-tight">{project.title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-zinc-400">{project.description}</p>
 
         <div className="mt-auto flex flex-wrap gap-2 pt-5">
@@ -170,34 +117,17 @@ export default function Work() {
       }
     >
       <div className="relative">
-        {/* Behind the tape: the planned projects, dimmed and out of reach */}
-        <div
-          aria-hidden={underConstruction}
-          inert={underConstruction}
-          className={
-            underConstruction
-              ? // On phones the cards peek out in a row, so the tape covers the whole section
-                'flex select-none gap-4 overflow-hidden opacity-70 blur-[1px] grayscale-[0.4] sm:grid sm:grid-cols-2 sm:gap-5 lg:grid-cols-3'
-              : 'grid gap-5 sm:grid-cols-2 lg:grid-cols-3'
-          }
-        >
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => (
             <Reveal
               key={project.title}
               delay={i * 100}
-              className={`h-full ${underConstruction ? 'w-[82%] shrink-0 sm:w-auto' : ''}`}
+              className="h-full"
             >
               <ProjectCard project={project} index={i} />
             </Reveal>
           ))}
         </div>
-
-        {underConstruction && (
-          <div aria-hidden className="pointer-events-none absolute inset-0">
-            <FoldedTape angle={-4} offset={1} layer={1} />
-            <FoldedTape angle={4} offset={0} layer={2} />
-          </div>
-        )}
       </div>
 
       {underConstruction && (

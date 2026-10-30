@@ -1,3 +1,6 @@
+import MangaText from '../components/manga-text.tsx'
+import SplitFlap from '../components/split-flap.tsx'
+import SpiderSenseText from '../components/spider-sense-text.tsx'
 import ScrambleText from '../components/scramble-text.tsx'
 import HighlightText from '../components/highlight-text.tsx'
 import FlashlightText from '../components/flashlight-text.tsx'
@@ -205,18 +208,67 @@ ${indent(tag('HighlightText', p), 2)}{' '}
     slug: 'flashlight-text',
     name: 'Flashlight Text',
     category: 'Text',
-    description: 'Text hidden in the dark. Your cursor is the flashlight.',
+    description: 'Text hidden in the dark. Your cursor is a torch that lights up the words and the dust around them.',
     controls: {
       text: text('Text', 'FIND ME IN THE DARK'),
-      radius: num('Light radius (px)', 120, 30, 400, 5),
-      colors: colors('Colours', ['#c6f432', '#22d3ee', '#f0abfc']),
+      radius: num('Light radius (px)', 140, 30, 400, 5),
+      colors: colors('Colours', ['#ffffff']),
+      wander: bool('Drift when idle', true),
     },
     demo: ({ props }) => (
       <FlashlightText
         {...props}
-        className="px-6 text-center text-5xl font-black leading-none tracking-tight sm:text-6xl"
+        className="w-full max-w-3xl text-center text-5xl font-black leading-none tracking-tight sm:text-6xl"
       />
     ),
     usage: (p) => jsx('FlashlightText', { ...p, className: 'text-6xl font-black' }),
+  },
+  {
+    slug: 'spider-sense-text',
+    name: 'Spider Sense Text',
+    category: 'Text',
+    description: 'Hover and zigzag tingle lines burst around the text while it shivers. Spider-Man knows.',
+    controls: {
+      text: text('Text', 'DANGER NEARBY'),
+      color: color('Tingle colour', '#ef4444'),
+      accent: color('Second colour', '#3b82f6'),
+      lines: num('Tingle lines', 14, 4, 30),
+      always: bool('Always on', false),
+    },
+    demo: ({ preview, props }) => (
+      <SpiderSenseText {...props} always={preview || props.always} className={`whitespace-nowrap font-black tracking-tight text-white ${preview ? "text-3xl" : "text-5xl sm:text-6xl"}`} />
+    ),
+    usage: (p) => jsx('SpiderSenseText', { ...p, className: 'text-6xl font-black' }),
+  },
+  {
+    slug: 'split-flap',
+    name: 'Split Flap',
+    category: 'Text',
+    description: 'An airport departures board. Every letter clacks through the alphabet to spell the next word.',
+    controls: {
+      interval: num('Each word stays (ms)', 3500, 1500, 10000, 250),
+      color: color('Letter colour', '#fde68a'),
+      flapColor: color('Flap colour', '#18181b'),
+    },
+    demo: ({ preview, props }) => <SplitFlap {...props} className={preview ? "text-xl" : "text-3xl sm:text-5xl"} />,
+    usage: (p) => jsx('SplitFlap', { ...p, words: ['DEPARTING', 'ON TIME', 'BOARDING'], className: 'text-5xl' }),
+  },
+  {
+    slug: 'manga-text',
+    name: 'Manga Text',
+    category: 'Text',
+    fill: true,
+    description: 'Text that slams onto the page like a manga sound effect: letters drop in, land with a shake and focus lines burst out. Hover to slam it again.',
+    controls: {
+      text: text('Text', 'KABOOM!'),
+      stagger: num('Delay between letters (ms)', 70, 20, 200, 5),
+      tilt: num('Tilt (deg)', -6, -20, 20),
+    },
+    demo: ({ props }) => (
+      <div className="grid size-full place-items-center overflow-hidden bg-[#f2efe6]">
+        <MangaText {...props} className="text-6xl sm:text-8xl" />
+      </div>
+    ),
+    usage: (p) => jsx('MangaText', { ...p, className: 'text-8xl' }),
   },
 ]

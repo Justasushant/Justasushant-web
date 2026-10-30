@@ -8,7 +8,7 @@ export default function NotFound() {
       <Nav />
       <main className="flex min-h-[80svh] flex-col justify-center px-4 pt-16 sm:px-6 lg:px-10 2xl:px-16">
         <p className="font-mono text-sm text-zinc-500">404</p>
-        <h1 className="mt-3 text-5xl font-semibold tracking-tight sm:text-7xl">Nothing here.</h1>
+        <h1 className="mt-3 font-display text-5xl uppercase tracking-tight sm:text-7xl">Nothing here.</h1>
         <p className="mt-4 max-w-md text-zinc-400">
           That page doesn’t exist, or it moved. Try the home page or the Lab.
         </p>

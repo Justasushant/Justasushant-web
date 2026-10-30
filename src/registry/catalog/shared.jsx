@@ -27,69 +27,6 @@ export const CardContent = ({ title, text }) => (
   </>
 )
 
-// Four full-size demo pages for the Transitions category.
-// Sizes use container units so they look right in a small card or full screen.
-const pageThemes = [
-  {
-    background: '#c6f432',
-    color: '#09090b',
-    title: 'Scroll down',
-    note: 'Use the wheel, a trackpad, the arrow keys or swipe.',
-  },
-  {
-    background: '#18181b',
-    color: '#fafafa',
-    title: 'Keep going',
-    note: 'A page can hold anything: text, images, whole sections of a site.',
-  },
-  {
-    background: 'linear-gradient(135deg, #7c3aed, #db2777)',
-    color: '#ffffff',
-    title: 'Almost there',
-    note: 'Everything runs on transforms, so it stays smooth.',
-  },
-  {
-    background: 'linear-gradient(135deg, #0891b2, #1e3a8a)',
-    color: '#ffffff',
-    title: 'That’s all',
-    note: 'Scroll back up to rewind.',
-  },
-]
-
-export const demoPages = (label) =>
-  pageThemes.map((page, i) => (
-    <section
-      key={i}
-      className="@container size-full"
-      style={{ background: page.background, color: page.color }}
-    >
-      <div className="relative flex size-full flex-col justify-between overflow-hidden" style={{ padding: '6cqw' }}>
-        <div
-          className="relative flex justify-between font-mono uppercase tracking-widest opacity-70"
-          style={{ fontSize: 'max(10px, 1.4cqw)' }}
-        >
-          <span>{label}</span>
-          <span>
-            {String(i + 1).padStart(2, '0')} / {String(pageThemes.length).padStart(2, '0')}
-          </span>
-        </div>
-        <span
-          aria-hidden
-          className="pointer-events-none absolute top-1/2 -translate-y-1/2 font-semibold leading-none tracking-tighter opacity-15"
-          style={{ fontSize: '46cqw', right: '-2cqw' }}
-        >
-          {i + 1}
-        </span>
-        <p className="relative font-semibold leading-[0.9] tracking-tighter" style={{ fontSize: '12cqw' }}>
-          {page.title}
-        </p>
-        <p className="relative opacity-75" style={{ fontSize: 'max(11px, 1.7cqw)', maxWidth: '55cqw' }}>
-          {page.note}
-        </p>
-      </div>
-    </section>
-  ))
-
 const pageSections = `<section className="h-full bg-lime-300">Page one</section>
 <section className="h-full bg-zinc-900 text-white">Page two</section>
 <section className="h-full bg-violet-600 text-white">Page three</section>

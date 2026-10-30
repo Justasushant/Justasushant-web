@@ -1,3 +1,6 @@
+import MangaButton from '../components/manga-button.tsx'
+import PixelButton from '../components/pixel-button.tsx'
+import ComicButton from '../components/comic-button.tsx'
 import ShimmerButton from '../components/shimmer-button.tsx'
 import HoldButton from '../components/hold-button.tsx'
 import SparkleButton from '../components/sparkle-button.tsx'
@@ -10,7 +13,11 @@ import BrutalButton from '../components/brutal-button.tsx'
 import ConfettiButton from '../components/confetti-button.tsx'
 import CopyButton from '../components/copy-button.tsx'
 import SpringToggle from '../components/spring-toggle.tsx'
-import { bool, color, colors, num, text } from '../controls.js'
+import FireworksButton from '../components/fireworks-button.tsx'
+import LiquidButton from '../components/liquid-button.tsx'
+import RocketButton from '../components/rocket-button.tsx'
+import HeartButton from '../components/heart-button.tsx'
+import { bool, color, colors, jsx, num, select, text } from '../controls.js'
 import { pascal, tag } from './shared.jsx'
 
 // Most buttons: the demo renders the component with the live props,
@@ -60,7 +67,7 @@ export default [
     shadowColor: color('Shadow colour', '#fafafa'),
   }),
   button('confetti-button', 'Confetti Button', ConfettiButton, 'Bursts a ring of confetti on every click. Zero dependencies.', {
-    children: label('🎉 Celebrate'),
+    children: label('Celebrate'),
     count: num('Pieces', 28, 4, 120),
     colors: colors('Confetti colours', ['#c6f432', '#22d3ee', '#f472b6', '#facc15', '#a78bfa']),
   }),
@@ -78,7 +85,65 @@ export default [
     color: color('Colour', '#f43f5e'),
   }),
   button('sparkle-button', 'Sparkle Button', SparkleButton, 'A gradient button that sprinkles twinkling stars while you hover it.', {
-    children: label('✨ Make it magic'),
+    children: label('Make it magic'),
     colors: colors('Star colours', ['#fde047', '#c6f432', '#f0abfc', '#ffffff']),
   }),
+  button('fireworks-button', 'Fireworks Button', FireworksButton, 'Every click launches rockets that burst into fireworks above the button.', {
+    children: label('Light it up'),
+    rockets: num('Rockets per click', 3, 1, 8),
+    colors: colors('Firework colours', ['#c6f432', '#22d3ee', '#f472b6', '#facc15', '#ffffff']),
+  }),
+  button('liquid-button', 'Liquid Button', LiquidButton, 'Liquid rises inside on hover, with a rolling wave on top.', {
+    children: label('Dive in'),
+    color: color('Liquid colour', '#22d3ee'),
+    fillTextColor: color('Text colour when full', '#09090b'),
+  }),
+  {
+    ...button('rocket-button', 'Rocket Button', RocketButton, 'The rocket shakes, blasts off in a puff of smoke, and the label rolls to done.', {}),
+    controls: {
+      label: text('Label', 'Launch'),
+      doneLabel: text('Done label', 'Launched'),
+      color: color('Colour', '#f97316'),
+    },
+    usage: (p) => jsx('RocketButton', p),
+  },
+  {
+    ...button('heart-button', 'Heart Button', HeartButton, 'A like button: the heart pops, sparks fly out and the counter rolls up.', {}),
+    controls: {
+      count: num('Starting likes', 128, 0, 9999),
+      color: color('Heart colour', '#f43f5e'),
+      burstColors: colors('Burst colours', ['#f43f5e', '#fb923c', '#facc15', '#a78bfa', '#22d3ee']),
+    },
+    usage: (p) => jsx('HeartButton', p),
+  },
+  button('comic-button', 'Comic Button', ComicButton, 'A chunky comic-book button. Every hit throws out a POW, BAM or ZAP starburst.', {
+    children: label('Hit me'),
+    color: color('Button colour', '#facc15'),
+    burstColor: color('Burst colour', '#ef4444'),
+  }),
+  button('pixel-button', 'Pixel Button', PixelButton, 'A crisp 8-bit button with stepped corners. It clicks down in hard steps and spits out pixels.', {
+    children: label('Press start'),
+    color: color('Colour', '#22c55e'),
+    shadowColor: color('Shadow colour', '#052e16'),
+  }),
+  {
+    ...button('manga-button', 'Manga Button', MangaButton, 'Manga-style buttons with a hard ink shadow and sliding screentone. Hit one for a starburst sound effect.', {}),
+    controls: {
+      children: label('Read now'),
+      variant: select('Style', 'ink', ['ink', 'paper', 'outline']),
+      sfx: text('Sound effect', 'ドン!'),
+    },
+    demo: ({ preview, props }) => (
+      <div className="grid size-full place-items-center bg-[#f2efe6]">
+        {preview ? (
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <MangaButton>Read now</MangaButton>
+            <MangaButton variant="paper" sfx="バン!">Subscribe</MangaButton>
+          </div>
+        ) : (
+          <MangaButton {...props} />
+        )}
+      </div>
+    ),
+  },
 ]

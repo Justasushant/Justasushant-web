@@ -1,10 +1,13 @@
+import MangaPanel from '../components/manga-panel.tsx'
+import ComicCard from '../components/comic-card.tsx'
+import WebCard from '../components/web-card.tsx'
+import { Icon } from './icons.jsx'
 import SpotlightCard from '../components/spotlight-card.tsx'
 import TiltCard from '../components/tilt-card.tsx'
 import GlassCard from '../components/glass-card.tsx'
 import BorderBeamCard from '../components/border-beam-card.tsx'
 import FlipCard from '../components/flip-card.tsx'
 import ExpandPanels from '../components/expand-panels.tsx'
-import HoloCard from '../components/holo-card.tsx'
 import StackCards from '../components/stack-cards.tsx'
 import FocusCards from '../components/focus-cards.tsx'
 import FolderCard from '../components/folder-card.tsx'
@@ -19,7 +22,7 @@ const chatMessages = [
   { from: 'me', text: 'Almost! Just polishing one more button.' },
   { from: 'them', text: 'You said that last week.' },
   { from: 'me', text: 'It was a different button.' },
-  { from: 'them', text: '😂 fair' },
+  { from: 'them', text: 'Fair enough, haha.' },
 ]
 
 const deploySteps = [
@@ -31,8 +34,8 @@ const deploySteps = [
 ]
 import { bool, color, colors, jsx, lines, num, select, text } from '../controls.js'
 
-const Icon = ({ children }) => (
-  <div className="grid size-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-xl">
+const IconTile = ({ children }) => (
+  <div className="grid size-11 place-items-center rounded-xl border border-white/10 bg-white/5 text-[#c6f432]">
     {children}
   </div>
 )
@@ -72,7 +75,7 @@ export default [
     controls: { glowColor: color('Glow colour', '#c6f432') },
     demo: ({ props }) => (
       <SpotlightCard {...props} className="w-80">
-        <Icon>⚡</Icon>
+        <IconTile><Icon name="bolt" size={22} /></IconTile>
         <h3 className="mt-5 text-xl font-semibold text-white">Lightning fast</h3>
         <p className="mt-2 text-sm leading-relaxed text-zinc-400">
           Built on transforms and opacity only, so every animation stays at 60fps.
@@ -108,21 +111,6 @@ export default [
       </TiltCard>
     ),
     usage: (p) => wrap('TiltCard', { ...p, className: 'w-72' }, '<p>MEMBERSHIP</p>\n<p className="text-4xl font-black">PRO.</p>'),
-  },
-  {
-    slug: 'holo-card',
-    name: 'Holo Card',
-    category: 'Cards',
-    description: 'A collectible card with rainbow holographic foil that shifts as you tilt it.',
-    controls: { intensity: num('Foil intensity', 1, 0, 1, 0.05) },
-    demo: ({ props }) => (
-      <HoloCard {...props}>
-        <p className="font-mono text-[10px] tracking-widest text-white/70">#001 · LEGENDARY</p>
-        <p className="mt-1 text-2xl font-black tracking-tight text-white">Pixel Wizard</p>
-        <p className="mt-1 text-xs text-white/70">Casts 60fps animations. Weak against Internet Explorer.</p>
-      </HoloCard>
-    ),
-    usage: (p) => wrap('HoloCard', p, '<p className="text-2xl font-black">Pixel Wizard</p>'),
   },
   {
     slug: 'glass-card',
@@ -335,7 +323,7 @@ export default [
           <div className="flex size-full flex-col justify-between bg-zinc-900 p-5">
             <p className="font-mono text-xs text-zinc-500">CARD 01 / BACK</p>
             <div>
-              <p className="text-lg font-semibold text-white">Hello 👋</p>
+              <p className="text-lg font-semibold text-white">Hello there</p>
               <p className="mt-2 text-sm text-zinc-400">Put details, links or a call to action here.</p>
             </div>
             <span className="w-fit rounded-full bg-white px-3 py-1 text-xs font-semibold text-zinc-950">
@@ -360,5 +348,101 @@ export default [
     controls: { grow: num('Open panel width (× others)', 5, 1.5, 10, 0.5) },
     demo: ({ props }) => <ExpandPanels {...props} className="px-6" panels={panels} />,
     usage: (p) => jsx('ExpandPanels', { ...p, panels: panels.slice(0, 3) }),
+  },
+  {
+    slug: 'web-card',
+    name: 'Web Card',
+    category: 'Cards',
+    description: 'A cobweb spins itself into the corner on hover and a spider drops down on its thread.',
+    controls: {
+      webColor: color('Web colour', '#d4d4d8'),
+      spiderColor: color('Spider colour', '#e11d48'),
+    },
+    demo: ({ props }) => (
+      <WebCard {...props}>
+        <p className="font-mono text-xs text-zinc-500">NEIGHBOURHOOD WATCH</p>
+        <h3 className="mt-3 text-xl font-semibold text-white">Friendly, local, quick.</h3>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          Hover the card. Somebody has been hanging around in the corner.
+        </p>
+        <span className="mt-6 inline-block rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-zinc-950">Say hi</span>
+      </WebCard>
+    ),
+    usage: (p) => wrap('WebCard', p, '<h3>Friendly, local, quick.</h3>'),
+  },
+  {
+    slug: 'comic-card',
+    name: 'Comic Card',
+    category: 'Cards',
+    description: 'A comic-book panel with halftone dots and a speech bubble. Speed lines burst out on hover.',
+    controls: {
+      title: text('Caption', 'Meanwhile...'),
+      speech: text('Speech bubble', 'This card has superpowers!'),
+      caption: text('Corner label', 'Issue #1'),
+      color: color('Panel colour', '#38bdf8'),
+    },
+    demo: ({ props }) => (
+      <ComicCard {...props}>
+        <svg viewBox="0 0 100 100" className="size-28 drop-shadow-[4px_4px_0_#09090b]">
+          <path d="M50 4 L92 18 C92 56 76 82 50 96 C24 82 8 56 8 18 Z" fill="#ef4444" stroke="#09090b" strokeWidth="5" strokeLinejoin="round" />
+          <path d="M56 22 L34 56 H50 L44 80 L68 44 H52 Z" fill="#facc15" stroke="#09090b" strokeWidth="4" strokeLinejoin="round" />
+        </svg>
+      </ComicCard>
+    ),
+    usage: (p) => wrap('ComicCard', p, '<img src="/hero.png" className="w-32" />'),
+  },
+  {
+    slug: 'manga-panel',
+    name: 'Manga Panel',
+    category: 'Cards',
+    fill: true,
+    description: 'A manga page layout: ink panels with white gutters, screentone and focus lines. Hover a panel and the camera pushes in.',
+    controls: {},
+    demo: () => (
+      <div className="grid size-full place-items-center bg-[#f2efe6] p-5">
+        <MangaPanel
+          className="h-full max-h-[420px] w-full max-w-lg"
+          areas={['a a b', 'c d d']}
+          panels={[
+            {
+              caption: 'Ch. 1',
+              lines: true,
+              content: <p className="text-4xl font-black uppercase leading-none tracking-tight">The plan.</p>,
+            },
+            {
+              dark: true,
+              content: (
+                <svg viewBox="0 0 60 40" className="w-20">
+                  <path d="M4 22 Q16 10 28 20 Q16 28 4 22Z" fill="#f2efe6" />
+                  <circle cx="17" cy="20" r="5" fill="#22211f" />
+                  <path d="M56 22 Q44 10 32 20 Q44 28 56 22Z" fill="#f2efe6" />
+                  <circle cx="43" cy="20" r="5" fill="#22211f" />
+                  <path d="M3 9 L27 13 M57 9 L33 13" stroke="#f2efe6" strokeWidth="3" />
+                </svg>
+              ),
+            },
+            {
+              tone: true,
+              content: (
+                <p className="rounded-[50%] border-[3px] border-[#22211f] bg-[#f2efe6] px-4 py-2 text-xs font-black uppercase">Ship it?</p>
+              ),
+            },
+            {
+              lines: true,
+              content: <p className="text-5xl font-black text-[#f2efe6] [-webkit-text-stroke:2px_#22211f] [paint-order:stroke_fill]">ドン!</p>,
+            },
+          ]}
+        />
+      </div>
+    ),
+    usage: `<MangaPanel
+  areas={['a a b', 'c d d']}
+  panels={[
+    { content: <h3>The plan.</h3>, lines: true, caption: 'Ch. 1' },
+    { content: <img src="/eyes.png" />, dark: true },
+    { content: <p>Ship it?</p>, tone: true },
+    { content: <p>ドン!</p>, lines: true },
+  ]}
+/>`,
   },
 ]

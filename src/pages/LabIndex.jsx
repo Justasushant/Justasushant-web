@@ -6,7 +6,6 @@ import LabCard from '../components/LabCard.jsx'
 import LabSidebar from '../components/LabSidebar.jsx'
 import TemplatesSoon from '../components/TemplatesSoon.jsx'
 import { allCategories, comingSoon, components } from '../registry/index.jsx'
-import ShinyText from '../registry/components/shiny-text.tsx'
 import { site } from '../data/site.js'
 
 export default function LabIndex() {
@@ -35,20 +34,20 @@ export default function LabIndex() {
         </aside>
 
         <main className="min-w-0 pb-24 pt-10 sm:pt-14">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-zinc-400">
+          <p className="inline-flex items-center gap-2 border-2 border-ink px-3 py-1 font-mono text-xs font-bold text-zinc-300">
             <span className="size-1.5 rounded-full bg-accent" />
             {components.length} components · TSX + JSX · copy & paste
           </p>
-          <h1 className="mt-6 text-5xl font-semibold tracking-tighter sm:text-7xl">
-            The <ShinyText baseColor="#a1a1aa" className="font-serif font-normal italic">Lab</ShinyText>
+          <h1 className="mt-6 font-display text-6xl uppercase leading-none tracking-tight sm:text-8xl">
+            The <span className="text-transparent [-webkit-text-stroke:2px_#22211f]">Lab</span>
           </h1>
           <p className="mt-4 max-w-xl text-lg text-zinc-400">
             Page transitions, buttons, backgrounds, text effects, cards, loaders and more. Built
             with React and Tailwind CSS, no extra libraries. Open any component to grab its code.
           </p>
 
-          <div className="mt-8 max-w-2xl rounded-2xl border border-accent/25 bg-accent/[0.04] p-5">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-accent">
+          <div className="panel mt-8 max-w-2xl p-5">
+            <p className="inline-block bg-ink px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-widest text-paper">
               A quick, honest note
             </p>
             <p className="mt-2 leading-relaxed text-zinc-300">{site.labNote}</p>
@@ -58,7 +57,7 @@ export default function LabIndex() {
             </p>
           </div>
 
-          <div className="sticky top-16 z-20 -mx-4 mt-10 flex flex-col gap-3 border-b border-white/10 bg-zinc-950/85 px-4 py-4 backdrop-blur-xl sm:mx-0 sm:flex-row sm:items-center sm:px-0">
+          <div className="sticky top-16 z-20 -mx-4 mt-10 flex flex-col gap-3 border-b-[3px] border-ink bg-paper/95 px-4 py-4 backdrop-blur sm:mx-0 sm:flex-row sm:items-center sm:px-0">
             <label className="relative sm:w-60 sm:shrink-0">
               <span className="sr-only">Search components</span>
               <svg
@@ -117,7 +116,7 @@ export default function LabIndex() {
 
               {groups.map(({ cat, items, soon }) => (
                 <section key={cat} className="pt-12">
-                  <h2 className="flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
+                  <h2 className="flex items-baseline gap-3 border-b-[3px] border-ink pb-2 font-display text-2xl uppercase tracking-tight">
                     {cat}
                     <span className="font-mono text-xs font-normal text-zinc-500">
                       {soon ? '0 / 0 · coming soon' : items.length}
@@ -141,7 +140,7 @@ export default function LabIndex() {
                   ) : (
                     <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                       {items.map((item) => (
-                        <LabCard key={item.slug} item={item} height={cat === 'Cards' ? 'h-96' : 'h-56'} />
+                        <LabCard key={item.slug} item={item} height={cat === 'Cards' || cat === 'Templates' ? 'h-96' : 'h-56'} />
                       ))}
                     </div>
                   )}

@@ -1,28 +1,25 @@
+import { useState } from 'react'
+import MangaNavbar from '../components/manga-navbar.tsx'
+import CheckList from '../components/check-list.tsx'
 import Dock from '../components/dock.tsx'
 import AnimatedTabs from '../components/animated-tabs.tsx'
-import OrbitingCircles from '../components/orbiting-circles.tsx'
 import Accordion from '../components/accordion.tsx'
-import Tooltip from '../components/tooltip.tsx'
 import ToastStack, { toast } from '../components/toast-stack.tsx'
 import CommandPalette from '../components/command-palette.tsx'
 import CompareSlider from '../components/compare-slider.tsx'
 import Rating from '../components/rating.tsx'
 import AvatarStack from '../components/avatar-stack.tsx'
-import { bool, color, indent, jsx, num, select, text } from '../controls.js'
-
-const Bubble = ({ children }) => (
-  <div className="grid size-10 place-items-center rounded-full border border-white/15 bg-zinc-900 text-lg">
-    {children}
-  </div>
-)
+import { bool, color, indent, jsx, num, text } from '../controls.js'
+import { Icon } from './icons.jsx'
 
 const dockItems = [
-  { label: 'Home', icon: '🏠' },
-  { label: 'Projects', icon: '📁' },
-  { label: 'Design', icon: '🎨' },
-  { label: 'Music', icon: '🎧' },
-  { label: 'Messages', icon: '💬' },
-  { label: 'Settings', icon: '⚙️' },
+  { label: 'Home', icon: <Icon name="home" />, color: '#3b82f6', active: true },
+  { label: 'Projects', icon: <Icon name="folder" />, color: '#0ea5e9' },
+  { label: 'Design', icon: <Icon name="pen" />, color: '#ec4899', active: true },
+  { label: 'Music', icon: <Icon name="music" />, color: '#f43f5e' },
+  { label: 'Messages', icon: <Icon name="chat" />, color: '#22c55e', active: true },
+  { label: 'Code', icon: <Icon name="code" />, color: '#8b5cf6' },
+  { label: 'Settings', icon: <Icon name="settings" />, color: '#52525b' },
 ]
 
 const tabs = ['Overview', 'Components', 'Pricing', 'Docs']
@@ -34,12 +31,12 @@ const faq = [
 ]
 
 const commands = [
-  { label: 'Open the Lab', group: 'Navigate', icon: '🧪', shortcut: 'G L' },
-  { label: 'Go home', group: 'Navigate', icon: '🏠', shortcut: 'G H' },
-  { label: 'Copy component code', group: 'Actions', icon: '📋', shortcut: '⌘C' },
-  { label: 'Toggle fullscreen', group: 'Actions', icon: '⤢', shortcut: 'F' },
-  { label: 'Send me an email', group: 'Contact', icon: '✉️' },
-  { label: 'Message on WhatsApp', group: 'Contact', icon: '💬' },
+  { label: 'Open the Lab', group: 'Navigate', icon: <Icon name="flask" size={16} />, shortcut: 'G L' },
+  { label: 'Go home', group: 'Navigate', icon: <Icon name="home" size={16} />, shortcut: 'G H' },
+  { label: 'Copy component code', group: 'Actions', icon: <Icon name="copy" size={16} />, shortcut: '⌘C' },
+  { label: 'Toggle fullscreen', group: 'Actions', icon: <Icon name="expand" size={16} />, shortcut: 'F' },
+  { label: 'Send me an email', group: 'Contact', icon: <Icon name="mail" size={16} /> },
+  { label: 'Message on WhatsApp', group: 'Contact', icon: <Icon name="phone" size={16} /> },
 ]
 
 const toastMessages = [
@@ -60,19 +57,111 @@ const people = [
   { name: 'Vihaan Shah' },
 ]
 
+// The same landing page twice: as a wireframe and as the finished design
+const Wireframe = () => {
+  const box = 'rounded border border-dashed border-zinc-500'
+  return (
+    <div className="flex size-full flex-col gap-[4%] bg-zinc-200 p-[5%]">
+      <div className="flex items-center justify-between">
+        <span className={`h-3 w-16 ${box}`} />
+        <div className="flex gap-2">
+          <span className={`h-2.5 w-8 ${box}`} />
+          <span className={`h-2.5 w-8 ${box}`} />
+          <span className={`h-2.5 w-8 ${box}`} />
+        </div>
+      </div>
+      <div className="mt-[4%] space-y-2">
+        <span className={`block h-5 w-3/4 ${box}`} />
+        <span className={`block h-5 w-1/2 ${box}`} />
+        <span className={`block h-2.5 w-2/3 ${box}`} />
+      </div>
+      <span className="h-7 w-24 rounded-full border border-dashed border-zinc-500" />
+      <div className="mt-auto grid flex-1 grid-cols-3 gap-[3%]">
+        {[0, 1, 2].map((i) => (
+          <span key={i} className={`relative ${box}`}>
+            <span className="absolute inset-0 bg-[linear-gradient(to_top_right,transparent_calc(50%-0.5px),#71717a,transparent_calc(50%+0.5px))]" />
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const Designed = () => (
+  <div className="flex size-full flex-col gap-[4%] bg-[radial-gradient(circle_at_80%_0%,#3b0764,#09090b_60%)] p-[5%] text-white">
+    <div className="flex items-center justify-between text-[10px]">
+      <span className="font-black tracking-tight">ACME</span>
+      <div className="flex gap-3 text-zinc-400">
+        <span>Work</span>
+        <span>Lab</span>
+        <span>Contact</span>
+      </div>
+    </div>
+    <div className="mt-[4%]">
+      <p className="text-xl font-semibold leading-tight tracking-tight sm:text-2xl">
+        Interfaces that <span className="text-[#c6f432]">feel alive.</span>
+      </p>
+      <p className="mt-1 text-[10px] text-zinc-400">Motion, detail and craft, shipped weekly.</p>
+    </div>
+    <span className="w-fit rounded-full bg-[#c6f432] px-3 py-1 text-[10px] font-semibold text-zinc-950">
+      Get started →
+    </span>
+    <div className="mt-auto grid flex-1 grid-cols-3 gap-[3%]">
+      {['from-fuchsia-500 to-violet-700', 'from-cyan-400 to-blue-700', 'from-lime-300 to-emerald-600'].map((g) => (
+        <span key={g} className={`rounded-lg bg-gradient-to-br shadow-lg ${g}`} />
+      ))}
+    </div>
+  </div>
+)
+
+// The navbar over a page that changes with the selected link
+const navLinks = ['Chapters', 'Characters', 'Studio', 'Contact']
+function NavbarDemo({ props }) {
+  const [page, setPage] = useState(0)
+  return (
+    <div className="absolute inset-0 flex flex-col bg-[#f2efe6] text-[#22211f]">
+      <MangaNavbar {...props} links={navLinks} onSelect={setPage} />
+      <div className="relative grid flex-1 place-items-center overflow-hidden p-6">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            background: 'repeating-conic-gradient(from 0deg at 50% 50%, #22211f 0deg 0.8deg, transparent 0.8deg 5deg)',
+            maskImage: 'radial-gradient(circle, transparent 25%, black 75%)',
+            WebkitMaskImage: 'radial-gradient(circle, transparent 25%, black 75%)',
+          }}
+        />
+        <div key={page} className="relative text-center" style={{ animation: 'manga-navbar-pop 0.35s ease-out' }}>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.3em]">Page {String(page + 1).padStart(2, '0')}</p>
+          <p className="mt-2 text-6xl font-black uppercase tracking-tight sm:text-7xl">{navLinks[page]}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default [
   {
     slug: 'dock',
     name: 'Dock',
     category: 'Elements',
-    description: 'macOS-style dock where icons magnify near the cursor.',
+    description: 'macOS-style dock: icons swell smoothly near the cursor and bounce when clicked.',
     controls: {
-      size: num('Icon size (px)', 40, 24, 72),
+      size: num('Icon size (px)', 44, 24, 72),
       magnification: num('Magnification', 1.8, 1, 3, 0.1),
-      distance: num('Reach (px)', 110, 40, 300, 5),
+      distance: num('Reach (px)', 120, 40, 300, 5),
     },
     demo: ({ props }) => <Dock {...props} items={dockItems} />,
-    usage: (p) => jsx('Dock', { ...p, items: dockItems.slice(0, 3) }),
+    usage: (p) => `<Dock
+  size={${p.size}}
+  magnification={${p.magnification}}
+  distance={${p.distance}}
+  items={[
+    { label: 'Home', icon: <HomeIcon />, color: '#3b82f6', active: true },
+    { label: 'Music', icon: <MusicIcon />, color: '#f43f5e' },
+    { label: 'Settings', icon: <SettingsIcon />, color: '#52525b' },
+  ]}
+/>`,
   },
   {
     slug: 'animated-tabs',
@@ -88,46 +177,6 @@ export default [
     usage: (p) => jsx('AnimatedTabs', { tabs, ...p }),
   },
   {
-    slug: 'orbiting-circles',
-    name: 'Orbiting Circles',
-    category: 'Elements',
-    fill: true,
-    description: 'Items orbiting a centre point. Stack several for rings.',
-    controls: {
-      radius: num('Inner radius (px)', 80, 30, 200, 5),
-      duration: num('Seconds per orbit', 14, 2, 60),
-      reverse: bool('Reverse', false),
-      showPath: bool('Show path', true),
-    },
-    demo: ({ props }) => (
-      <>
-        <div className="relative z-10 grid size-16 place-items-center rounded-full bg-[#c6f432] text-sm font-bold text-zinc-950">
-          UI
-        </div>
-        <OrbitingCircles {...props}>
-          <Bubble>⚛️</Bubble>
-          <Bubble>🎨</Bubble>
-          <Bubble>⚡</Bubble>
-        </OrbitingCircles>
-        <OrbitingCircles
-          radius={props.radius + 60}
-          duration={props.duration * 1.6}
-          reverse={!props.reverse}
-          showPath={props.showPath}
-        >
-          <Bubble>🧩</Bubble>
-          <Bubble>✨</Bubble>
-          <Bubble>🚀</Bubble>
-          <Bubble>💡</Bubble>
-        </OrbitingCircles>
-      </>
-    ),
-    usage: (p) => `<div className="relative flex h-96 items-center justify-center">
-  <div className="size-16 rounded-full bg-lime-300" />
-${indent(jsx('OrbitingCircles', p, '<span>⚛️</span>\n<span>🎨</span>\n<span>⚡</span>'), 2)}
-</div>`,
-  },
-  {
     slug: 'accordion',
     name: 'Accordion',
     category: 'Elements',
@@ -135,33 +184,6 @@ ${indent(jsx('OrbitingCircles', p, '<span>⚛️</span>\n<span>🎨</span>\n<spa
     controls: { accent: color('Accent colour', '#c6f432') },
     demo: ({ props }) => <Accordion {...props} className="mx-6" items={faq} />,
     usage: (p) => jsx('Accordion', { ...p, items: faq.slice(0, 2) }),
-  },
-  {
-    slug: 'tooltip',
-    name: 'Tooltip',
-    category: 'Elements',
-    description: 'A springy tooltip that pops from its trigger on hover or focus.',
-    controls: {
-      label: text('Label (last button)', 'Save for later'),
-      side: select('Side', 'top', ['top', 'bottom']),
-    },
-    demo: ({ props }) => (
-      <div className="flex gap-4">
-        {[
-          ['👍', 'Like'],
-          ['💬', 'Comment'],
-          ['🔁', 'Share'],
-          ['🔖', props.label],
-        ].map(([icon, label], i) => (
-          <Tooltip key={i} label={label} side={props.side}>
-            <button className="grid size-12 place-items-center rounded-xl border border-white/10 bg-zinc-900 text-xl transition-colors hover:bg-zinc-800">
-              {icon}
-            </button>
-          </Tooltip>
-        ))}
-      </div>
-    ),
-    usage: (p) => jsx('Tooltip', p, '<button>🔖</button>'),
   },
   {
     slug: 'toast-stack',
@@ -198,32 +220,40 @@ ${indent(jsx('OrbitingCircles', p, '<span>⚛️</span>\n<span>🎨</span>\n<spa
     description: 'A ⌘K command menu with search, groups and full keyboard control.',
     controls: { placeholder: text('Placeholder', 'Type a command or search…') },
     demo: ({ props }) => <CommandPalette {...props} contained commands={commands} />,
-    usage: (p) => jsx('CommandPalette', { ...p, commands: commands.slice(0, 3) }),
+    usage: (p) => `<CommandPalette
+  placeholder="${p.placeholder}"
+  commands={[
+    { label: 'Open the Lab', group: 'Navigate', icon: <FlaskIcon />, shortcut: 'G L' },
+    { label: 'Go home', group: 'Navigate', icon: <HomeIcon />, shortcut: 'G H' },
+    { label: 'Copy component code', group: 'Actions', icon: <CopyIcon />, shortcut: '⌘C' },
+  ]}
+/>`,
   },
   {
     slug: 'compare-slider',
     name: 'Compare Slider',
     category: 'Elements',
-    description: 'Drag the handle to compare a before and an after.',
-    controls: { defaultPosition: num('Starting position (%)', 50, 0, 100) },
+    description: 'Drag the glowing handle to compare a before and an after. It sweeps once to show it moves.',
+    controls: {
+      defaultPosition: num('Starting position (%)', 50, 0, 100),
+      hover: bool('Follow the cursor', false),
+      hint: bool('Hint sweep on load', true),
+      accent: color('Handle colour', '#c6f432'),
+    },
     demo: ({ props }) => (
-      <CompareSlider
-        {...props}
-        className="mx-6"
-        before={
-          <div className="grid size-full place-items-center bg-zinc-800">
-            <p className="font-mono text-sm text-zinc-500">before: plain grey box</p>
-          </div>
-        }
-        after={
-          <div className="grid size-full place-items-center bg-gradient-to-br from-[#c6f432] via-cyan-400 to-violet-500">
-            <p className="text-2xl font-black text-zinc-950">after: ✨ designed</p>
-          </div>
-        }
-      />
+      <div className="w-full max-w-md px-6">
+        <CompareSlider
+          {...props}
+          beforeLabel="Wireframe"
+          afterLabel="Shipped"
+          before={<Wireframe />}
+          after={<Designed />}
+        />
+      </div>
     ),
     usage: (p) => `<CompareSlider
-  defaultPosition={${p.defaultPosition}}
+  defaultPosition={${p.defaultPosition}}${p.hover ? '\n  hover' : ''}${p.hint ? '' : '\n  hint={false}'}
+  accent="${p.accent}"
   before={<img src="/before.jpg" className="size-full object-cover" />}
   after={<img src="/after.jpg" className="size-full object-cover" />}
 />`,
@@ -252,5 +282,31 @@ ${indent(jsx('OrbitingCircles', p, '<span>⚛️</span>\n<span>🎨</span>\n<spa
     },
     demo: ({ props }) => <AvatarStack {...props} people={people} />,
     usage: (p) => jsx('AvatarStack', { ...p, people: people.slice(0, 3) }),
+  },
+  {
+    slug: 'check-list',
+    name: 'Check List',
+    category: 'Elements',
+    description: 'A crisp to-do list: the tick draws itself, the label strikes through and the progress bar snaps forward.',
+    controls: {
+      title: text('Title', 'Today'),
+      color: color('Accent colour', '#c6f432'),
+    },
+    demo: ({ props }) => <CheckList {...props} />,
+    usage: (p) => jsx('CheckList', { ...p, items: ['Sketch the idea', 'Build it', 'Ship it'] }),
+  },
+  {
+    slug: 'manga-navbar',
+    name: 'Manga Navbar',
+    category: 'Elements',
+    fill: true,
+    description: 'A navbar ruled like a strip of manga panels: screentone on hover, the current page inked in, and a panel-stack menu on small screens.',
+    controls: {
+      brand: text('Brand', 'Inkpanel'),
+      mark: text('Mark', '漫'),
+      cta: text('Button', 'Read now'),
+    },
+    demo: NavbarDemo,
+    usage: (p) => jsx('MangaNavbar', { ...p, links: ['Chapters', 'Characters', 'Studio', 'Contact'] }),
   },
 ]

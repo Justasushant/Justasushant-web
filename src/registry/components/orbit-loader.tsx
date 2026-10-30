@@ -1,37 +1,43 @@
 interface OrbitLoaderProps {
   color?: string
-  /** Diameter in px */
+  /** Size in px */
   size?: number
   className?: string
 }
 
-export default function OrbitLoader({ color = '#c6f432', size = 48, className = '' }: OrbitLoaderProps) {
+// An atom: three tilted orbits, each with an electron racing around it
+const ORBIT = 'M40 0 A40 14 0 1 1 -40 0 A40 14 0 1 1 40 0'
+
+export default function OrbitLoader({ color = '#c6f432', size = 84, className = '' }: OrbitLoaderProps) {
   return (
-    <div
+    <svg
       role="status"
       aria-label="Loading"
-      className={`relative ${className}`}
-      style={{ width: size, height: size }}
+      viewBox="-50 -50 100 100"
+      width={size}
+      height={size}
+      className={className}
+      style={{ overflow: 'visible' }}
     >
-      <style>{`@keyframes orbit-loader-spin { to { transform: rotate(360deg) } }`}</style>
-      {/* Dots ride the same orbit with an easing, so they bunch up and spread out */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <span
-          key={i}
-          className="absolute inset-0"
-          style={{ animation: `orbit-loader-spin 1.4s cubic-bezier(.5, 0, .5, 1) ${i * 0.08}s infinite` }}
-        >
-          <span
-            className="absolute left-1/2 top-0 -translate-x-1/2 rounded-full"
-            style={{
-              width: size / 6 - i,
-              height: size / 6 - i,
-              background: color,
-              opacity: 1 - i * 0.15,
-            }}
-          />
-        </span>
+      <style>{`@keyframes orbit-loader-pulse { 0%, 100% { transform: scale(1) } 50% { transform: scale(0.75) } }`}</style>
+      {[0, 60, 120].map((angle, i) => (
+        <g key={angle} transform={`rotate(${angle})`}>
+          <path d={ORBIT} fill="none" stroke={color} strokeOpacity="0.25" strokeWidth="1.5" />
+          <circle r="5" fill={color} style={{ filter: `drop-shadow(0 0 4px ${color})` }}>
+            <animateMotion dur={`${1.1 + i * 0.25}s`} repeatCount="indefinite" path={ORBIT} />
+          </circle>
+        </g>
       ))}
-    </div>
+      <circle
+        r="8"
+        fill={color}
+        style={{
+          filter: `drop-shadow(0 0 8px ${color})`,
+          transformBox: 'fill-box',
+          transformOrigin: 'center',
+          animation: 'orbit-loader-pulse 1.2s ease-in-out infinite',
+        }}
+      />
+    </svg>
   )
 }

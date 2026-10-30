@@ -9,7 +9,7 @@ export function Stage({ item, preview = false, props, className = '' }) {
   const values = props ?? defaultsOf(item.controls)
   return (
     <div
-      className={`relative flex size-full items-center justify-center overflow-hidden bg-zinc-950 ${className}`}
+      className={`ink-stage relative flex size-full items-center justify-center overflow-hidden bg-zinc-950 text-zinc-100 ${className}`}
       style={
         item.fill
           ? undefined

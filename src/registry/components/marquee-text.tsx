@@ -7,6 +7,8 @@ interface MarqueeTextProps {
   reverse?: boolean
   outlineColor?: string
   separator?: string
+  /** Colour of the separator */
+  separatorColor?: string
   className?: string
 }
 
@@ -16,6 +18,7 @@ export default function MarqueeText({
   reverse = false,
   outlineColor = '#fafafa',
   separator = '✦',
+  separatorColor = '#c6f432',
   className = '',
 }: MarqueeTextProps) {
   // The row is rendered twice so the loop is seamless
@@ -37,7 +40,7 @@ export default function MarqueeText({
           >
             {item}
           </span>
-          <span className="text-[#c6f432]">{separator}</span>
+          <span style={{ color: separatorColor }}>{separator}</span>
         </Fragment>
       ))}
     </div>

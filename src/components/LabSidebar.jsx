@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useParams } from 'react-router'
 import { allCategories, categories, comingSoon, components } from '../registry/index.jsx'
+import Badge from './Badge.jsx'
 
 const STORAGE_KEY = 'lab-collapsed'
 
@@ -122,7 +123,7 @@ export default function LabSidebar({ onNavigate }) {
                       onClick={onNavigate}
                       tabIndex={open ? 0 : -1}
                       className={({ isActive }) =>
-                        `-ml-px block border-l py-1.5 pl-4 pr-2 transition-colors ${
+                        `-ml-px flex items-center justify-between gap-2 border-l py-1.5 pl-4 pr-2 transition-colors ${
                           isActive
                             ? 'border-accent text-accent'
                             : 'border-transparent text-zinc-400 hover:border-zinc-500 hover:text-white'
@@ -130,6 +131,7 @@ export default function LabSidebar({ onNavigate }) {
                       }
                     >
                       {c.name}
+                      <Badge slug={c.slug} className="shrink-0 !px-1.5 !text-[9px] !leading-4" />
                     </NavLink>
                   </li>
                 ))}

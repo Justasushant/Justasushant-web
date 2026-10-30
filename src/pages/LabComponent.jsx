@@ -5,6 +5,7 @@ import CodeBlock from '../components/CodeBlock.jsx'
 import ControlsPanel from '../components/ControlsPanel.jsx'
 import LabSidebar from '../components/LabSidebar.jsx'
 import { Stage } from '../components/Preview.jsx'
+import Badge from '../components/Badge.jsx'
 import { components, getComponent, loadSource, usageSnippet } from '../registry/index.jsx'
 import { defaultsOf } from '../registry/controls.js'
 import { inspirationFor, inspirationNote } from '../data/inspirations.js'
@@ -160,8 +161,9 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
                   </Link>{' '}
                   / {item.category}
                 </p>
-                <h1 className="mt-0.5 truncate text-lg font-semibold tracking-tight">
+                <h1 className="mt-0.5 truncate font-display text-lg uppercase tracking-tight">
                   {item.name}
+                  <Badge slug={item.slug} className="ml-2 align-middle" />
                   <span className="ml-3 hidden text-sm font-normal text-zinc-400 md:inline">
                     {item.description}
                   </span>
@@ -195,21 +197,25 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
           {/* Credit for where the look came from */}
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1 border-b border-white/10 bg-white/[0.02] px-4 py-2 text-xs text-zinc-400 sm:px-5">
             <span className="font-mono uppercase tracking-widest text-zinc-500">Inspired by</span>
-            <a
-              href={inspirationFor(item.slug).url}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium text-accent hover:underline"
-            >
-              {inspirationFor(item.slug).name} ↗
-            </a>
+            {inspirationFor(item.slug).url ? (
+              <a
+                href={inspirationFor(item.slug).url}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent"
+              >
+                {inspirationFor(item.slug).name} ↗
+              </a>
+            ) : (
+              <span className="font-medium text-zinc-200">{inspirationFor(item.slug).name}</span>
+            )}
             <span className="text-zinc-600">·</span>
             <span>{inspirationNote}</span>
           </p>
 
           {/* Code panel */}
           <section
-            className="flex max-h-[60vh] min-h-0 flex-col bg-[#1e2127] lg:h-[var(--code-h)] lg:max-h-none"
+            className="ink-stage flex max-h-[60vh] min-h-0 flex-col bg-[#1e2127] text-zinc-100 lg:h-[var(--code-h)] lg:max-h-none"
             style={{ '--code-h': `${codeHeight}px` }}
           >
             <div className="flex flex-wrap items-center gap-2 border-b border-white/5 px-3 py-2">
@@ -297,6 +303,14 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
                   >
                     Customize
                   </button>
+                )}
+                {item.fullPage && (
+                  <Link
+                    to={item.fullPage}
+                    className="rounded-lg border border-white/10 bg-zinc-900/80 px-3 py-1.5 text-xs text-zinc-300 backdrop-blur hover:text-white"
+                  >
+                    Open full page ↗
+                  </Link>
                 )}
                 <button
                   onClick={() => setFullscreen(!fullscreen)}

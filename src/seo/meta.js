@@ -17,6 +17,9 @@ const categoryNoun = {
   Buttons: 'button',
   Cards: 'card',
   Elements: 'UI element',
+  Footers: 'footer',
+  'Hero Sections': 'hero section',
+  Templates: 'website template',
   Loaders: 'loader',
   Text: 'text effect',
   Transitions: 'page transition',
@@ -259,7 +262,8 @@ export function metaFor(pathname) {
   if (path === '/') return homeMeta()
   if (path === '/lab') return labMeta()
   if (path === '/open-source') return openSourceMeta()
-  const match = path.match(/^\/lab\/([\w-]+)$/)
+  // A template's full-page view shares its Lab page's metadata (and canonical URL)
+  const match = path.match(/^\/lab\/([\w-]+)$/) || path.match(/^\/templates\/([\w-]+)$/)
   const item = match && getComponent(match[1])
   return item ? componentMeta(item) : notFoundMeta(path)
 }

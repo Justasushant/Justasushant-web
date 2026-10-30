@@ -53,7 +53,7 @@ function ProgressCard() {
   ]
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-zinc-950/90 p-6 backdrop-blur">
+    <div className="panel p-6">
       <div className="flex items-baseline justify-between">
         <p className="font-mono text-xs uppercase tracking-widest text-zinc-500">
           Open-sourcing progress
@@ -120,7 +120,7 @@ function OpenSourceUI({ mode, setMode }) {
             Status: coming soon™ (indefinitely)
           </p>
 
-          <h1 className="mt-8 text-[clamp(3.5rem,12vw,9.5rem)] font-black leading-[0.85] tracking-tighter">
+          <h1 className="mt-8 font-display text-[clamp(3rem,10vw,8rem)] uppercase leading-[0.9] tracking-tight">
             <GlitchText text="TOO BUSY." speed={3} />
           </h1>
           <p className="mt-6 max-w-2xl text-xl leading-relaxed text-zinc-300 sm:text-2xl">

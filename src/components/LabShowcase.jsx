@@ -15,7 +15,7 @@ export default function LabShowcase() {
       action={
         <Link
           to="/lab"
-          className="group inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+          className="ink-btn ghost group text-sm"
         >
           Browse all {components.length} components
           <span className="transition-transform group-hover:translate-x-1">→</span>
