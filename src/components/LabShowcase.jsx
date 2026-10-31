@@ -9,14 +9,16 @@ export default function LabShowcase() {
   return (
     <Section
       id="lab"
+      label="Lab"
       title="From the Lab"
-      intro="A few of the components. They are live, so try them here or open one for the code."
+      intro="A few favourites. They're live, so play with them here, or open one to get the code."
       action={
         <Link
           to="/lab"
-          className="ink-btn ghost text-sm"
+          className="ink-btn ghost group text-sm"
         >
-          All components
+          Browse all {components.length} components
+          <span className="transition-transform group-hover:translate-x-1">→</span>
         </Link>
       }
     >

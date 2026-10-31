@@ -7,7 +7,7 @@ import { inspirationFor } from '../data/inspirations.js'
 // clicking anywhere else opens the component in the Lab.
 // `compact` is for narrow two-column grids: on phones the demo renders at
 // double size and is scaled down, and the description is hidden.
-export default function LabCard({ item, height = 'h-56', compact = false, showCategory = true }) {
+export default function LabCard({ item, height = 'h-56', compact = false }) {
   const navigate = useNavigate()
   const href = `/lab/${item.slug}`
   const credit = inspirationFor(item.slug)
@@ -18,9 +18,9 @@ export default function LabCard({ item, height = 'h-56', compact = false, showCa
   }
 
   return (
-    <div className="group flex h-full flex-col overflow-hidden border-2 border-ink bg-paper transition-colors hover:bg-ink/[0.04]">
+    <div className="group flex h-full flex-col overflow-hidden border-[3px] border-ink bg-paper shadow-[5px_5px_0_#22211f] transition-[transform,box-shadow] duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_#22211f]">
       <LazyMount
-        className={`relative cursor-pointer overflow-hidden border-b-2 border-ink ${height}`}
+        className={`relative cursor-pointer overflow-hidden border-b-[3px] border-ink ${height}`}
       >
         <div onClick={onPreviewClick} className="size-full">
           <div
@@ -48,7 +48,7 @@ export default function LabCard({ item, height = 'h-56', compact = false, showCa
       </LazyMount>
       {/* The whole footer opens the component; the credit link sits above that */}
       <div
-        className={`relative flex flex-1 items-start justify-between gap-2 sm:gap-4 ${
+        className={`relative flex flex-1 items-start justify-between gap-2 border-t border-white/10 sm:gap-4 ${
           compact ? 'p-3 sm:p-4' : 'p-4'
         }`}
       >
@@ -59,22 +59,26 @@ export default function LabCard({ item, height = 'h-56', compact = false, showCa
                 {item.name}
               </Link>
             </h3>
-            {showCategory && (
-              <span className={`text-xs text-zinc-500 ${compact ? 'hidden sm:inline' : ''}`}>{item.category}</span>
-            )}
+            <span
+              className={`rounded-full border border-white/10 px-2 font-mono text-[10px] leading-5 text-zinc-500 ${
+                compact ? 'hidden sm:inline' : ''
+              }`}
+            >
+              {item.category}
+            </span>
             <Badge slug={item.slug} />
           </div>
           <p className={`mt-1 text-sm text-zinc-400 ${compact ? 'hidden sm:block' : ''}`}>
             {item.description}
           </p>
           <p className={`mt-2 text-xs text-zinc-500 ${compact ? 'hidden sm:block' : ''}`}>
-            {credit.url ? 'Inspired by ' : ''}
+            Inspired by{' '}
             {credit.url ? (
               <a
                 href={credit.url}
                 target="_blank"
                 rel="noreferrer"
-                className="relative z-10 text-zinc-300 underline underline-offset-2"
+                className="relative z-10 font-medium text-zinc-300 underline decoration-white/20 underline-offset-2 transition-colors hover:text-accent hover:decoration-accent"
               >
                 {credit.name}
               </a>
@@ -83,6 +87,9 @@ export default function LabCard({ item, height = 'h-56', compact = false, showCa
             )}
           </p>
         </div>
+        <span className="mt-0.5 text-zinc-500 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
+          ↗
+        </span>
       </div>
     </div>
   )

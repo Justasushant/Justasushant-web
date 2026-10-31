@@ -195,23 +195,22 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
           </div>
 
           {/* Credit for where the look came from */}
-          <p className="border-b-2 border-ink px-4 py-2 text-sm text-zinc-400 sm:px-5">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 border-b border-white/10 bg-white/[0.02] px-4 py-2 text-xs text-zinc-400 sm:px-5">
+            <span className="font-mono uppercase tracking-widest text-zinc-500">Inspired by</span>
             {inspirationFor(item.slug).url ? (
-              <>
-                Inspired by{' '}
-                <a
-                  href={inspirationFor(item.slug).url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-white underline underline-offset-2"
-                >
-                  {inspirationFor(item.slug).name}
-                </a>
-                . {inspirationNote}
-              </>
+              <a
+                href={inspirationFor(item.slug).url}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-accent underline decoration-accent/30 underline-offset-2 hover:decoration-accent"
+              >
+                {inspirationFor(item.slug).name} ↗
+              </a>
             ) : (
-              <>{inspirationFor(item.slug).name}. Built with AI.</>
+              <span className="font-medium text-zinc-200">{inspirationFor(item.slug).name}</span>
             )}
+            <span className="text-zinc-600">·</span>
+            <span>{inspirationNote}</span>
           </p>
 
           {/* Code panel */}

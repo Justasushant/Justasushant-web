@@ -4,7 +4,7 @@ import { site } from '../data/site.js'
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-ink bg-ink text-paper">
+    <footer className="border-t-[3px] border-ink bg-ink text-paper">
       <div className="mx-auto flex flex-col gap-3 px-4 py-8 text-sm text-zinc-800 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-10 2xl:px-16">
         <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
           © {new Date().getFullYear()} {site.name} · {site.companyRole},
