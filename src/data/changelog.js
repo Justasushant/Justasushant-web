@@ -32,7 +32,6 @@ const added = {
   'web-card': '2026-10-30',
   'spider-loader': '2026-10-30',
   'comic-button': '2026-10-30',
-  'comic-card': '2026-10-30',
   'split-flap': '2026-10-30',
   'pixel-button': '2026-10-30',
   'check-list': '2026-10-30',

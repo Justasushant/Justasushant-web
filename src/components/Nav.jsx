@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
 import { site } from '../data/site.js'
-import { components } from '../registry/index.jsx'
 
 const sectionLinks = [
   ['Work', '/#work'],
@@ -11,7 +10,7 @@ const sectionLinks = [
 
 // Everything in the mobile menu, in order
 const menuLinks = [
-  ['Lab', '/lab', `${components.length} components`],
+  ['Lab', '/lab', 'components'],
   ['Open Source', '/open-source', 'coming soon™'],
   ['Work', '/#work', 'selected projects'],
   ['About', '/#about', 'who is this guy'],
@@ -52,7 +51,7 @@ export default function Nav({ solid = false }) {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-          filled ? 'border-b-[3px] border-ink bg-paper/95 backdrop-blur' : 'border-transparent'
+          filled ? 'border-b-2 border-ink bg-paper/95 backdrop-blur' : 'border-transparent'
         }`}
       >
         <nav className="mx-auto flex h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10 2xl:px-16">
@@ -65,9 +64,6 @@ export default function Nav({ solid = false }) {
           <div className="hidden items-center gap-1 md:flex">
             <NavLink to="/lab" className={pill}>
               Lab
-              <span className="rounded-full border border-current px-1.5 font-mono text-[10px] font-semibold leading-4">
-                {components.length}
-              </span>
             </NavLink>
             <NavLink to="/open-source" className={pill}>
               Open Source

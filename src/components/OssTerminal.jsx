@@ -83,7 +83,7 @@ function BusyPreview({ project }) {
 }
 
 function LabPreview() {
-  const picks = ['blur-switch', 'comic-card', 'flow-field'].map(getComponent)
+  const picks = ['blur-switch', 'glass-card', 'flow-field'].map(getComponent)
   return (
     <div className="flex size-full flex-col gap-3 p-4 font-sans">
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-3 sm:grid-cols-3">

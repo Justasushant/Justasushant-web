@@ -6,7 +6,6 @@ import LabShowcase from '../components/LabShowcase.jsx'
 import Work from '../components/Work.jsx'
 import About from '../components/About.jsx'
 import Contact from '../components/Contact.jsx'
-import LabBanner from '../components/LabBanner.jsx'
 import Footer from '../components/Footer.jsx'
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
         <LabShowcase />
         <Work />
         <About />
-        <LabBanner />
         <Contact />
       </main>
       <Footer />

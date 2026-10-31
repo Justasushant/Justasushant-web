@@ -1,5 +1,4 @@
 import MangaPanel from '../components/manga-panel.tsx'
-import ComicCard from '../components/comic-card.tsx'
 import WebCard from '../components/web-card.tsx'
 import { Icon } from './icons.jsx'
 import SpotlightCard from '../components/spotlight-card.tsx'
@@ -369,27 +368,6 @@ export default [
       </WebCard>
     ),
     usage: (p) => wrap('WebCard', p, '<h3>Friendly, local, quick.</h3>'),
-  },
-  {
-    slug: 'comic-card',
-    name: 'Comic Card',
-    category: 'Cards',
-    description: 'A comic-book panel with halftone dots and a speech bubble. Speed lines burst out on hover.',
-    controls: {
-      title: text('Caption', 'Meanwhile...'),
-      speech: text('Speech bubble', 'This card has superpowers!'),
-      caption: text('Corner label', 'Issue #1'),
-      color: color('Panel colour', '#38bdf8'),
-    },
-    demo: ({ props }) => (
-      <ComicCard {...props}>
-        <svg viewBox="0 0 100 100" className="size-28 drop-shadow-[4px_4px_0_#09090b]">
-          <path d="M50 4 L92 18 C92 56 76 82 50 96 C24 82 8 56 8 18 Z" fill="#ef4444" stroke="#09090b" strokeWidth="5" strokeLinejoin="round" />
-          <path d="M56 22 L34 56 H50 L44 80 L68 44 H52 Z" fill="#facc15" stroke="#09090b" strokeWidth="4" strokeLinejoin="round" />
-        </svg>
-      </ComicCard>
-    ),
-    usage: (p) => wrap('ComicCard', p, '<img src="/hero.png" className="w-32" />'),
   },
   {
     slug: 'manga-panel',

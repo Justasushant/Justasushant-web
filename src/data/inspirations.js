@@ -14,7 +14,7 @@ const sites = {
   uiverse: { name: 'uiverse.io', url: 'https://uiverse.io' },
   shadcn: { name: 'shadcn/ui', url: 'https://ui.shadcn.com/docs/components' },
   // No outside reference: the idea was made up for this Lab
-  original: { name: 'nothing in particular. An original for this Lab', url: null },
+  original: { name: 'Original to this Lab', url: null },
 }
 
 const bySlug = {
@@ -37,7 +37,6 @@ const bySlug = {
   'web-card': 'original',
   'spider-loader': 'original',
   'comic-button': 'original',
-  'comic-card': 'original',
   'split-flap': 'original',
   'pixel-button': 'original',
   'check-list': 'original',

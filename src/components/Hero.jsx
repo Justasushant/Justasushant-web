@@ -1,16 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { site } from '../data/site.js'
-import { categories, components } from '../registry/index.jsx'
+import { components } from '../registry/index.jsx'
 import { Stage } from './Preview.jsx'
 import ConeizLogo from './ConeizLogo.jsx'
-import ScrambleText from '../registry/components/scramble-text.tsx'
-import WordRotate from '../registry/components/word-rotate.tsx'
-import MarqueeText from '../registry/components/marquee-text.tsx'
-
-// The marquee lists the Lab's real categories
-const categoryNames = { Elements: 'UI elements', Text: 'Text effects', Transitions: 'Page transitions' }
-const marqueeItems = categories.map((c) => categoryNames[c] ?? c)
 
 // A tiny seeded random generator (mulberry32): same seed, same sequence
 function seededRandom(seed) {
@@ -35,7 +28,7 @@ const shuffle = (list, random) => {
 const best = [
   'flow-field', 'blur-switch', 'web-shooter', 'dock', 'glitch-text', 'hover-grid', 'split-flap',
   'spotlight-card', 'matrix-rain', 'starfield-warp', 'comic-button', 'fireworks-button', 'tear-reveal',
-  'music-card', 'number-ticker', 'glass-card', 'comic-card', 'terminal-loop', 'compare-slider', 'flashlight-text',
+  'music-card', 'number-ticker', 'glass-card', 'terminal-loop', 'compare-slider', 'flashlight-text',
 ]
 const COLUMNS = 5
 const PER_COLUMN = 4
@@ -112,97 +105,41 @@ function ComponentWall({ columns = wallColumns, perColumn = PER_COLUMN }) {
   )
 }
 
-// The ASCII sign in the small panel
-const ascii = String.raw`  _      _   ___
- | |    /_\ | _ )
- | |__ / _ \| _ \
- |____/_/ \_\___/`
-
 export default function Hero() {
   const navigate = useNavigate()
   const isDesktop = useMediaQuery('(min-width: 1024px)')
 
   return (
-    <section id="top" className="relative px-3 pb-24 pt-20 sm:px-6 sm:pt-24 lg:px-10 2xl:px-16">
-      {/* A manga page: panels separated by white gutters */}
-      <div className="grid gap-3 sm:gap-4 lg:min-h-[calc(100svh-11rem)] lg:grid-cols-12 lg:grid-rows-[1fr_auto]">
-        {/* Panel 1: the name, with focus lines bursting behind it */}
-        <div className="panel relative isolate overflow-hidden p-5 sm:p-8 lg:col-span-7 lg:row-span-1 lg:p-10">
-          <div aria-hidden className="speed-lines absolute inset-0 -z-10 opacity-[0.13]" style={{ '--sx': '85%', '--sy': '30%' }} />
-          <div aria-hidden className="tone-fade absolute inset-x-0 top-0 -z-10 h-24 opacity-30" />
-          <p className="inline-flex items-center gap-2 border-2 border-ink bg-paper px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.15em]">
-            <ConeizLogo className="size-4" />
+    <section id="top" className="px-3 pb-12 pt-20 sm:px-6 sm:pt-24 lg:px-10 2xl:px-16">
+      <div className="grid gap-3 sm:gap-4 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-12">
+        <div className="panel flex flex-col justify-center p-6 sm:p-10 lg:col-span-7 lg:p-14">
+          <p className="flex items-center gap-2.5 text-sm font-medium text-zinc-400">
+            <ConeizLogo className="size-5" />
             {site.companyRole}, {site.company}
           </p>
-          <h1 className="mt-6 font-display text-[clamp(2.6rem,14vw,6rem)] uppercase leading-[0.86] tracking-tight sm:mt-8 lg:text-[clamp(3rem,6.6vw,8.5rem)]">
-            <ScrambleText text="Sushant" duration={1100} className="block" />
-            <span className="block text-transparent [-webkit-text-stroke:2px_#22211f] transition-colors duration-300 hover:text-ink">
-              Sharma.
-            </span>
+          <h1 className="mt-6 font-display text-[clamp(2.8rem,13vw,5.5rem)] uppercase leading-[0.92] tracking-tight lg:text-[clamp(3rem,6vw,7.5rem)]">
+            Sushant
+            <br />
+            Sharma
           </h1>
-          {/* Speech bubble */}
-          <div className="relative mt-8 inline-block max-w-full rounded-[2rem] border-[3px] border-ink bg-paper px-5 py-4 sm:mt-10 sm:px-7">
-            <p className="text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-              I build{' '}
-              <span className="inline-block min-w-[8ch] border-b-4 border-ink">
-                <WordRotate
-                  words={['websites', 'buttons', 'backgrounds', 'loaders', 'transitions', 'text effects']}
-                  className="font-display uppercase"
-                />
-              </span>{' '}
-              in React.
-            </p>
-            <span aria-hidden className="absolute -top-[18px] left-10 size-0 border-x-[12px] border-b-[18px] border-x-transparent border-b-ink" />
-            <span aria-hidden className="absolute -top-[12px] left-[43px] size-0 border-x-[9px] border-b-[13px] border-x-transparent border-b-paper" />
-          </div>
-          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
+          <p className="mt-8 max-w-md text-lg leading-relaxed">{site.tagline}</p>
+          <div className="mt-10 flex flex-wrap gap-3">
             <button onClick={() => navigate('/lab')} className="ink-btn text-sm">
-              Explore the Lab →
+              Open the Lab
             </button>
             <button onClick={() => navigate('/#contact')} className="ink-btn ghost text-sm">
-              Get in touch
+              Contact
             </button>
           </div>
         </div>
 
-        {/* Panel 2: a black panel full of live components */}
-        <div className="panel tone relative h-[360px] overflow-hidden lg:col-span-5 lg:row-span-2 lg:h-auto">
+        {/* Live components, scrolling past in black and white */}
+        <div className="panel tone relative h-[340px] overflow-hidden lg:col-span-5 lg:h-auto">
           <ComponentWall
             columns={isDesktop ? wallColumns : wallColumns.slice(0, 4)}
             perColumn={isDesktop ? PER_COLUMN : 3}
           />
-          <p className="absolute left-3 top-3 z-10 border-[3px] border-ink bg-ink px-2 py-1 text-paper font-mono text-[11px] font-bold uppercase tracking-widest">
-            Today in the Lab
-          </p>
         </div>
-
-        {/* Panel 3: ASCII sign and the numbers */}
-        <div className="panel relative overflow-hidden p-5 lg:col-span-3">
-          <pre aria-hidden className="font-mono text-[10px] font-bold leading-tight sm:text-xs">{ascii}</pre>
-          <ul className="mt-4 space-y-1 font-mono text-xs">
-            <li>&gt; {components.length} components</li>
-            <li>&gt; TSX + JSX, copy &amp; paste</li>
-            <li>&gt; 0 extra libraries</li>
-          </ul>
-        </div>
-
-        {/* Panel 4: the narration box */}
-        <div className="panel tone relative flex items-center p-5 lg:col-span-4">
-          <p className="relative border-[3px] border-ink bg-paper px-4 py-3 text-[15px] leading-relaxed">
-            {site.tagline}
-          </p>
-        </div>
-      </div>
-
-      {/* What's actually in the Lab, on a strip of ink */}
-      <div className="absolute inset-x-0 bottom-0 border-y-[3px] border-ink bg-ink py-3 text-paper sm:py-4">
-        <MarqueeText
-          items={marqueeItems}
-          speed={35}
-          outlineColor="#f2efe6"
-          separatorColor="#f2efe6"
-          className="font-display text-xl uppercase tracking-tight text-paper sm:text-3xl"
-        />
       </div>
     </section>
   )

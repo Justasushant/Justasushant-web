@@ -9,10 +9,9 @@ export const site = {
   companyLogo: '/coneiz-logo.webp',
   companyUrl: 'https://coneiz.com',
   // One or two lines about the company, shown in the About section
-  companyBlurb:
-    'The company I co-founded. We build software and digital products, and a lot of what I learn there ends up in the Lab.',
+  companyBlurb: 'The company I co-founded. We build software and digital products.',
   tagline:
-    'I build websites, and I sweat the small parts that make them nice to use. The best UI I come across, I rebuild and put in the Lab for anyone to copy.',
+    'Frontend developer. I build interfaces in React and keep a Lab of components you can copy.',
 
   email: 'sushant@coneiz.com',
   whatsapp: {
@@ -28,19 +27,15 @@ export const site = {
   ],
 
   about: [
-    "I'm Sushant, a frontend developer and co-founder of CONEIZ Enterprises. I care about the small stuff: how a hover eases in, how heavy a headline feels, how long a page takes before it feels ready.",
-    "The Lab is my workbench, and I'll be honest about what's on it: I collect the best components I come across on the internet, take inspiration from them, rebuild and fine-tune them with the help of AI, and present them here for you. It isn't all my original work. It's curated and polished by me. Stay tuned, it keeps growing.",
+    "I'm Sushant, a frontend developer and co-founder of CONEIZ Enterprises. I work mostly in React and Tailwind.",
+    'The Lab is where I keep components. Most start from something I saw on another site. I rebuild them with AI, tune them by hand, and credit the original on every page.',
   ],
   // Shown at the top of the Lab, so nobody mistakes curation for invention
   labNote:
-    "Not everything here is my original idea. I collect the best components I find across the internet, take inspiration from them, rebuild and fine-tune them with the help of AI, and present them to you here, free to copy. Stay tuned, there's more every week.",
+    'Most of these start from something I saw on another site. I rebuild each one with AI, tune it, and credit where the idea came from. Everything is free to copy.',
   inspirations: ['Aceternity UI', 'Magic UI', 'React Bits', 'Skiper UI', 'uiverse.io', 'shadcn/ui'],
   stack: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'HTML & CSS', 'Canvas', 'Vite', 'Git'],
-  now: [
-    'Adding a few new components to the Lab every week',
-    'Building products at CONEIZ Enterprises',
-    'Shipping my first public projects',
-  ],
+  now: ['Adding components to the Lab', 'Building products at CONEIZ Enterprises', 'Working toward my first public projects'],
 }
 
 // Components shown on the home page (the rest live in the Lab)
