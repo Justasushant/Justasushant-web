@@ -1,39 +1,30 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
 import { site } from '../data/site.js'
-import { components } from '../registry/index.jsx'
 
-const sectionLinks = [
-  ['Work', '/#work'],
+const links = [
+  ['Lab', '/lab'],
+  ['Open Source', '/open-source'],
   ['About', '/#about'],
-  ['Contact', '/#contact'],
 ]
 
 // Everything in the mobile menu, in order
 const menuLinks = [
-  ['Lab', '/lab', `${components.length} components`],
-  ['Open Source', '/open-source', 'coming soon™'],
-  ['Work', '/#work', 'selected projects'],
+  ['Lab', '/lab', 'components'],
+  ['Open Source', '/open-source', 'coming soon'],
   ['About', '/#about', 'who is this guy'],
   ['Contact', '/#contact', 'say hello'],
 ]
 
 const pill = ({ isActive }) =>
-  `flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm transition-colors ${
-    isActive ? 'bg-ink text-paper' : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+  `rounded-lg px-3 py-1.5 text-[15px] transition-colors ${
+    isActive ? 'bg-[#1a0e08]/[0.06] text-white' : 'text-white/70 hover:text-white'
   }`
 
-export default function Nav({ solid = false }) {
+// A floating pill, centred at the top of the page
+export default function Nav() {
   const { pathname, hash } = useLocation()
-  const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   // Close the mobile menu whenever you navigate
   useEffect(() => setOpen(false), [pathname, hash])
@@ -46,67 +37,48 @@ export default function Nav({ solid = false }) {
     }
   }, [open])
 
-  const filled = solid || scrolled || open || pathname !== '/'
-
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-          filled ? 'border-b-[3px] border-ink bg-paper/95 backdrop-blur' : 'border-transparent'
-        }`}
-      >
-        <nav className="mx-auto flex h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-10 2xl:px-16">
-          <Link to="/" className="group flex items-baseline gap-2 whitespace-nowrap">
-            <span className="font-display text-[15px] uppercase tracking-tight text-white">{site.name}</span>
-            <span className="inline-block size-1.5 rounded-full bg-accent transition-transform group-hover:scale-150" />
+      <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-3">
+        <nav className="flex h-[50px] w-full max-w-[720px] items-center justify-between rounded-2xl bg-[#f8f4ee]/80 pl-4 pr-1.5 shadow-[0_0_0_1px_rgba(20,10,5,0.06),0_12px_32px_-18px_rgba(80,30,5,0.35)] backdrop-blur-[14px] backdrop-saturate-[1.4]">
+          <Link to="/" className="text-[15px] font-semibold tracking-tight text-white">
+            {site.name}
           </Link>
-
-          {/* Desktop links */}
-          <div className="hidden items-center gap-1 md:flex">
-            <NavLink to="/lab" className={pill}>
-              Lab
-              <span className="rounded-full border border-current px-1.5 font-mono text-[10px] font-semibold leading-4">
-                {components.length}
-              </span>
-            </NavLink>
-            <NavLink to="/open-source" className={pill}>
-              Open Source
-            </NavLink>
-            {sectionLinks.map(([label, to]) => (
-              <Link
-                key={to}
-                to={to}
-                className="rounded-full px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                {label}
-              </Link>
-            ))}
+          <div className="hidden items-center gap-0.5 md:flex">
+            {links.map(([label, to]) =>
+              to.startsWith('/#') ? (
+                <Link key={to} to={to} className="rounded-lg px-3 py-1.5 text-[15px] text-white/70 transition-colors hover:text-white">
+                  {label}
+                </Link>
+              ) : (
+                <NavLink key={to} to={to} className={pill}>
+                  {label}
+                </NavLink>
+              ),
+            )}
           </div>
-
-          {/* Mobile menu button: two lines that turn into a cross */}
-          <button
-            onClick={() => setOpen(!open)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            className="relative grid size-10 place-items-center rounded-full border border-white/15 bg-zinc-950/60 backdrop-blur md:hidden"
-          >
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-white transition-transform duration-300 ${
-                open ? 'rotate-45' : '-translate-y-[3px]'
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-4 rounded-full bg-white transition-transform duration-300 ${
-                open ? '-rotate-45' : 'translate-y-[3px]'
-              }`}
-            />
-          </button>
+          <div className="flex items-center gap-1.5">
+            <Link
+              to="/#contact"
+              className="hidden h-9 items-center rounded-[10px] bg-[#1a0e08] px-4 text-[14px] font-medium text-[#fff6ef] sm:inline-flex"
+            >
+              Contact
+            </Link>
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              className="relative grid size-9 place-items-center rounded-[10px] md:hidden"
+            >
+              <span className={`absolute h-0.5 w-4 rounded-full bg-[#1a0e08] transition-transform duration-300 ${open ? 'rotate-45' : '-translate-y-[3px]'}`} />
+              <span className={`absolute h-0.5 w-4 rounded-full bg-[#1a0e08] transition-transform duration-300 ${open ? '-rotate-45' : 'translate-y-[3px]'}`} />
+            </button>
+          </div>
         </nav>
       </header>
-
-      {/* Mobile menu. Rendered outside the header: its backdrop blur would trap a fixed child */}
+      {/* Mobile menu */}
       {open && (
-        <div className="fixed inset-x-0 bottom-0 top-16 z-[55] flex flex-col overflow-y-auto bg-zinc-950/95 px-5 pb-8 pt-6 backdrop-blur-xl md:hidden">
+        <div className="fixed inset-0 z-[45] flex flex-col overflow-y-auto bg-[#f8f4ee] px-5 pb-8 pt-24 md:hidden">
           <style>{`@keyframes menu-item-in { from { opacity: 0; transform: translateY(16px) } }`}</style>
           <nav className="flex-1">
             {menuLinks.map(([label, to, note], i) => (
@@ -114,27 +86,19 @@ export default function Nav({ solid = false }) {
                 key={to}
                 to={to}
                 onClick={() => setOpen(false)}
-                className="group flex items-baseline justify-between gap-4 border-b border-white/10 py-5"
-                style={{ animation: `menu-item-in 0.45s cubic-bezier(.2,.8,.2,1) ${i * 60}ms both` }}
+                className="flex items-baseline justify-between gap-4 border-b border-[#1a0e08]/10 py-5"
+                style={{ animation: `menu-item-in 0.5s cubic-bezier(.2,.8,.2,1) ${i * 60}ms both` }}
               >
-                <span className="flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-zinc-600">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="font-display text-4xl uppercase tracking-tight text-white">
-                    {label}
-                  </span>
-                </span>
-                <span className="font-mono text-[11px] text-zinc-500">{note}</span>
+                <span className="text-4xl font-semibold tracking-tight text-white">{label}</span>
+                <span className="text-sm text-zinc-500">{note}</span>
               </Link>
             ))}
           </nav>
-          <div
-            className="mt-8 space-y-2 text-sm"
-            style={{ animation: `menu-item-in 0.45s cubic-bezier(.2,.8,.2,1) ${menuLinks.length * 60}ms both` }}
-          >
+          <div className="mt-8 space-y-2 text-sm">
             <a href={`mailto:${site.email}`} className="block text-zinc-300">
               {site.email}
             </a>
-            <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="block font-semibold text-white underline">
+            <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="block font-medium text-white underline">
               WhatsApp {site.whatsapp.display}
             </a>
           </div>

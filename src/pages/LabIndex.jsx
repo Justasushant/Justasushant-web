@@ -34,30 +34,22 @@ export default function LabIndex() {
         </aside>
 
         <main className="min-w-0 pb-24 pt-10 sm:pt-14">
-          <p className="inline-flex items-center gap-2 border-2 border-ink px-3 py-1 font-mono text-xs font-bold text-zinc-300">
-            <span className="size-1.5 rounded-full bg-accent" />
-            {components.length} components · TSX + JSX · copy & paste
-          </p>
-          <h1 className="mt-6 font-display text-6xl uppercase leading-none tracking-tight sm:text-8xl">
-            The <span className="text-transparent [-webkit-text-stroke:2px_#22211f]">Lab</span>
-          </h1>
+          <p className="text-[15px] font-semibold text-accent">Components</p>
+          <h1 className="mt-2 text-[clamp(2.6rem,7vw,4.5rem)] leading-none tracking-[-0.04em]">The Lab</h1>
           <p className="mt-4 max-w-xl text-lg text-zinc-400">
             Page transitions, buttons, backgrounds, text effects, cards, loaders and more. Built
             with React and Tailwind CSS, no extra libraries. Open any component to grab its code.
           </p>
 
-          <div className="panel mt-8 max-w-2xl p-5">
-            <p className="inline-block bg-ink px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-widest text-paper">
-              A quick, honest note
-            </p>
-            <p className="mt-2 leading-relaxed text-zinc-300">{site.labNote}</p>
+          <div className="mt-8 max-w-2xl">
+            <p className="leading-relaxed text-zinc-300">{site.labNote}</p>
             <p className="mt-3 text-sm text-zinc-500">
               Inspired by the work of {site.inspirations.slice(0, -1).join(', ')} and{' '}
               {site.inspirations.at(-1)}. Go check them out.
             </p>
           </div>
 
-          <div className="sticky top-16 z-20 -mx-4 mt-10 flex flex-col gap-3 border-b-[3px] border-ink bg-paper/95 px-4 py-4 backdrop-blur sm:mx-0 sm:flex-row sm:items-center sm:px-0">
+          <div className="sticky top-16 z-20 -mx-4 mt-10 flex flex-col gap-3 border-b border-[#1a0e08]/[0.07] bg-[#f8f4ee]/90 px-4 py-4 backdrop-blur sm:mx-0 sm:flex-row sm:items-center sm:px-0">
             <label className="relative sm:w-60 sm:shrink-0">
               <span className="sr-only">Search components</span>
               <svg
@@ -116,7 +108,7 @@ export default function LabIndex() {
 
               {groups.map(({ cat, items, soon }) => (
                 <section key={cat} className="pt-12">
-                  <h2 className="flex items-baseline gap-3 border-b-[3px] border-ink pb-2 font-display text-2xl uppercase tracking-tight">
+                  <h2 className="flex items-baseline gap-3 pb-1 text-2xl tracking-tight">
                     {cat}
                     <span className="font-mono text-xs font-normal text-zinc-500">
                       {soon ? '0 / 0 · coming soon' : items.length}

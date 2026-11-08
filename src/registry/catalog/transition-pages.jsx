@@ -447,7 +447,6 @@ sets['panel-switch'] = [
 // The newer transitions borrow a theme that suits them
 sets['tear-switch'] = sets['split-reveal']
 sets['depth-zoom'] = sets['zoom-switch'].map((p) => ({ ...p }))
-sets['portal-switch'] = sets['blur-switch']
 sets['diagonal-switch'] = sets['glitch-switch']
 sets['zoom-switch'] = sets['parallax-scroll']
 

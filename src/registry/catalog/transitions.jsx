@@ -2,7 +2,6 @@ import PanelSwitch from '../components/panel-switch.tsx'
 import DiagonalSwitch from '../components/diagonal-switch.tsx'
 import TearSwitch from '../components/tear-switch.tsx'
 import DepthZoom from '../components/depth-zoom.tsx'
-import PortalSwitch from '../components/portal-switch.tsx'
 import BlurSwitch from '../components/blur-switch.tsx'
 import HorizontalScroll from '../components/horizontal-scroll.tsx'
 import SnapScroll from '../components/snap-scroll.tsx'
@@ -161,11 +160,6 @@ export default [
   transition('depth-zoom', 'Depth Zoom', DepthZoom, 'Pages hang one behind another in 3D. Scrolling flies you forward through them, like moving through a video.', {
     depth: num('Gap between pages (px)', 1400, 400, 3000, 50),
     smoothing: num('Smoothness', 0.08, 0.02, 0.3, 0.01),
-  }),
-  transition('portal-switch', 'Portal Switch', PortalSwitch, "A ring of spinning sparks opens like a sorcerer's portal, with the next page on the other side.", {
-    duration: num('Duration (ms)', 1800, 800, 4000, 50),
-    color: color('Spark colour', '#f97316'),
-    hotColor: color('Hot spark colour', '#fde68a'),
   }),
   transition('panel-switch', 'Panel Switch', PanelSwitch, 'The next page arrives as manga panels: the screen turns to paper, panels slam in one by one, then the gutters close up.', {
     duration: num('Duration (ms)', 1400, 700, 3000, 50),

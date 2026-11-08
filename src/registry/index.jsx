@@ -12,6 +12,7 @@ import loaders from './catalog/loaders.jsx'
 import footers from './catalog/footers.jsx'
 // Templates are built (see ./catalog/templates.jsx) but not published yet
 import heroes from './catalog/heroes.jsx'
+import scenes from './catalog/scenes.jsx'
 import { defaultsOf, indent } from './controls.js'
 
 // Categories A→Z, and components A→Z inside each category
@@ -22,6 +23,7 @@ export const components = [
   ...elements,
   ...footers,
   ...heroes,
+  ...scenes,
   ...loaders,
   ...text,
   ...transitions,

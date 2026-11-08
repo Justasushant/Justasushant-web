@@ -13,12 +13,16 @@ const sites = {
   kimi: { name: 'Kimi K3.1 Pro blog', url: 'https://www.kimi.ai/blog/kimi-k3-1-pro' },
   uiverse: { name: 'uiverse.io', url: 'https://uiverse.io' },
   shadcn: { name: 'shadcn/ui', url: 'https://ui.shadcn.com/docs/components' },
+  taste: { name: 'Taste Skill', url: 'https://www.tasteskill.dev' },
   // No outside reference: the idea was made up for this Lab
   original: { name: 'nothing in particular. An original for this Lab', url: null },
 }
 
 const bySlug = {
   // New in this drop
+  'scroll-drum': 'taste',
+  'before-after': 'taste',
+  'closing-scene': 'taste',
   'manga-navbar': 'original',
   'manga-loader': 'original',
   'manga-text': 'original',
@@ -26,11 +30,9 @@ const bySlug = {
   'diagonal-switch': 'original',
   'tear-switch': 'original',
   'depth-zoom': 'original',
-  'portal-switch': 'original',
   'speed-lines': 'original',
   'manga-button': 'original',
   'manga-panel': 'original',
-  'web-hero': 'original',
   'manga-hero': 'original',
   'manga-ui': 'original',
   'spider-sense-text': 'original',

@@ -96,7 +96,7 @@ function LabPreview() {
             <div className="pointer-events-none size-full">
               <Stage item={item} preview />
             </div>
-            <span className="absolute bottom-2 left-2 rounded-md bg-black/70 px-2 py-0.5 text-[11px] text-zinc-300">
+            <span className="absolute bottom-2 left-2 rounded-md bg-[#1a0e08]/70 px-2 py-0.5 text-[11px] text-zinc-300">
               {item.name}
             </span>
           </Link>
@@ -306,7 +306,7 @@ export default function OssTerminal({ onExit }) {
       case 'clear':
         return setLines([])
       case 'open': {
-        const routes = { lab: '/lab', home: '/', contact: '/#contact', work: '/#work' }
+        const routes = { lab: '/lab', home: '/', contact: '/#contact', work: '/#about' }
         if (!routes[arg]) return print(out(`open: try one of ${Object.keys(routes).join(', ')}`, 'err'))
         return navigate(routes[arg])
       }

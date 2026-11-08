@@ -4,57 +4,57 @@
 @source "./registry";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Google Sans Flex", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Google Sans Flex", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-display: "Dela Gothic One", "Inter", ui-sans-serif, sans-serif;
-  --color-accent: #c6f432;
-  --color-ink: #22211f;
-  --color-paper: #f2efe6;
+  --color-accent: #c2410c;
+  --color-ink: #1a0e08;
+  --color-cream: #f8f4ee;
+  --color-orange: #ff5b14;
 }
 
 /*
-  Manga theme.
-  The site is black ink on paper. Rather than rewrite every class, the neutral
-  palette is flipped here: "white" becomes ink, "zinc-950" becomes paper, and so
-  on. Corners go square like manga panels, and the accent becomes plain ink.
-  Lab previews (.ink-stage) get the original dark palette back, so every
-  component still looks the way its code says it does.
+  The site is warm cream with dark brown ink and one orange.
+  Instead of rewriting every class, the neutral palette is flipped here:
+  "white" becomes ink, "zinc-950" becomes cream, and the greys become warm
+  browns. Lab previews (.ink-stage) get the original dark palette back, so
+  every component still looks the way its code says it does.
 */
 body {
-  --color-white: #22211f;
-  --color-black: #f2efe6;
-  --color-zinc-50: #22211f;
-  --color-zinc-100: #161514;
-  --color-zinc-200: #1f1e1c;
-  --color-zinc-300: #2b2a27;
-  --color-zinc-400: #45433f;
-  --color-zinc-500: #67645d;
-  --color-zinc-600: #8a867d;
-  --color-zinc-700: #b3aea3;
-  --color-zinc-800: #d3cec2;
-  --color-zinc-900: #e6e2d7;
-  --color-zinc-950: #f2efe6;
-  --color-accent: #22211f;
-  /* Status colours turn into ink too: everything is black and white */
-  --color-amber-100: #22211f;
-  --color-amber-200: #22211f;
-  --color-amber-300: #22211f;
-  --color-amber-400: #22211f;
-  --color-cyan-300: #22211f;
-  --color-cyan-400: #22211f;
-  --color-rose-400: #22211f;
-  --color-rose-500: #22211f;
-  --color-emerald-400: #22211f;
-  --radius-sm: 0.125rem;
-  --radius-md: 0.125rem;
-  --radius-lg: 0.2rem;
-  --radius-xl: 0.25rem;
-  --radius-2xl: 0.25rem;
-  --radius-3xl: 0.25rem;
+  --color-white: #1a0e08;
+  --color-black: #ffffff;
+  --color-zinc-50: #1a0e08;
+  --color-zinc-100: #22130b;
+  --color-zinc-200: #2a1309;
+  --color-zinc-300: #43291c;
+  --color-zinc-400: #6b5649;
+  --color-zinc-500: #8b786b;
+  --color-zinc-600: #ad9d91;
+  --color-zinc-700: #d2c7bc;
+  --color-zinc-800: #e8e0d6;
+  --color-zinc-900: #f3eee7;
+  --color-zinc-950: #f8f4ee;
+  --color-accent: #c2410c;
+  /* status colours are all the one orange, or its dark rust */
+  --color-amber-100: #7a2306;
+  --color-amber-200: #7a2306;
+  --color-amber-300: #c2410c;
+  --color-amber-400: #e8500e;
+  --color-cyan-300: #7a2306;
+  --color-cyan-400: #c2410c;
+  --color-rose-400: #c2410c;
+  --color-rose-500: #c2410c;
+  --color-emerald-400: #c2410c;
 }
 
-/* Lab previews: back to the original dark palette */
+/* The dark hero: real white again, so white/10 tints and rings work */
+.on-dark {
+  --color-white: #fff;
+  --color-black: #000;
+}
+
+/* Lab previews and code panels: back to the original dark palette */
 .ink-stage {
   --color-white: #fff;
   --color-black: #000;
@@ -79,12 +79,6 @@ body {
   --color-rose-400: oklch(71.2% 0.194 13.428);
   --color-rose-500: oklch(64.5% 0.246 16.439);
   --color-emerald-400: oklch(76.5% 0.177 163.223);
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
-  --radius-3xl: 1.5rem;
   color-scheme: dark;
 }
 
@@ -98,84 +92,92 @@ body {
   @apply bg-zinc-950 font-sans text-zinc-100 antialiased;
 }
 
-/* Paper grain over everything, like a scanned printed page */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  pointer-events: none;
-  opacity: 0.22;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Headings use the font's roundest setting and tight tracking, like Taste Skill */
+h1,
+h2,
+h3 {
+  font-variation-settings: "ROND" 100;
+  font-weight: 600;
+  letter-spacing: -0.035em;
 }
 
 ::selection {
-  background: #22211f;
-  color: #f2efe6;
+  background: #ff5b14;
+  color: #fff;
 }
 
-/* ─── Manga building blocks ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #c2410c;
+  outline-offset: 3px;
+}
 
 @layer components {
-/* A panel: thick ink border and a hard offset shadow */
-.panel {
-  border: 3px solid var(--color-ink);
-  background: var(--color-paper);
-  box-shadow: 6px 6px 0 var(--color-ink);
+  /* A card: white, a hairline ring and a soft warm shadow */
+  .panel {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 0 0 1px rgb(20 10 5 / 0.05), 0 1px 2px rgb(20 10 5 / 0.04), 0 18px 40px -28px rgb(80 30 5 / 0.25);
+  }
+
+  /* The main button: dark, rounded, with a warm glow underneath */
+  .ink-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.9rem;
+    border-radius: 13px;
+    background: #1a0e08;
+    color: #fff;
+    padding: 0 1.4rem;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgb(20 10 5 / 0.2), 0 14px 30px -16px rgb(80 30 5 / 0.55);
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s, background 0.2s;
+  }
+  .ink-btn:hover {
+    transform: translateY(-1px);
+    background: #2a1309;
+    box-shadow: 0 1px 2px rgb(20 10 5 / 0.2), 0 18px 34px -16px rgb(80 30 5 / 0.65);
+  }
+  .ink-btn:active {
+    transform: translateY(1px);
+  }
+  .ink-btn.ghost {
+    background: #fff;
+    color: #1a0e08;
+    box-shadow: 0 0 0 1px rgb(20 10 5 / 0.08), 0 1px 2px rgb(20 10 5 / 0.04);
+  }
+  .ink-btn.ghost:hover {
+    background: #fffaf6;
+  }
+  /* The same buttons on the dark hero */
+  .on-dark .ink-btn {
+    background: #fff6ef;
+    color: #1a0e08;
+    box-shadow: 0 14px 30px -14px rgb(255 91 20 / 0.6);
+  }
+  .on-dark .ink-btn.ghost {
+    background: rgb(255 246 239 / 0.1);
+    color: #fff6ef;
+    box-shadow: 0 0 0 1px rgb(255 246 239 / 0.18);
+  }
 }
 
-/* Screentone: the printed dot pattern used for shading */
-.tone {
-  background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.3px);
-  background-size: 7px 7px;
-}
-.tone-fade {
-  background-image: radial-gradient(var(--color-ink) 1.1px, transparent 1.3px);
-  background-size: 7px 7px;
-  mask-image: linear-gradient(to bottom, black, transparent);
-}
-
-/* Focus lines bursting out from a point */
-.speed-lines {
-  background: repeating-conic-gradient(from 0deg at var(--sx, 50%) var(--sy, 50%), var(--color-ink) 0deg 0.8deg, transparent 0.8deg 4deg, var(--color-ink) 4deg 4.4deg, transparent 4.4deg 9deg);
-  mask-image: radial-gradient(circle at var(--sx, 50%) var(--sy, 50%), transparent 30%, black 75%);
-}
-
-/* An ink button that presses down onto its own shadow */
-.ink-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: 3px solid var(--color-ink);
-  background: var(--color-ink);
-  color: var(--color-paper);
-  padding: 0.7rem 1.4rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  box-shadow: 4px 4px 0 var(--color-ink);
-  transition: transform 0.1s, box-shadow 0.1s, background 0.15s, color 0.15s;
-}
-.ink-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--color-ink);
-}
-.ink-btn:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0 0 0 var(--color-ink);
-}
-.ink-btn.ghost {
-  background: var(--color-paper);
-  color: var(--color-ink);
-}
+/* Grain: the speckle that sits over the dark, glowing scenes */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Thin, quiet scrollbars for the Lab panels */
 .scroll-thin {
   scrollbar-width: thin;
-  scrollbar-color: #8a867d transparent;
+  scrollbar-color: #d2c7bc transparent;
 }
 .ink-stage .scroll-thin,
 .ink-stage.scroll-thin {
@@ -185,8 +187,8 @@ body::after {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .reveal.is-visible {
   opacity: 1;
@@ -204,7 +206,7 @@ body::after {
   to { background-position: -200% 0; }
 }
 .shimmer {
-  background: linear-gradient(90deg, transparent, rgb(34 33 31 / 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgb(26 14 8 / 0.06), transparent);
   background-size: 200% 100%;
   animation: shimmer 2.4s linear infinite;
 }

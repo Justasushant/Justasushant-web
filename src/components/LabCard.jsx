@@ -13,16 +13,25 @@ export default function LabCard({ item, height = 'h-56', compact = false }) {
   const credit = inspirationFor(item.slug)
 
   const onPreviewClick = (e) => {
-    if (e.target.closest('button:not([data-open]), a, input, [role="switch"], [role="tab"]')) return
+    // Scroll-style demos have nothing to try in a card, so a click anywhere opens them
+    if (!item.capturesScroll && e.target.closest('button:not([data-open]), a, input, [role="switch"], [role="tab"]')) return
     navigate(href)
   }
 
   return (
-    <div className="group flex h-full flex-col overflow-hidden border-[3px] border-ink bg-paper shadow-[5px_5px_0_#22211f] transition-[transform,box-shadow] duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_#22211f]">
+    <div className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-[#fff] shadow-[0_0_0_1px_rgba(20,10,5,0.05),0_1px_2px_rgba(20,10,5,0.04),0_18px_40px_-28px_rgba(80,30,5,0.25)] transition-shadow duration-300 hover:shadow-[0_0_0_1px_rgba(20,10,5,0.08),0_1px_2px_rgba(20,10,5,0.05),0_24px_44px_-26px_rgba(80,30,5,0.34)]">
       <LazyMount
-        className={`relative cursor-pointer overflow-hidden border-b-[3px] border-ink ${height}`}
+        className={`relative cursor-pointer overflow-hidden border-b border-[#1a0e08]/[0.06] ${height}`}
       >
-        <div onClick={onPreviewClick} className="size-full">
+        {/* The page keeps scrolling over a card: its demo never grabs the wheel or a swipe */}
+        <div
+          onClick={onPreviewClick}
+          onWheelCapture={(e) => e.stopPropagation()}
+          onTouchStartCapture={(e) => e.stopPropagation()}
+          onTouchEndCapture={(e) => e.stopPropagation()}
+          onKeyDownCapture={(e) => e.stopPropagation()}
+          className="size-full"
+        >
           <div
             className={
               compact
@@ -48,7 +57,7 @@ export default function LabCard({ item, height = 'h-56', compact = false }) {
       </LazyMount>
       {/* The whole footer opens the component; the credit link sits above that */}
       <div
-        className={`relative flex flex-1 items-start justify-between gap-2 border-t border-white/10 sm:gap-4 ${
+        className={`relative flex flex-1 items-start justify-between gap-2 sm:gap-4 ${
           compact ? 'p-3 sm:p-4' : 'p-4'
         }`}
       >

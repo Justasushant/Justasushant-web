@@ -7,7 +7,7 @@ import { categories, components, getComponent } from '../registry/index.jsx'
 // Set VITE_SITE_URL (e.g. in .env) if the site moves to another domain
 export const SITE_URL = (import.meta.env?.VITE_SITE_URL || 'https://sushant.coneiz.com').replace(/\/+$/, '')
 export const SITE_NAME = `${site.name} · UI Lab`
-export const OG_IMAGE = '/og-image.png?v=2'
+export const OG_IMAGE = '/og-image.png?v=3'
 
 const count = components.length
 
@@ -19,6 +19,7 @@ const categoryNoun = {
   Elements: 'UI element',
   Footers: 'footer',
   'Hero Sections': 'hero section',
+  Scenes: 'scroll scene',
   Templates: 'website template',
   Loaders: 'loader',
   Text: 'text effect',

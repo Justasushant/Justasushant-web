@@ -3,11 +3,10 @@ import { useLocation } from 'react-router'
 import Nav from '../components/Nav.jsx'
 import Hero from '../components/Hero.jsx'
 import LabShowcase from '../components/LabShowcase.jsx'
-import Work from '../components/Work.jsx'
 import About from '../components/About.jsx'
 import Contact from '../components/Contact.jsx'
-import LabBanner from '../components/LabBanner.jsx'
 import Footer from '../components/Footer.jsx'
+import { DrumSection, ClosingSection } from '../components/HomeScenes.jsx'
 
 export default function Home() {
   const { hash } = useLocation()
@@ -25,10 +24,10 @@ export default function Home() {
       <main>
         <Hero />
         <LabShowcase />
-        <Work />
+        <DrumSection />
         <About />
-        <LabBanner />
         <Contact />
+        <ClosingSection />
       </main>
       <Footer />
     </>

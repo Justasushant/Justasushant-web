@@ -3,6 +3,9 @@
 // and an "Updated" badge for one week after `updated`.
 
 const added = {
+  'scroll-drum': '2026-11-08',
+  'before-after': '2026-11-08',
+  'closing-scene': '2026-11-08',
   'manga-navbar': '2026-10-30',
   'manga-loader': '2026-10-30',
   'manga-text': '2026-10-30',
@@ -10,11 +13,9 @@ const added = {
   'diagonal-switch': '2026-10-30',
   'tear-switch': '2026-10-30',
   'depth-zoom': '2026-10-30',
-  'portal-switch': '2026-10-30',
   'speed-lines': '2026-10-30',
   'manga-button': '2026-10-30',
   'manga-panel': '2026-10-30',
-  'web-hero': '2026-10-30',
   'manga-hero': '2026-10-30',
   'manga-ui': '2026-10-30',
   'chat-loop': '2026-10-23',

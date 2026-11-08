@@ -5,64 +5,42 @@ import { site } from '../data/site.js'
 
 export default function About() {
   return (
-    <Section
-      id="about"
-      label="About"
-      title="Details are the design."
-    >
+    <Section id="about" label="About" title="A frontend developer who keeps a Lab.">
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal className="space-y-5 md:col-span-3">
           {site.about.map((paragraph) => (
-            <p key={paragraph} className="text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p key={paragraph} className="max-w-prose text-lg leading-relaxed text-zinc-300">
               {paragraph}
             </p>
           ))}
-          <a
-            href={site.companyUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="panel group !mt-10 flex items-center gap-4 p-4 transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 sm:gap-5 sm:p-5"
-          >
-            <span className="grid size-14 shrink-0 place-items-center border-[3px] border-ink bg-paper p-2 sm:size-16">
+          <a href={site.companyUrl} target="_blank" rel="noreferrer" className="panel !mt-10 flex items-center gap-4 p-5 transition-transform hover:-translate-y-0.5">
+            <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#f3eee7] p-2">
               <ConeizLogo className="size-full" />
             </span>
-            <span className="min-w-0 flex-1">
-              <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
-                {site.companyRole}
-              </span>
-              <span className="block font-display text-lg uppercase tracking-tight text-white sm:text-xl">
-                {site.company}
-              </span>
-              <span className="mt-1 block text-sm leading-relaxed text-zinc-400">{site.companyBlurb}</span>
-            </span>
-            <span className="self-start text-zinc-500 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
-              ↗
+            <span>
+              <span className="block font-semibold">{site.company}</span>
+              <span className="block text-sm text-zinc-400">{site.companyBlurb}</span>
             </span>
           </a>
         </Reveal>
-
-        <Reveal delay={100} className="space-y-10 md:col-span-2">
+        <Reveal delay={100} className="space-y-9 md:col-span-2">
           <div>
-            <h3 className="inline-block bg-ink px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-widest text-paper">Now</h3>
-            <ul className="mt-4 space-y-3">
+            <h3 className="text-base">Now</h3>
+            <ul className="mt-3 space-y-2 text-zinc-400">
               {site.now.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-zinc-200">
-                  <span className="mt-1 size-2.5 shrink-0 rotate-45 bg-ink" />
-                  {item}
-                </li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
-
           <div>
-            <h3 className="inline-block bg-ink px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-widest text-paper">Stack</h3>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <h3 className="text-base">Stack</h3>
+            <p className="mt-3 flex flex-wrap gap-2">
               {site.stack.map((tool) => (
-                <span key={tool} className="border-2 border-ink bg-paper px-3 py-1 font-mono text-xs font-bold uppercase shadow-[3px_3px_0_#22211f]">
+                <span key={tool} className="rounded-full bg-[#fff] px-3 py-1 text-sm shadow-[0_0_0_1px_rgba(20,10,5,0.07)]">
                   {tool}
                 </span>
               ))}
-            </div>
+            </p>
           </div>
         </Reveal>
       </div>

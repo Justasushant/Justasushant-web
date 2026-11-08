@@ -161,7 +161,7 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
                   </Link>{' '}
                   / {item.category}
                 </p>
-                <h1 className="mt-0.5 truncate font-display text-lg uppercase tracking-tight">
+                <h1 className="mt-0.5 truncate text-lg tracking-tight">
                   {item.name}
                   <Badge slug={item.slug} className="ml-2 align-middle" />
                   <span className="ml-3 hidden text-sm font-normal text-zinc-400 md:inline">
@@ -219,7 +219,7 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
             style={{ '--code-h': `${codeHeight}px` }}
           >
             <div className="flex flex-wrap items-center gap-2 border-b border-white/5 px-3 py-2">
-              <div className="flex rounded-lg bg-black/30 p-0.5">
+              <div className="flex rounded-lg bg-[#1a0e08]/30 p-0.5">
                 <button onClick={() => setTab('usage')} className={segment(tab === 'usage')}>
                   Usage
                 </button>
@@ -227,7 +227,7 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
                   Code
                 </button>
               </div>
-              <div className="flex rounded-lg bg-black/30 p-0.5">
+              <div className="flex rounded-lg bg-[#1a0e08]/30 p-0.5">
                 <button onClick={() => setLang('tsx')} className={segment(lang === 'tsx')}>
                   TSX
                 </button>
@@ -341,7 +341,7 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
           <button
             aria-label="Close"
             onClick={() => setDrawer(false)}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#1a0e08]/60 backdrop-blur-sm"
           />
           <div className="scroll-thin absolute inset-y-0 left-0 w-72 max-w-[85vw] overflow-y-auto border-r border-white/10 bg-zinc-950 px-3 py-6">
             <LabSidebar onNavigate={() => setDrawer(false)} />
