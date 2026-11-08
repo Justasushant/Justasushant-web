@@ -49,7 +49,7 @@ function NumberControl({ control, value, onChange }) {
         max={max}
         step={step}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-2 w-full cursor-pointer accent-[#c6f432]"
+        className="mt-2 w-full cursor-pointer accent-[#e8500e]"
       />
     </div>
   )

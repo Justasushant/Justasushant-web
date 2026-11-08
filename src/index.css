@@ -82,6 +82,11 @@ body {
   color-scheme: dark;
 }
 
+/* A dark panel that uses the site's orange instead of the Lab demos' lime */
+.ink-stage.accent-orange {
+  --color-accent: #ff7a2e;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;

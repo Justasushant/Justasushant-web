@@ -6,12 +6,10 @@ import OssTerminal from '../components/OssTerminal.jsx'
 import { site } from '../data/site.js'
 import { excuses, ossTerminalLines } from '../data/opensource.js'
 import { components } from '../registry/index.jsx'
-import MatrixRain from '../registry/components/matrix-rain.tsx'
 import GlitchText from '../registry/components/glitch-text.tsx'
 import NumberTicker from '../registry/components/number-ticker.tsx'
 import TerminalLoop from '../registry/components/terminal-loop.tsx'
 import ExcuseGenerator from '../components/ExcuseGenerator.jsx'
-import ShimmerButton from '../registry/components/shimmer-button.tsx'
 
 function ModeToggle({ mode, onChange }) {
   const option = (value, label, icon) => (
@@ -29,7 +27,7 @@ function ModeToggle({ mode, onChange }) {
     </button>
   )
   return (
-    <div className="fixed right-3 top-[68px] z-50 flex rounded-full border border-white/15 bg-zinc-950/90 p-0.5 shadow-xl backdrop-blur sm:right-5">
+    <div className="fixed right-3 top-[80px] z-50 flex rounded-full border border-white/15 bg-zinc-950/90 p-0.5 shadow-xl backdrop-blur sm:right-5">
       {option('ui', 'UI', '◧')}
       {option('terminal', 'Terminal', '>_')}
     </div>
@@ -62,7 +60,7 @@ function ProgressCard() {
       </div>
       <div className="mt-3 h-3 overflow-hidden rounded-full bg-white/5">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-accent to-emerald-400 transition-[width] duration-700"
+          className="h-full rounded-full bg-gradient-to-r from-[#ffb27a] to-[#e8500e] transition-[width] duration-700"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -110,9 +108,7 @@ function OpenSourceUI({ mode, setMode }) {
       <Nav />
       <ModeToggle mode={mode} onChange={setMode} />
       <main className="relative overflow-hidden">
-        <div className="absolute inset-0 opacity-25 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]">
-          <MatrixRain fps={18} />
-        </div>
+        <div aria-hidden className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 40% at 85% 0%, rgba(255,122,46,0.22), transparent 70%)' }} />
 
         <section className="relative mx-auto px-4 pb-24 pt-32 sm:px-6 lg:px-10 2xl:px-16 sm:pt-40">
           <p className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1.5 font-mono text-xs text-amber-300">
@@ -138,6 +134,7 @@ function OpenSourceUI({ mode, setMode }) {
             <TerminalLoop
               lines={ossTerminalLines}
               title="~/sushant/open-source"
+              accent="#e8500e"
               className="max-w-none"
             />
             <ProgressCard />
@@ -159,12 +156,12 @@ function OpenSourceUI({ mode, setMode }) {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <ShimmerButton onClick={() => navigate('/lab')} shimmerColor="#c6f432">
-                Steal from the Lab →
-              </ShimmerButton>
+              <button onClick={() => navigate('/lab')} className="ink-btn">
+                Steal from the Lab
+              </button>
               <a
                 href={`mailto:${site.email}?subject=${encodeURIComponent('Where is the open source, Sushant?')}`}
-                className="inline-flex items-center rounded-full border border-white/15 px-5 py-3 text-sm font-medium transition-colors hover:border-white"
+                className="ink-btn ghost"
               >
                 Bug me about it
               </a>

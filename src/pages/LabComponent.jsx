@@ -215,7 +215,7 @@ function ComponentView({ item, lang, setLang, tab, setTab, codeHeight, setCodeHe
 
           {/* Code panel */}
           <section
-            className="ink-stage flex max-h-[60vh] min-h-0 flex-col bg-[#1e2127] text-zinc-100 lg:h-[var(--code-h)] lg:max-h-none"
+            className="ink-stage flex max-h-[60vh] min-h-0 flex-col bg-[#1e2127] text-zinc-100 accent-orange lg:h-[var(--code-h)] lg:max-h-none"
             style={{ '--code-h': `${codeHeight}px` }}
           >
             <div className="flex flex-wrap items-center gap-2 border-b border-white/5 px-3 py-2">

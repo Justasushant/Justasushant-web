@@ -68,7 +68,7 @@ function BusyPreview({ project }) {
   const [excuse] = useState(() => excuses[Math.floor(Math.random() * excuses.length)])
   return (
     <div className="relative flex size-full flex-col items-center justify-center gap-4 overflow-hidden px-6 text-center">
-      <FlickeringGrid maxOpacity={0.15} color="#f43f5e" />
+      <FlickeringGrid maxOpacity={0.15} color="#ff7a2e" />
       <p className="relative text-[clamp(2.2rem,7vw,5rem)] font-black leading-none tracking-tighter text-white">
         <GlitchText text="BUSY RIGHT NOW" speed={2} />
       </p>
@@ -77,7 +77,7 @@ function BusyPreview({ project }) {
         .gitkeep and big dreams. {project.description}
       </p>
       <p className="relative max-w-lg font-sans text-sm italic text-zinc-500">Excuse: “{excuse}”</p>
-      <DotsLoader className="relative" color="#f43f5e" size={10} />
+      <DotsLoader className="relative" color="#ff7a2e" size={10} />
     </div>
   )
 }
@@ -96,7 +96,7 @@ function LabPreview() {
             <div className="pointer-events-none size-full">
               <Stage item={item} preview />
             </div>
-            <span className="absolute bottom-2 left-2 rounded-md bg-[#1a0e08]/70 px-2 py-0.5 text-[11px] text-zinc-300">
+            <span className="absolute bottom-2 left-2 rounded-md bg-black/60 px-2 py-0.5 text-[11px] text-zinc-300">
               {item.name}
             </span>
           </Link>
@@ -181,10 +181,10 @@ export default function OssTerminal({ onExit }) {
             {ossProjects.map((p) => (
               <div key={p.name} className="contents">
                 <span className="text-zinc-500">drwxr-xr-x</span>
-                <span className={p.status === 'live' ? 'text-accent' : 'text-amber-400'}>
+                <span className={p.status === 'live' ? 'text-accent' : 'text-[#ffb27a]'}>
                   {p.status === 'live' ? 'live' : 'busy'}
                 </span>
-                <span className="text-sky-400">{p.name}/</span>
+                <span className="text-[#ffc9a3]">{p.name}/</span>
               </div>
             ))}
           </div>
@@ -196,7 +196,7 @@ export default function OssTerminal({ onExit }) {
       node: (
         <div className="flex flex-wrap gap-x-6">
           {ossProjects.map((p) => (
-            <span key={p.name} className="text-sky-400">
+            <span key={p.name} className="text-[#ffc9a3]">
               {p.name}/
             </span>
           ))}
@@ -255,11 +255,11 @@ export default function OssTerminal({ onExit }) {
           kind: 'node',
           node: (
             <div>
-              <p className="text-sky-400">open-source/</p>
+              <p className="text-[#ffc9a3]">open-source/</p>
               {ossProjects.map((p, i) => (
                 <p key={p.name}>
                   <span className="text-zinc-600">{i === ossProjects.length - 1 ? '└── ' : '├── '}</span>
-                  <span className="text-sky-400">{p.name}/</span>
+                  <span className="text-[#ffc9a3]">{p.name}/</span>
                   <span className="text-zinc-600">  {p.status === 'live' ? '' : '(empty, busy)'}</span>
                 </p>
               ))}
@@ -320,7 +320,7 @@ export default function OssTerminal({ onExit }) {
         return print({
           kind: 'node',
           node: (
-            <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="text-[#25d366] underline">
+            <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="text-[#fff6ef] underline">
               {site.whatsapp.display} (messages only, no calls)
             </a>
           ),
@@ -385,12 +385,12 @@ export default function OssTerminal({ onExit }) {
     out: 'text-zinc-200',
     muted: 'text-zinc-500',
     accent: 'text-accent',
-    err: 'text-rose-400',
-    warn: 'text-amber-300',
+    err: 'text-[#ff8a66]',
+    warn: 'text-[#ffb27a]',
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col bg-[#0b0b0c] font-mono text-[13px] leading-relaxed sm:text-sm">
+    <div className="ink-stage fixed inset-x-0 bottom-0 top-[76px] z-40 flex flex-col bg-[#140a05] font-mono accent-orange text-[13px] leading-relaxed sm:text-sm">
       {/* Project preview slides in from the top when you cd into a project */}
       <div
         className="relative shrink-0 overflow-hidden border-b border-white/10 bg-zinc-950 transition-[height] duration-500 ease-[cubic-bezier(.65,0,.35,1)]"
@@ -400,8 +400,8 @@ export default function OssTerminal({ onExit }) {
           <>
             <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between gap-3 border-b border-white/10 bg-zinc-950/90 py-2 pl-4 pr-48 text-xs backdrop-blur">
               <span className="text-zinc-400">
-                preview · <span className="text-sky-400">{project.name}/</span>{' '}
-                <span className={project.preview ? 'text-accent' : 'text-amber-400'}>
+                preview · <span className="text-[#ffc9a3]">{project.name}/</span>{' '}
+                <span className={project.preview ? 'text-accent' : 'text-[#ffb27a]'}>
                   {project.preview ? '● live' : '● busy'}
                 </span>
               </span>
@@ -443,11 +443,11 @@ export default function OssTerminal({ onExit }) {
                   <>
                     <span className="text-accent">sushant@coneiz</span>
                     <span className="text-zinc-500">:</span>
-                    <span className="text-sky-400">{line.path}</span>
+                    <span className="text-[#ffc9a3]">{line.path}</span>
                     <span className="text-zinc-500">$ </span>
                   </>
                 ) : (
-                  <span className="text-amber-300">help? › </span>
+                  <span className="text-[#ffb27a]">help? › </span>
                 )}
                 {line.text}
               </p>
@@ -460,12 +460,12 @@ export default function OssTerminal({ onExit }) {
         })}
         <label className="flex items-center">
           {askingHelp ? (
-            <span className="shrink-0 text-amber-300">help? › </span>
+            <span className="shrink-0 text-[#ffb27a]">help? › </span>
           ) : (
             <span className="shrink-0">
               <span className="text-accent">sushant@coneiz</span>
               <span className="text-zinc-500">:</span>
-              <span className="text-sky-400">{path}</span>
+              <span className="text-[#ffc9a3]">{path}</span>
               <span className="text-zinc-500">$ </span>
             </span>
           )}
@@ -494,7 +494,7 @@ function ContactLines() {
         {site.email}
       </a>
       <span className="text-zinc-500">whatsapp</span>
-      <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="text-[#25d366] underline">
+      <a href={site.whatsapp.link} target="_blank" rel="noreferrer" className="text-[#fff6ef] underline">
         {site.whatsapp.display} (messages only)
       </a>
     </div>

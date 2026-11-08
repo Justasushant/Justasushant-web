@@ -63,7 +63,7 @@ export default function ExcuseGenerator({
   const score = believability(excuses[index])
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
+    <div className="panel relative overflow-hidden">
       {/* Backdrop: a faint grid */}
       <div
         aria-hidden
@@ -116,7 +116,7 @@ export default function ExcuseGenerator({
             </div>
             <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/5">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-rose-500 via-amber-400 to-accent transition-[width] duration-700"
+                className="h-full rounded-full bg-gradient-to-r from-[#ffc9a3] to-[#e8500e] transition-[width] duration-700"
                 style={{ width: rolling === null ? `${score}%` : '0%' }}
               />
             </div>
@@ -126,12 +126,16 @@ export default function ExcuseGenerator({
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <ConfettiButton onClick={generate} className="bg-white! text-zinc-950!">
+            <ConfettiButton
+              onClick={generate}
+              colors={['#ff5b14', '#ff7a2e', '#ffc9a3', '#1a0e08', '#c2410c']}
+              className="!h-[2.9rem] !rounded-[13px] !bg-[#1a0e08] !px-6 !py-0 !font-medium !text-[#fff6ef] shadow-[0_1px_2px_rgba(20,10,5,0.2),0_14px_30px_-16px_rgba(80,30,5,0.55)]"
+            >
               {buttonLabel}
             </ConfettiButton>
             <button
               onClick={copy}
-              className="rounded-full border border-white/15 px-4 py-3 text-sm text-zinc-300 transition-colors hover:border-white/40 hover:text-white"
+              className="ink-btn ghost"
             >
               {copied ? '✓ Copied' : 'Copy excuse'}
             </button>

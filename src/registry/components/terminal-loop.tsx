@@ -94,7 +94,7 @@ export default function TerminalLoop({
                   />
                 )}
               </p>
-              {showOutput && <p style={{ color: toneColor[line.tone ?? 'default'] }}>{line.output}</p>}
+              {showOutput && <p style={{ color: line.tone === 'success' ? accent : toneColor[line.tone ?? 'default'] }}>{line.output}</p>}
             </div>
           )
         })}
