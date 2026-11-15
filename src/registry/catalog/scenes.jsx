@@ -49,22 +49,18 @@ export default [
   scene(
     'scroll-drum',
     'Scroll Drum',
-    'A slot-machine drum for your scroll. Rows sit on a 3D cylinder that turns as you scroll, the middle one lights up, a counter rolls and a few cards are dealt at the end.',
+    'A slot-machine drum for your scroll. Rows sit on a 3D cylinder that turns as you scroll, the middle one lights up, a counter rolls and and it ends on the last row.',
     {
       eyebrow: text('Label', 'The draw'),
-      title1: text('Heading, line 1', 'Twenty directions.'),
-      title2: text('Heading, line 2', 'Three dealt per page.'),
-      closing: text('Closing line', 'Pick the one that fits.'),
-      buttonLabel: text('Button', 'See how it works'),
+      title1: text('Heading, line 1', 'Seventeen directions.'),
+      title2: text('Heading, line 2', 'One lit at a time.'),
       hold: num('Scroll distance (screens)', 2.8, 1, 6, 0.1),
       accent: color('Accent colour', '#e8500e'),
     },
-    ({ title1, title2, ...rest }) => <ScrollDrum {...rest} title={[title1, title2]} items={directions} />,
+    ({ title1, title2, ...rest }) => <ScrollDrum {...rest} title={[title1, title2]} items={directions} dealt={0} closing="" buttonLabel="" />,
     (p) => `<ScrollDrum
   eyebrow="${p.eyebrow}"
   title={['${p.title1}', '${p.title2}']}
-  closing="${p.closing}"
-  buttonLabel="${p.buttonLabel}"
   hold={${p.hold}}
   accent="${p.accent}"
   items={[
