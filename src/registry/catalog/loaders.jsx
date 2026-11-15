@@ -1,5 +1,4 @@
 import MangaLoader from '../components/manga-loader.tsx'
-import SpiderLoader from '../components/spider-loader.tsx'
 import DotsLoader from '../components/dots-loader.tsx'
 import BarsLoader from '../components/bars-loader.tsx'
 import RingLoader from '../components/ring-loader.tsx'
@@ -59,15 +58,6 @@ export default [
     controls: {
       colors: colors('Gradient colours', ['#c6f432', '#22d3ee']),
       size: size(56, 16, 160),
-    },
-  },
-  {
-    ...loader('spider-loader', 'Spider Loader', SpiderLoader, 'A spider spins an orb web: spokes first, then it walks the spiral laying silk. The web fades and it starts again.', {}),
-    controls: {
-      color: color('Spider colour', '#e11d48'),
-      webColor: color('Web colour', '#d4d4d8'),
-      size: num('Size (px)', 140, 40, 260),
-      speed: num('Seconds per web', 3.6, 1.5, 10, 0.1),
     },
   },
   {

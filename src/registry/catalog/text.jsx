@@ -106,6 +106,7 @@ ${indent(jsx('WordRotate', { words: rotateWords, ...p }), 2)}
     slug: 'gradient-text',
     name: 'Gradient Text',
     category: 'Text',
+    fill: true,
     description: 'A colourful gradient that keeps flowing through the text.',
     controls: {
       children: text('Text', 'Gradient'),
@@ -208,6 +209,7 @@ ${indent(tag('HighlightText', p), 2)}{' '}
     slug: 'flashlight-text',
     name: 'Flashlight Text',
     category: 'Text',
+    fill: true,
     description: 'Text hidden in the dark. Your cursor is a torch that lights up the words and the dust around them.',
     controls: {
       text: text('Text', 'FIND ME IN THE DARK'),

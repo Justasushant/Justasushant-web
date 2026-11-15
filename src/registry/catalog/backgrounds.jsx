@@ -1,19 +1,14 @@
 import SpeedLines from '../components/speed-lines.tsx'
 import DotGrid from '../components/dot-grid.tsx'
 import Aurora from '../components/aurora.tsx'
-import Particles from '../components/particles.tsx'
 import HoverGrid from '../components/hover-grid.tsx'
 import FlowField from '../components/flow-field.tsx'
 import StarfieldWarp from '../components/starfield-warp.tsx'
-import GradientFollow from '../components/gradient-follow.tsx'
-import WarpLines from '../components/warp-lines.tsx'
 import GridBeams from '../components/grid-beams.tsx'
 import FlickeringGrid from '../components/flickering-grid.tsx'
 import GrainGradient from '../components/grain-gradient.tsx'
-import RetroGrid from '../components/retro-grid.tsx'
 import Meteors from '../components/meteors.tsx'
 import MatrixRain from '../components/matrix-rain.tsx'
-import WebShooter from '../components/web-shooter.tsx'
 import { bool, color, colors, jsx, num, select } from '../controls.js'
 import { BgTitle, bgUsage, pascal } from './shared.jsx'
 
@@ -61,19 +56,6 @@ export default [
     },
   ),
   background(
-    'particles',
-    'Particles',
-    Particles,
-    'A connected particle network that scatters away from your cursor.',
-    'Particles',
-    'move your cursor',
-    {
-      color: color('Colour', '#c6f432'),
-      density: num('Density (per 100×100 px)', 9, 1, 30, 0.5),
-      linkDistance: num('Link distance (px)', 110, 30, 250, 5),
-    },
-  ),
-  background(
     'hover-grid',
     'Hover Grid',
     HoverGrid,
@@ -117,31 +99,6 @@ export default [
     },
   ),
   background(
-    'gradient-follow',
-    'Gradient Follow',
-    GradientFollow,
-    'Three glowing blobs chase your cursor at different speeds.',
-    'Gradient Follow',
-    'move your cursor',
-    {
-      colors: colors('Colours', ['#c6f432', '#22d3ee', '#a855f7']),
-      size: num('Blob size', 0.45, 0.1, 1, 0.05),
-    },
-  ),
-  background(
-    'warp-lines',
-    'Warp Lines',
-    WarpLines,
-    'A curtain of thin lines that bends around your cursor.',
-    'Warp Lines',
-    'move your cursor',
-    {
-      highlightColor: color('Highlight colour', '#c6f432'),
-      spacing: num('Spacing (px)', 16, 4, 60),
-      radius: num('Cursor radius (px)', 160, 40, 400, 10),
-    },
-  ),
-  background(
     'grid-beams',
     'Grid Beams',
     GridBeams,
@@ -173,26 +130,14 @@ export default [
     'grain-gradient',
     'Grain Gradient',
     GrainGradient,
-    'A slowly shifting mesh gradient with film grain on top.',
+    'A still gradient glow in one colour with film grain on top. Choose the colour, the grain and how fast it shimmers.',
     'Grain Gradient',
     null,
     {
-      colors: colors('Base + 3 blobs', ['#0c0a1d', '#c6f432', '#0e7490', '#7e22ce']),
-      grain: num('Grain', 0.3, 0, 1, 0.05),
-    },
-  ),
-  background(
-    'retro-grid',
-    'Synthwave',
-    RetroGrid,
-    'A striped 80s sun over a glowing grid floor that rolls toward you.',
-    'Synthwave',
-    null,
-    {
-      lineColor: color('Grid colour', '#e879f9'),
-      skyColor: color('Sky colour', '#12031f'),
-      showSun: bool('Sun', true),
-      speed: num('Seconds per cell', 0.6, 0.1, 3, 0.1),
+      color: color('Glow colour', '#e8500e'),
+      background: color('Background colour', '#140a05'),
+      grain: num('Grain', 0.35, 0, 1, 0.05),
+      speed: num('Grain speed (s per shimmer, 0 = still)', 1.2, 0, 4, 0.1),
     },
   ),
   background(
@@ -220,30 +165,6 @@ export default [
       fps: num('Frames per second', 24, 4, 60),
     },
   ),
-  {
-    ...background(
-      'web-shooter',
-      'Web Shooter',
-      WebShooter,
-      'Spider-Man style: click to shoot an orb web, drag to string a zip line. The spider abseils down to inspect each one.',
-      'Thwip!',
-      'click to shoot a web',
-      {
-        webColor: color('Web colour', '#f4f4f5'),
-        spiderColor: color('Spider colour', '#e11d48'),
-        lifetime: num('Web lasts (s)', 5, 1, 15),
-        spider: bool('Dangling spider', true),
-        autoShoot: num('Auto-shoot every (ms, 0 = off)', 0, 0, 5000, 100),
-        sound: bool('Comic sound effects', true),
-      },
-    ),
-    demo: ({ preview, props }) => (
-      <>
-        <WebShooter {...props} autoShoot={preview ? 900 : props.autoShoot} />
-        <BgTitle sub="click to shoot · drag to string a line">Thwip!</BgTitle>
-      </>
-    ),
-  },
   {
     ...background('speed-lines', 'Speed Lines', SpeedLines, 'Manga speed lines in tapered ink: focus lines rushing to a point, or motion streaks. They shimmer like hand inking.', '', '', {
       mode: select('Style', 'focus', ['focus', 'motion']),

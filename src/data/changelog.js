@@ -4,9 +4,7 @@
 
 const added = {
   'scroll-drum': '2026-11-08',
-  'before-after': '2026-11-08',
   'closing-scene': '2026-11-08',
-  'manga-navbar': '2026-10-30',
   'manga-loader': '2026-10-30',
   'manga-text': '2026-10-30',
   'panel-switch': '2026-10-30',
@@ -15,23 +13,17 @@ const added = {
   'depth-zoom': '2026-10-30',
   'speed-lines': '2026-10-30',
   'manga-button': '2026-10-30',
-  'manga-panel': '2026-10-30',
-  'manga-hero': '2026-10-30',
   'manga-ui': '2026-10-30',
   'chat-loop': '2026-10-23',
   'deploy-loop': '2026-10-23',
   'tear-reveal': '2026-10-29',
-  'web-shooter': '2026-10-30',
   'reveal-footer': '2026-10-30',
   'marquee-footer': '2026-10-30',
   'columns-footer': '2026-10-30',
   'fireworks-button': '2026-10-30',
   'liquid-button': '2026-10-30',
-  'rocket-button': '2026-10-30',
   'heart-button': '2026-10-30',
   'spider-sense-text': '2026-10-30',
-  'web-card': '2026-10-30',
-  'spider-loader': '2026-10-30',
   'comic-button': '2026-10-30',
   'split-flap': '2026-10-30',
   'pixel-button': '2026-10-30',
@@ -39,8 +31,6 @@ const added = {
 }
 
 const updated = {
-  'web-shooter': '2026-10-30',
-  'compare-slider': '2026-10-30',
   dock: '2026-10-30',
   'flashlight-text': '2026-10-30',
   'confetti-button': '2026-10-30',

@@ -11,11 +11,14 @@ interface Sparkle {
 
 interface SparkleButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   colors?: string[]
+  /** Fill colour of the button */
+  background?: string
 }
 
 export default function SparkleButton({
   children,
-  colors = ['#fde047', '#c6f432', '#f0abfc', '#ffffff'],
+  colors = ['#fde047', '#f97316', '#f0abfc', '#ffffff'],
+  background = '#1a0e08',
   className = '',
   ...props
 }: SparkleButtonProps) {
@@ -45,7 +48,8 @@ export default function SparkleButton({
     <button
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`relative rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-500 to-amber-400 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-fuchsia-500/30 transition-transform hover:scale-105 active:scale-95 ${className}`}
+      style={{ background }}
+      className={`relative rounded-full px-7 py-3 text-sm font-semibold text-white transition-transform hover:scale-105 active:scale-95 ${className}`}
       {...props}
     >
       <style>{`@keyframes sparkle-button-twinkle { 0% { transform: scale(0) rotate(0deg) } 50% { transform: scale(1) rotate(90deg) } 100% { transform: scale(0) rotate(180deg) } }`}</style>

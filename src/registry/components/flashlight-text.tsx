@@ -75,17 +75,6 @@ export default function FlashlightText({
 
   return (
     <div ref={ref} className={`relative cursor-none select-none p-8 ${className}`}>
-      {/* Dust in the air, only visible inside the beam */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: 'radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1.4px)',
-          backgroundSize: '14px 14px',
-          maskImage: beam('0%'),
-          WebkitMaskImage: beam('0%'),
-        }}
-      />
       {/* A soft halo where the light lands */}
       <div
         aria-hidden

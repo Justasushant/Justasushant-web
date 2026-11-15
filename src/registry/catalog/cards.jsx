@@ -1,5 +1,3 @@
-import MangaPanel from '../components/manga-panel.tsx'
-import WebCard from '../components/web-card.tsx'
 import { Icon } from './icons.jsx'
 import SpotlightCard from '../components/spotlight-card.tsx'
 import TiltCard from '../components/tilt-card.tsx'
@@ -10,7 +8,6 @@ import ExpandPanels from '../components/expand-panels.tsx'
 import StackCards from '../components/stack-cards.tsx'
 import FocusCards from '../components/focus-cards.tsx'
 import FolderCard from '../components/folder-card.tsx'
-import MusicCard from '../components/music-card.tsx'
 import TerminalLoop from '../components/terminal-loop.tsx'
 import ChatLoop from '../components/chat-loop.tsx'
 import DeployLoop from '../components/deploy-loop.tsx'
@@ -285,19 +282,6 @@ export default [
     usage: (p) => jsx('FolderCard', p),
   },
   {
-    slug: 'music-card',
-    name: 'Music Card',
-    category: 'Cards',
-    description: 'A mini music player: spinning record, live equaliser and a working timeline.',
-    controls: {
-      title: text('Title', 'Midnight Components'),
-      artist: text('Artist', 'The Lab Sessions'),
-      length: num('Track length (s)', 214, 30, 600),
-    },
-    demo: ({ props }) => <MusicCard {...props} />,
-    usage: (p) => jsx('MusicCard', p),
-  },
-  {
     slug: 'flip-card',
     name: 'Flip Card',
     category: 'Cards',
@@ -347,80 +331,5 @@ export default [
     controls: { grow: num('Open panel width (× others)', 5, 1.5, 10, 0.5) },
     demo: ({ props }) => <ExpandPanels {...props} className="px-6" panels={panels} />,
     usage: (p) => jsx('ExpandPanels', { ...p, panels: panels.slice(0, 3) }),
-  },
-  {
-    slug: 'web-card',
-    name: 'Web Card',
-    category: 'Cards',
-    description: 'A cobweb spins itself into the corner on hover and a spider drops down on its thread.',
-    controls: {
-      webColor: color('Web colour', '#d4d4d8'),
-      spiderColor: color('Spider colour', '#e11d48'),
-    },
-    demo: ({ props }) => (
-      <WebCard {...props}>
-        <p className="font-mono text-xs text-zinc-500">NEIGHBOURHOOD WATCH</p>
-        <h3 className="mt-3 text-xl font-semibold text-white">Friendly, local, quick.</h3>
-        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-          Hover the card. Somebody has been hanging around in the corner.
-        </p>
-        <span className="mt-6 inline-block rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-zinc-950">Say hi</span>
-      </WebCard>
-    ),
-    usage: (p) => wrap('WebCard', p, '<h3>Friendly, local, quick.</h3>'),
-  },
-  {
-    slug: 'manga-panel',
-    name: 'Manga Panel',
-    category: 'Cards',
-    fill: true,
-    description: 'A manga page layout: ink panels with white gutters, screentone and focus lines. Hover a panel and the camera pushes in.',
-    controls: {},
-    demo: () => (
-      <div className="grid size-full place-items-center bg-[#f2efe6] p-5">
-        <MangaPanel
-          className="h-full max-h-[420px] w-full max-w-lg"
-          areas={['a a b', 'c d d']}
-          panels={[
-            {
-              caption: 'Ch. 1',
-              lines: true,
-              content: <p className="text-4xl font-black uppercase leading-none tracking-tight">The plan.</p>,
-            },
-            {
-              dark: true,
-              content: (
-                <svg viewBox="0 0 60 40" className="w-20">
-                  <path d="M4 22 Q16 10 28 20 Q16 28 4 22Z" fill="#f2efe6" />
-                  <circle cx="17" cy="20" r="5" fill="#22211f" />
-                  <path d="M56 22 Q44 10 32 20 Q44 28 56 22Z" fill="#f2efe6" />
-                  <circle cx="43" cy="20" r="5" fill="#22211f" />
-                  <path d="M3 9 L27 13 M57 9 L33 13" stroke="#f2efe6" strokeWidth="3" />
-                </svg>
-              ),
-            },
-            {
-              tone: true,
-              content: (
-                <p className="rounded-[50%] border-[3px] border-[#22211f] bg-[#f2efe6] px-4 py-2 text-xs font-black uppercase">Ship it?</p>
-              ),
-            },
-            {
-              lines: true,
-              content: <p className="text-5xl font-black text-[#f2efe6] [-webkit-text-stroke:2px_#22211f] [paint-order:stroke_fill]">ドン!</p>,
-            },
-          ]}
-        />
-      </div>
-    ),
-    usage: `<MangaPanel
-  areas={['a a b', 'c d d']}
-  panels={[
-    { content: <h3>The plan.</h3>, lines: true, caption: 'Ch. 1' },
-    { content: <img src="/eyes.png" />, dark: true },
-    { content: <p>Ship it?</p>, tone: true },
-    { content: <p>ドン!</p>, lines: true },
-  ]}
-/>`,
   },
 ]

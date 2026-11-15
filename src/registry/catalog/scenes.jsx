@@ -1,5 +1,4 @@
 import ScrollDrum from '../components/scroll-drum.tsx'
-import BeforeAfter from '../components/before-after.tsx'
 import ClosingScene from '../components/closing-scene.tsx'
 import { color, num, text } from '../controls.js'
 
@@ -9,7 +8,6 @@ const directions = [
   ['One huge number', 'A single figure, set large'],
   ['The calm grid', 'Even tiles, edge to edge'],
   ['Colour *blocks*', 'A colour for every section'],
-  ['A full-bleed photo', 'One picture carries the page'],
   ['The poster', 'One thing stays put'],
   ['Soft *shadows*', 'Depth without borders'],
   ['Sharp *edges*', 'Square corners, hard lines'],
@@ -19,12 +17,10 @@ const directions = [
   ['Dark and *glowing*', 'Lit things in the dark'],
   ['Paper and *ink*', 'Warm neutrals, one accent'],
   ['Loud and flat', 'Like a street poster'],
-  ['The quiet *page*', 'Small type, big space'],
   ['Big *numbers*', 'Stats as the headline'],
   ['Split *screen*', 'One half never moves'],
   ['The contact *sheet*', 'All the work, small'],
   ['Round *everything*', 'Soft, friendly shapes'],
-  ['Tiny *type*', 'Small words, lots of air'],
 ].map(([name, caption]) => ({ name, caption }))
 
 // Scenes are as tall as a few screens and pin their content while you scroll.
@@ -75,30 +71,6 @@ export default [
     { name: 'Type on its *own*', caption: 'Only words and colour' },
     { name: 'The calm grid', caption: 'Even tiles, edge to edge' },
     // ...one entry per row. *Stars* make a word italic.
-  ]}
-/>`,
-  ),
-  scene(
-    'before-after',
-    'Before and After',
-    'A pinned scene that redesigns one landing page in five steps as you scroll: gradient and glass cards, one palette, real type, a layout with intent, the last 10%.',
-    {
-      eyebrow: text('Label', 'Before and after'),
-      title1: text('Heading, line 1', 'From default'),
-      title2: text('Heading, line 2', 'to designed.'),
-      hold: num('Scroll distance (screens)', 3, 1.5, 6, 0.1),
-      accent: color('Accent colour', '#e8500e'),
-    },
-    ({ title1, title2, ...rest }) => <BeforeAfter {...rest} title={[title1, title2]} />,
-    (p) => `<BeforeAfter
-  eyebrow="${p.eyebrow}"
-  title={['${p.title1}', '${p.title2}']}
-  hold={${p.hold}}
-  accent="${p.accent}"
-  steps={[
-    { title: 'The default', text: 'A purple gradient and three glass cards.' },
-    { title: 'One palette', text: 'The gradient goes. One neutral, one accent.' },
-    // ...five steps in all
   ]}
 />`,
   ),

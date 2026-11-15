@@ -15,7 +15,6 @@ import CopyButton from '../components/copy-button.tsx'
 import SpringToggle from '../components/spring-toggle.tsx'
 import FireworksButton from '../components/fireworks-button.tsx'
 import LiquidButton from '../components/liquid-button.tsx'
-import RocketButton from '../components/rocket-button.tsx'
 import HeartButton from '../components/heart-button.tsx'
 import { bool, color, colors, jsx, num, select, text } from '../controls.js'
 import { pascal, tag } from './shared.jsx'
@@ -84,9 +83,10 @@ export default [
     duration: num('Hold time (ms)', 1500, 200, 6000, 100),
     color: color('Colour', '#f43f5e'),
   }),
-  button('sparkle-button', 'Sparkle Button', SparkleButton, 'A gradient button that sprinkles twinkling stars while you hover it.', {
+  button('sparkle-button', 'Sparkle Button', SparkleButton, 'A solid button that sprinkles twinkling stars while you hover it.', {
     children: label('Make it magic'),
-    colors: colors('Star colours', ['#fde047', '#c6f432', '#f0abfc', '#ffffff']),
+    background: color('Button colour', '#1a0e08'),
+    colors: colors('Star colours', ['#fde047', '#f97316', '#f0abfc', '#ffffff']),
   }),
   button('fireworks-button', 'Fireworks Button', FireworksButton, 'Every click launches rockets that burst into fireworks above the button.', {
     children: label('Light it up'),
@@ -98,15 +98,6 @@ export default [
     color: color('Liquid colour', '#22d3ee'),
     fillTextColor: color('Text colour when full', '#09090b'),
   }),
-  {
-    ...button('rocket-button', 'Rocket Button', RocketButton, 'The rocket shakes, blasts off in a puff of smoke, and the label rolls to done.', {}),
-    controls: {
-      label: text('Label', 'Launch'),
-      doneLabel: text('Done label', 'Launched'),
-      color: color('Colour', '#f97316'),
-    },
-    usage: (p) => jsx('RocketButton', p),
-  },
   {
     ...button('heart-button', 'Heart Button', HeartButton, 'A like button: the heart pops, sparks fly out and the counter rolls up.', {}),
     controls: {

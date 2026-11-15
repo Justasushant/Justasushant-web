@@ -11,7 +11,6 @@ import elements from './catalog/elements.jsx'
 import loaders from './catalog/loaders.jsx'
 import footers from './catalog/footers.jsx'
 // Templates are built (see ./catalog/templates.jsx) but not published yet
-import heroes from './catalog/heroes.jsx'
 import scenes from './catalog/scenes.jsx'
 import { defaultsOf, indent } from './controls.js'
 
@@ -22,7 +21,6 @@ export const components = [
   ...cards,
   ...elements,
   ...footers,
-  ...heroes,
   ...scenes,
   ...loaders,
   ...text,

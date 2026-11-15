@@ -27,17 +27,17 @@ const note = { fontSize: 'max(11px, 1.7cqw)' }
 const layouts = {
   // Lines of code typing out on a dark screen
   terminal: ({ page, i, label }) => (
-    <Page style={{ background: '#071821', color: '#cfe8f1' }} className="font-mono">
+    <Page style={{ background: '#1a0e08', color: '#fff6ef' }} className="font-mono">
       <Corner label={label} i={i} />
       <div className="flex size-full flex-col justify-center" style={{ padding: '0 6cqw', gap: '1.6cqw' }}>
         {page.lines.map((line, j) => (
           <p key={j} style={{ fontSize: 'max(10px, 1.8cqw)', opacity: 0.45 + j * 0.12 }}>
-            <span style={{ color: '#9bbbc7' }}>{String(j + 1).padStart(2, '0')}</span>
+            <span style={{ color: '#ffb27a' }}>{String(j + 1).padStart(2, '0')}</span>
             {'  '}
             {line}
           </p>
         ))}
-        <p className="font-bold" style={{ fontSize: '9cqw', color: '#9bbbc7', lineHeight: 1 }}>
+        <p className="font-bold" style={{ fontSize: '9cqw', color: '#ffb27a', lineHeight: 1 }}>
           {page.title}
           <span className="animate-pulse">_</span>
         </p>
@@ -45,31 +45,71 @@ const layouts = {
     </Page>
   ),
 
-  // Big soft colour blobs, like an out-of-focus photo
-  aura: ({ page, i, label }) => (
-    <Page style={{ background: page.bg, color: '#fff' }}>
-      {page.blobs.map(([x, y, s, c], j) => (
-        <span
-          key={j}
-          className="absolute rounded-full"
-          style={{ left: `${x}%`, top: `${y}%`, width: `${s}cqw`, height: `${s}cqw`, background: c, filter: 'blur(6cqw)' }}
-        />
-      ))}
+  // One big line of type on a flat colour
+  type: ({ page, i, label }) => (
+    <Page style={{ background: page.bg, color: page.color }}>
       <Corner label={label} i={i} />
-      <div className="relative flex size-full flex-col items-center justify-center text-center">
-        <p className="font-light italic tracking-tight" style={{ fontSize: '11cqw', lineHeight: 0.95 }}>
+      <div className="flex size-full flex-col justify-end" style={{ padding: '6cqw' }}>
+        <p className="font-semibold" style={{ fontSize: '12cqw', lineHeight: 0.95, letterSpacing: '-0.04em' }}>
           {page.title}
         </p>
-        <p className="mt-[2cqw] opacity-80" style={note}>
+        <p className="opacity-70" style={{ ...note, maxWidth: '50cqw', marginTop: '2cqw' }}>
           {page.note}
         </p>
       </div>
     </Page>
   ),
 
-  // A product shot with a name and price
+  // Words on the left, a solid block with a flat shape on the right
+  split: ({ page, i, label }) => (
+    <Page style={{ background: page.bg, color: page.color }}>
+      <div className="grid size-full grid-cols-2">
+        <div className="flex flex-col justify-between" style={{ padding: '6cqw' }}>
+          <span className="font-mono uppercase tracking-widest opacity-60" style={{ fontSize: 'max(10px, 1.4cqw)' }}>
+            {label} · {String(i + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <p className="font-semibold" style={{ fontSize: '9cqw', lineHeight: 0.95, letterSpacing: '-0.04em' }}>
+              {page.title}
+            </p>
+            <p className="opacity-70" style={{ ...note, marginTop: '2cqw' }}>
+              {page.note}
+            </p>
+          </div>
+        </div>
+        <div className="grid place-items-center" style={{ background: page.block }}>
+          <span className="block rounded-full" style={{ width: '24cqw', height: '24cqw', background: page.dot }} />
+        </div>
+      </div>
+    </Page>
+  ),
+
+  // A short index: a title and ruled rows
+  list: ({ page, i, label }) => (
+    <Page style={{ background: page.bg, color: page.color }}>
+      <Corner label={label} i={i} />
+      <div className="flex size-full flex-col justify-center" style={{ padding: '0 6cqw' }}>
+        <p className="font-semibold" style={{ fontSize: '8cqw', lineHeight: 1, letterSpacing: '-0.04em' }}>
+          {page.title}
+        </p>
+        <ul style={{ marginTop: '3cqw', ...note }}>
+          {page.rows.map(([name, value]) => (
+            <li
+              key={name}
+              className="flex justify-between"
+              style={{ padding: '1.2cqw 0', borderTop: '1px solid color-mix(in srgb, currentColor 22%, transparent)' }}
+            >
+              <span>{name}</span>
+              <span className="opacity-60">{value}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Page>
+  ),
+
   gallery: ({ page, i, label }) => (
-    <Page style={{ background: page.bg, color: '#18181b' }}>
+    <Page style={{ background: page.bg, color: '#1a0e08' }}>
       <Corner label={label} i={i} />
       <div className="grid size-full grid-cols-2 items-center" style={{ padding: '0 6cqw', gap: '4cqw' }}>
         <div className="grid aspect-square place-items-center rounded-[3cqw]" style={{ background: page.shade }}>
@@ -132,7 +172,7 @@ const layouts = {
 
   // A page from a printed book
   book: ({ page, i }) => (
-    <Page style={{ background: '#f4ecd8', color: '#3b2f22' }} className="font-serif">
+    <Page style={{ background: '#fff6ef', color: '#1a0e08' }} className="font-serif">
       <div className="flex size-full flex-col" style={{ padding: '6cqw 9cqw' }}>
         <p className="text-center italic opacity-60" style={note}>
           The Little Book of Components
@@ -158,7 +198,7 @@ const layouts = {
 
   // A numbered step in a process, on a card
   step: ({ page, i, label }) => (
-    <Page style={{ background: page.bg, color: '#18181b' }}>
+    <Page style={{ background: page.bg, color: '#1a0e08' }}>
       <Corner label={label} i={i} />
       <div className="flex size-full items-center" style={{ padding: '0 6cqw', gap: '5cqw' }}>
         <span
@@ -182,50 +222,6 @@ const layouts = {
     </Page>
   ),
 
-  // A planet floating in space
-  space: ({ page, i, label }) => (
-    <Page style={{ background: 'radial-gradient(circle at 70% 50%, #111827, #000 70%)', color: '#fff' }}>
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-70"
-        style={{
-          backgroundImage:
-            'radial-gradient(1px 1px at 10% 20%, #fff, transparent), radial-gradient(1px 1px at 30% 70%, #fff, transparent), radial-gradient(1.5px 1.5px at 55% 15%, #fff, transparent), radial-gradient(1px 1px at 85% 80%, #fff, transparent), radial-gradient(1px 1px at 45% 45%, #fff, transparent), radial-gradient(1.5px 1.5px at 92% 30%, #fff, transparent)',
-        }}
-      />
-      <span
-        aria-hidden
-        className="absolute rounded-full"
-        style={{
-          width: '38cqw',
-          height: '38cqw',
-          right: '8cqw',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          background: page.planet,
-          boxShadow: `0 0 12cqw ${page.glow}, inset -6cqw -4cqw 8cqw rgba(0,0,0,0.6)`,
-        }}
-      />
-      {page.ring && (
-        <span
-          aria-hidden
-          className="absolute rounded-[50%] border-[1.2cqw] border-amber-200/50"
-          style={{ width: '60cqw', height: '14cqw', right: '-3cqw', top: '50%', transform: 'translateY(-50%) rotate(-12deg)' }}
-        />
-      )}
-      <Corner label={label} i={i} />
-      <div className="relative flex size-full flex-col justify-center" style={{ padding: '0 6cqw' }}>
-        <p className="font-mono uppercase tracking-widest opacity-60" style={note}>
-          {page.distance}
-        </p>
-        <p className="font-semibold tracking-tight" style={{ fontSize: '11cqw', lineHeight: 1 }}>
-          {page.title}
-        </p>
-      </div>
-    </Page>
-  ),
-
-  // A paint swatch
   swatch: ({ page, i, label }) => (
     <Page style={{ background: page.bg, color: page.color }}>
       <Corner label={label} i={i} />
@@ -249,7 +245,7 @@ const layouts = {
 
   // The front page of a newspaper
   editorial: ({ page, i }) => (
-    <Page style={{ background: '#fafaf9', color: '#0c0a09' }}>
+    <Page style={{ background: '#f8f4ee', color: '#1a0e08' }}>
       <div className="flex size-full flex-col" style={{ padding: '5cqw 6cqw' }}>
         <div className="flex items-end justify-between border-b-[0.4cqw] border-current pb-[1cqw]">
           <p className="font-serif font-black italic" style={{ fontSize: '5cqw', lineHeight: 1 }}>
@@ -273,79 +269,6 @@ const layouts = {
     </Page>
   ),
 
-  // A retro game level on a checkerboard
-  pixel: ({ page, i, label }) => (
-    <Page
-      style={{
-        background: page.bg,
-        backgroundImage: `repeating-conic-gradient(${page.tile} 0 25%, transparent 0 50%)`,
-        backgroundSize: '8cqw 8cqw',
-        color: '#fff',
-      }}
-      className="font-mono"
-    >
-      <Corner label={label} i={i} />
-      <div className="flex size-full flex-col items-center justify-center text-center">
-        <p className="font-bold uppercase" style={{ fontSize: '3cqw', letterSpacing: '0.4em' }}>
-          Level {i + 1}
-        </p>
-        <p
-          className="font-black uppercase"
-          style={{ fontSize: '11cqw', lineHeight: 1, textShadow: '0.8cqw 0.8cqw 0 #000' }}
-        >
-          {page.title}
-        </p>
-        <p className="mt-[2cqw] bg-black px-[2cqw] py-[0.8cqw]" style={note}>
-          {page.note}
-        </p>
-      </div>
-    </Page>
-  ),
-
-  // Neon cyberpunk sign with split colour channels
-  neon: ({ page, i, label }) => (
-    <Page style={{ background: '#05010a', color: '#fff' }}>
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-40"
-        style={{ backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 4px)' }}
-      />
-      <Corner label={label} i={i} className="text-fuchsia-300" />
-      <div className="relative flex size-full flex-col items-center justify-center text-center">
-        <p
-          className="font-black uppercase tracking-tight"
-          style={{ fontSize: '17cqw', lineHeight: 0.9, textShadow: `-0.8cqw 0 ${page.a}, 0.8cqw 0 ${page.b}` }}
-        >
-          {page.title}
-        </p>
-        <p className="mt-[2cqw] font-mono uppercase tracking-widest" style={{ ...note, color: page.b }}>
-          {page.note}
-        </p>
-      </div>
-    </Page>
-  ),
-
-  // Layered mountains under a changing sky
-  landscape: ({ page, i, label }) => (
-    <Page style={{ background: page.sky, color: '#fff' }}>
-      <span
-        aria-hidden
-        className="absolute rounded-full"
-        style={{ width: '14cqw', height: '14cqw', left: '62%', top: '18%', background: page.sun, boxShadow: `0 0 8cqw ${page.sun}` }}
-      />
-      <svg aria-hidden viewBox="0 0 100 50" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-3/5 w-full">
-        <polygon points="0,50 0,22 18,10 34,26 52,8 70,24 86,12 100,20 100,50" fill={page.hills[0]} />
-        <polygon points="0,50 0,32 22,20 40,34 60,22 78,36 100,26 100,50" fill={page.hills[1]} />
-        <polygon points="0,50 0,42 26,34 50,44 74,36 100,42 100,50" fill={page.hills[2]} />
-      </svg>
-      <Corner label={label} i={i} />
-      <div className="relative flex h-1/2 flex-col justify-end" style={{ padding: '0 6cqw' }}>
-        <p className="font-semibold tracking-tight" style={{ fontSize: '11cqw', lineHeight: 1 }}>
-          {page.title}
-        </p>
-      </div>
-    </Page>
-  ),
 }
 
 // ─── Page sets, one per transition ───────────────────────────────────────────
@@ -358,28 +281,28 @@ const sets = {
     { layout: 'terminal', title: 'Shipped', lines: ['git push origin main', 'deploy: ready', 'scroll up to rewind'] },
   ],
   'blur-switch': [
-    { layout: 'aura', bg: '#1e1b4b', title: 'Out of focus', note: 'Scroll to melt into the next page.', blobs: [[10, 20, 40, '#f472b6'], [55, 50, 45, '#6366f1']] },
-    { layout: 'aura', bg: '#422006', title: 'Golden hour', note: 'Everything goes soft for a moment.', blobs: [[50, 10, 45, '#f59e0b'], [5, 55, 35, '#ef4444']] },
-    { layout: 'aura', bg: '#042f2e', title: 'Sea haze', note: 'Then it sharpens again.', blobs: [[20, 40, 50, '#14b8a6'], [65, 5, 30, '#a3e635']] },
-    { layout: 'aura', bg: '#18181b', title: 'Clear', note: 'Scroll back up to rewind.', blobs: [[35, 30, 40, '#e4e4e7']] },
+    {layout:'type',bg:'#f8f4ee',color:'#1a0e08',title:'Soft focus',note:'Scroll, and the page melts away.'},
+    {layout:'type',bg:'#1a0e08',color:'#fff6ef',title:'Out of sight',note:'Another page waits underneath.'},
+    {layout:'type',bg:'#e8500e',color:'#1a0e08',title:'Coming into view',note:'It sharpens as you settle.'},
+    {layout:'type',bg:'#e8e0d6',color:'#1a0e08',title:'Clear again',note:'Scroll back up to rewind.'},
   ],
   'horizontal-scroll': [
-    { layout: 'gallery', bg: '#fef3c7', shade: '#fde68a', object: '#f59e0b', radius: '50%', title: 'Sun Lamp', price: '$129' },
-    { layout: 'gallery', bg: '#dbeafe', shade: '#bfdbfe', object: '#2563eb', radius: '1cqw', title: 'Blue Stool', price: '$89' },
-    { layout: 'gallery', bg: '#fce7f3', shade: '#fbcfe8', object: '#db2777', radius: '50% 50% 1cqw 1cqw', title: 'Arch Vase', price: '$64' },
-    { layout: 'gallery', bg: '#dcfce7', shade: '#bbf7d0', object: '#16a34a', radius: '30%', title: 'Moss Pot', price: '$42' },
+    {layout:'gallery',bg:'#f8f4ee',shade:'#e8e0d6',object:'#e8500e',radius:'50%',title:'Sun Lamp',price:'$129'},
+    {layout:'gallery',bg:'#e8e0d6',shade:'#d2c7bc',object:'#1a0e08',radius:'1cqw',title:'Oak Stool',price:'$89'},
+    {layout:'gallery',bg:'#fff6ef',shade:'#f3eee7',object:'#c2410c',radius:'50% 50% 1cqw 1cqw',title:'Arch Vase',price:'$64'},
+    {layout:'gallery',bg:'#f8f4ee',shade:'#e8e0d6',object:'#8b786b',radius:'30%',title:'Clay Pot',price:'$42'},
   ],
   'snap-scroll': [
-    { layout: 'stat', bg: '#c6f432', color: '#09090b', title: '98%', note: 'of visitors scroll past the first screen.' },
-    { layout: 'stat', bg: '#09090b', color: '#fafafa', title: '12ms', note: 'to snap each page into place.' },
-    { layout: 'stat', bg: '#f97316', color: '#09090b', title: '4.9', note: 'average rating from people who like snappy things.' },
-    { layout: 'stat', bg: '#e4e4e7', color: '#09090b', title: '0', note: 'animation libraries used.' },
+    { layout: 'stat', bg: '#e8500e', color: '#1a0e08', title: '98%', note: 'of visitors scroll past the first screen.' },
+    { layout: 'stat', bg: '#1a0e08', color: '#fafafa', title: '12ms', note: 'to snap each page into place.' },
+    { layout: 'stat', bg: '#f97316', color: '#1a0e08', title: '4.9', note: 'average rating from people who like snappy things.' },
+    { layout: 'stat', bg: '#e4e4e7', color: '#1a0e08', title: '0', note: 'animation libraries used.' },
   ],
   'cube-rotate': [
-    { layout: 'poster', bg: '#ef4444', color: '#fff', big: 'F', title: 'Front', note: 'Each page is a face of the cube.' },
-    { layout: 'poster', bg: '#3b82f6', color: '#fff', big: 'R', title: 'Right', note: 'It turns a quarter each scroll.' },
-    { layout: 'poster', bg: '#facc15', color: '#18181b', big: 'B', title: 'Back', note: 'Halfway around now.' },
-    { layout: 'poster', bg: '#22c55e', color: '#052e16', big: 'L', title: 'Left', note: 'One more turn and you are home.' },
+    {layout:'poster',bg:'#1a0e08',color:'#fff6ef',big:'F',title:'Front',note:'Each page is a face of the cube.'},
+    {layout:'poster',bg:'#e8500e',color:'#1a0e08',big:'R',title:'Right',note:'It turns a quarter each scroll.'},
+    {layout:'poster',bg:'#e8e0d6',color:'#1a0e08',big:'B',title:'Back',note:'Halfway around now.'},
+    {layout:'poster',bg:'#f8f4ee',color:'#1a0e08',big:'L',title:'Left',note:'One more turn and you are home.'},
   ],
   'book-flip': [
     { layout: 'book', title: 'A Button Is Born', text: 'Once upon a time, a plain grey button wished it could do more than be clicked. It dreamed of ripples, of glows, of tiny springs.' },
@@ -388,22 +311,22 @@ const sets = {
     { layout: 'book', title: 'The End', text: 'And they all rendered happily at sixty frames a second. Turn back the pages to read it again.' },
   ],
   'stack-scroll': [
-    { layout: 'step', bg: '#f4f4f5', accent: '#6366f1', title: 'Research', note: 'Find out what people need.' },
-    { layout: 'step', bg: '#e4e4e7', accent: '#ec4899', title: 'Sketch', note: 'Draw rough ideas, fast.' },
-    { layout: 'step', bg: '#d4d4d8', accent: '#f59e0b', title: 'Build', note: 'Turn the best sketch into code.' },
-    { layout: 'step', bg: '#c6f432', accent: '#18181b', title: 'Ship', note: 'Put it in front of real people.' },
+    {layout:'step',bg:'#f8f4ee',accent:'#1a0e08',title:'Research',note:'Find out what people need.'},
+    {layout:'step',bg:'#e8e0d6',accent:'#1a0e08',title:'Sketch',note:'Draw rough ideas, fast.'},
+    {layout:'step',bg:'#d2c7bc',accent:'#1a0e08',title:'Build',note:'Turn the best sketch into code.'},
+    {layout:'step',bg:'#e8500e',accent:'#1a0e08',title:'Ship',note:'Put it in front of real people.'},
   ],
   'zoom-switch': [
-    { layout: 'space', title: 'Earth', distance: 'You are here', planet: 'radial-gradient(circle at 35% 35%, #60a5fa, #1d4ed8 60%, #14532d)', glow: '#3b82f680' },
-    { layout: 'space', title: 'Moon', distance: '384,400 km', planet: 'radial-gradient(circle at 35% 35%, #e5e7eb, #6b7280)', glow: '#e5e7eb40' },
-    { layout: 'space', title: 'Mars', distance: '225 million km', planet: 'radial-gradient(circle at 35% 35%, #fb923c, #9a3412)', glow: '#f9731660' },
-    { layout: 'space', title: 'Saturn', distance: '1.4 billion km', planet: 'radial-gradient(circle at 35% 35%, #fde68a, #b45309)', glow: '#f59e0b50', ring: true },
+    {layout:'split',bg:'#f8f4ee',color:'#1a0e08',title:'Earth',note:'You are here.',block:'#1a0e08',dot:'#3b6fd8'},
+    {layout:'split',bg:'#1a0e08',color:'#fff6ef',title:'Moon',note:'384,400 km away.',block:'#e8e0d6',dot:'#b4aea4'},
+    {layout:'split',bg:'#f8f4ee',color:'#1a0e08',title:'Mars',note:'225 million km away.',block:'#e8500e',dot:'#1a0e08'},
+    {layout:'split',bg:'#e8e0d6',color:'#1a0e08',title:'Saturn',note:'1.4 billion km away.',block:'#1a0e08',dot:'#e9c46a'},
   ],
   'circle-reveal': [
-    { layout: 'swatch', bg: '#c6f432', color: '#1a2e05', title: 'Lime', tints: ['#ecfccb', '#d9f99d', '#a3e635'] },
-    { layout: 'swatch', bg: '#fb7185', color: '#4c0519', title: 'Coral', tints: ['#ffe4e6', '#fecdd3', '#e11d48'] },
-    { layout: 'swatch', bg: '#0ea5e9', color: '#082f49', title: 'Ocean', tints: ['#e0f2fe', '#7dd3fc', '#0369a1'] },
-    { layout: 'swatch', bg: '#7c3aed', color: '#f5f3ff', title: 'Plum', tints: ['#ede9fe', '#c4b5fd', '#4c1d95'] },
+    {layout:'swatch',bg:'#e8500e',color:'#1a0e08',title:'Orange',tints:['#ffedd5','#fdba74','#ea580c']},
+    {layout:'swatch',bg:'#e8e0d6',color:'#1a0e08',title:'Sand',tints:['#f8f4ee','#d2c7bc','#8b786b']},
+    {layout:'swatch',bg:'#1a0e08',color:'#fff6ef',title:'Ink',tints:['#e8e0d6','#8b786b','#43291c']},
+    {layout:'swatch',bg:'#f8f4ee',color:'#1a0e08',title:'Cream',tints:['#fff6ef','#e8e0d6','#d2c7bc']},
   ],
   'split-reveal': [
     { layout: 'editorial', title: 'Page Splits in Two, Nobody Hurt', columns: ['Witnesses say both halves slid away calmly.', 'The next page was found safe underneath.', 'Experts call it a clean break.'] },
@@ -412,36 +335,36 @@ const sets = {
     { layout: 'editorial', title: 'Final Edition: Thanks for Reading', columns: ['Scroll back up for older issues.', 'All stories are free to copy.', 'Printed with zero dependencies.'] },
   ],
   'mosaic-switch': [
-    { layout: 'pixel', bg: '#1d4ed8', tile: '#1e40af', title: 'Start', note: 'Press scroll to play' },
-    { layout: 'pixel', bg: '#15803d', tile: '#166534', title: 'Forest', note: 'Tiles cover the screen' },
-    { layout: 'pixel', bg: '#b91c1c', tile: '#991b1b', title: 'Lava', note: 'Then they peel away' },
-    { layout: 'pixel', bg: '#6d28d9', tile: '#5b21b6', title: 'Boss', note: 'You win. Scroll up to replay' },
+    {layout:'list',bg:'#f8f4ee',color:'#1a0e08',title:'Starters',rows:[['Soup of the day','4'],['House salad','6'],['Warm bread','3']]},
+    {layout:'list',bg:'#1a0e08',color:'#fff6ef',title:'Mains',rows:[['Roast chicken','14'],['Mushroom pasta','12'],['Grilled fish','16']]},
+    {layout:'list',bg:'#e8500e',color:'#1a0e08',title:'Desserts',rows:[['Lemon tart','6'],['Chocolate cake','7'],['Ice cream','4']]},
+    {layout:'list',bg:'#e8e0d6',color:'#1a0e08',title:'Drinks',rows:[['Filter coffee','3'],['Fresh juice','5'],['Sparkling water','2']]},
   ],
   'glitch-switch': [
-    { layout: 'neon', title: 'Signal', note: 'Channel 01 // locked', a: '#ff00e5', b: '#00f0ff' },
-    { layout: 'neon', title: 'Noise', note: 'Channel 02 // interference', a: '#00ff85', b: '#ff003c' },
-    { layout: 'neon', title: 'Error', note: 'Channel 03 // corrupted', a: '#ffe600', b: '#7a00ff' },
-    { layout: 'neon', title: 'Reset', note: 'Channel 04 // scroll up', a: '#00f0ff', b: '#ff00e5' },
+    {layout:'type',bg:'#1a0e08',color:'#fff6ef',title:'Signal',note:'Channel one, loud and clear.'},
+    {layout:'type',bg:'#f8f4ee',color:'#1a0e08',title:'Noise',note:'Channel two, a little rough.'},
+    {layout:'type',bg:'#e8500e',color:'#1a0e08',title:'Error',note:'Channel three, lost.'},
+    {layout:'type',bg:'#1a0e08',color:'#fff6ef',title:'Reset',note:'Scroll back up to start over.'},
   ],
   'swing-switch': [
-    { layout: 'poster', bg: '#fb923c', color: '#431407', big: 'Hi', title: 'Swing', note: 'The page swings up off its corner.' },
-    { layout: 'poster', bg: '#a3e635', color: '#1a2e05', big: 'Oh', title: 'Hang', note: 'It dangles for a moment.' },
-    { layout: 'poster', bg: '#f472b6', color: '#500724', big: 'Up', title: 'Drop', note: 'Then the next one rises underneath.' },
-    { layout: 'poster', bg: '#38bdf8', color: '#082f49', big: 'Ok', title: 'Land', note: 'Scroll back up to rewind.' },
+    {layout:'poster',bg:'#e8500e',color:'#1a0e08',big:'Hi',title:'Swing',note:'The page swings up off its corner.'},
+    {layout:'poster',bg:'#f8f4ee',color:'#1a0e08',big:'Oh',title:'Hang',note:'It dangles for a moment.'},
+    {layout:'poster',bg:'#1a0e08',color:'#fff6ef',big:'Up',title:'Drop',note:'Then the next one rises underneath.'},
+    {layout:'poster',bg:'#e8e0d6',color:'#1a0e08',big:'Ok',title:'Land',note:'Scroll back up to rewind.'},
   ],
   'parallax-scroll': [
-    { layout: 'landscape', title: 'Dawn', sky: 'linear-gradient(#fda4af, #fde68a)', sun: '#fff7ed', hills: ['#c084fc', '#9333ea', '#581c87'] },
-    { layout: 'landscape', title: 'Noon', sky: 'linear-gradient(#38bdf8, #bae6fd)', sun: '#fef9c3', hills: ['#4ade80', '#16a34a', '#14532d'] },
-    { layout: 'landscape', title: 'Dusk', sky: 'linear-gradient(#f97316, #7c2d12)', sun: '#fde68a', hills: ['#9a3412', '#7c2d12', '#431407'] },
-    { layout: 'landscape', title: 'Night', sky: 'linear-gradient(#020617, #1e1b4b)', sun: '#e2e8f0', hills: ['#1e293b', '#0f172a', '#020617'] },
+    {layout:'split',bg:'#f8f4ee',color:'#1a0e08',title:'Dawn',note:'The day starts slowly.',block:'#f4c7a1',dot:'#fff6ef'},
+    {layout:'split',bg:'#f8f4ee',color:'#1a0e08',title:'Noon',note:'Everything is in view.',block:'#bcd7ea',dot:'#f7d774'},
+    {layout:'split',bg:'#1a0e08',color:'#fff6ef',title:'Dusk',note:'The light turns warm.',block:'#e8500e',dot:'#fff6ef'},
+    {layout:'split',bg:'#1a0e08',color:'#fff6ef',title:'Night',note:'Quiet again.',block:'#2a1309',dot:'#e8e0d6'},
   ],
 }
 
 sets['panel-switch'] = [
-  { layout: 'poster', bg: '#f2efe6', color: '#22211f', big: '01', title: 'Chapter one', note: 'Scroll, and the next page slams in panel by panel.' },
-  { layout: 'poster', bg: '#22211f', color: '#f2efe6', big: '02', title: 'The rival', note: 'Every panel flies in from its own side.' },
-  { layout: 'poster', bg: '#d3cec2', color: '#22211f', big: '03', title: 'Showdown', note: 'Then the gutters close and the page is whole.' },
-  { layout: 'poster', bg: '#f2efe6', color: '#22211f', big: '04', title: 'To be continued', note: 'Scroll back up to rewind.' },
+  { layout: 'poster', bg: '#f8f4ee', color: '#1a0e08', big: '01', title: 'Chapter one', note: 'Scroll, and the next page slams in panel by panel.' },
+  { layout: 'poster', bg: '#1a0e08', color: '#f8f4ee', big: '02', title: 'The rival', note: 'Every panel flies in from its own side.' },
+  { layout: 'poster', bg: '#e8e0d6', color: '#1a0e08', big: '03', title: 'Showdown', note: 'Then the gutters close and the page is whole.' },
+  { layout: 'poster', bg: '#f8f4ee', color: '#1a0e08', big: '04', title: 'To be continued', note: 'Scroll back up to rewind.' },
 ]
 
 // The newer transitions borrow a theme that suits them
