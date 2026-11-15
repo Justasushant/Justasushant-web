@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useParams } from 'react-router'
+import { Link, NavLink, useLocation, useParams, useSearchParams } from 'react-router'
 import { allCategories, categories, comingSoon, components } from '../registry/index.jsx'
 import Badge from './Badge.jsx'
 
@@ -18,6 +18,25 @@ export default function LabSidebar({ onNavigate }) {
   const { slug } = useParams()
   const activeCategory = components.find((c) => c.slug === slug)?.category
   const [collapsed, setCollapsed] = useState(readCollapsed)
+  // On the index page the search text is in the URL, so the grid filters too
+  const { pathname } = useLocation()
+  const [params, setParams] = useSearchParams()
+  const [local, setLocal] = useState('')
+  const onIndex = pathname === '/lab'
+  const query = onIndex ? params.get('q') || '' : local
+  const setQuery = (value) =>
+    onIndex
+      ? setParams(
+          (prev) => {
+            const next = new URLSearchParams(prev)
+            if (value) next.set('q', value)
+            else next.delete('q')
+            return next
+          },
+          { replace: true },
+        )
+      : setLocal(value)
+  const q = query.trim().toLowerCase()
 
   const save = (next) => {
     setCollapsed(next)
@@ -41,6 +60,19 @@ export default function LabSidebar({ onNavigate }) {
 
   return (
     <nav ref={ref} className="space-y-5 text-sm">
+      <label className="relative block">
+        <span className="sr-only">Search components</span>
+        <svg viewBox="0 0 24 24" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-500" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search…"
+          className="w-full rounded-full border border-white/10 bg-white/5 py-2 pl-9 pr-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-accent/60"
+        />
+      </label>
       <div className="flex items-center gap-1">
         <NavLink
           to="/lab"
@@ -70,6 +102,7 @@ export default function LabSidebar({ onNavigate }) {
       {allCategories.map((category) => {
         // Empty categories get a single "coming soon" link instead of a list
         if (comingSoon.includes(category)) {
+          if (q) return null
           return (
             <Link
               key={category}
@@ -86,9 +119,12 @@ export default function LabSidebar({ onNavigate }) {
             </Link>
           )
         }
-        const items = components.filter((c) => c.category === category)
+        const items = components.filter(
+          (c) => c.category === category && (!q || `${c.name} ${c.description} ${c.category}`.toLowerCase().includes(q)),
+        )
+        if (q && items.length === 0) return null
         // The category you're looking at always stays open
-        const open = !collapsed.has(category) || category === activeCategory
+        const open = q ? true : !collapsed.has(category) || category === activeCategory
         return (
           <div key={category}>
             <button

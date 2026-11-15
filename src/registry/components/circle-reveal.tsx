@@ -21,13 +21,21 @@ export default function CircleReveal({
   const count = pages.length
   const { ref, index, go } = usePager(count, duration + 150, autoPlay)
 
-  // The next page grows out of wherever the cursor was
+  // Where the cursor is. It is only read at the moment a page switches, so
+  // moving the mouse during a reveal never disturbs the circle that is growing.
+  const pointer = useRef('50% 50%')
+  const origins = useRef<Record<number, string>>({})
+  const shown = useRef(0)
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
     const el = ref.current
     if (!el) return
     const r = el.getBoundingClientRect()
-    el.style.setProperty('--cx', `${e.clientX - r.left}px`)
-    el.style.setProperty('--cy', `${e.clientY - r.top}px`)
+    pointer.current = `${e.clientX - r.left}px ${e.clientY - r.top}px`
+  }
+  // A page opens from where the cursor was, and closes back into that same spot
+  if (index !== shown.current) {
+    if (index > shown.current) origins.current[index] = pointer.current
+    shown.current = index
   }
 
   return (
@@ -46,7 +54,7 @@ export default function CircleReveal({
             clipPath:
               i === 0
                 ? undefined
-                : `circle(${i <= index ? 150 : 0}% at var(--cx, 50%) var(--cy, 50%))`,
+                : `circle(${i <= index ? 150 : 0}% at ${origins.current[i] ?? '50% 50%'})`,
             transition: `clip-path ${duration}ms cubic-bezier(.77, 0, .175, 1)`,
           }}
         >

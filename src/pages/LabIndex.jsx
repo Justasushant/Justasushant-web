@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useSearchParams } from 'react-router'
 import Nav from '../components/Nav.jsx'
 import Footer from '../components/Footer.jsx'
@@ -9,11 +8,21 @@ import { allCategories, comingSoon, components } from '../registry/index.jsx'
 import { site } from '../data/site.js'
 
 export default function LabIndex() {
-  const [query, setQuery] = useState('')
   // The category lives in the URL (/lab?category=Templates) so the sidebar can link to it
   const [params, setParams] = useSearchParams()
   const category = params.get('category') || 'All'
-  const setCategory = (next) => setParams(next === 'All' ? {} : { category: next }, { replace: true })
+  // The search text lives in the URL too, so the sidebar's search box drives this page
+  const query = params.get('q') || ''
+  const setQuery = (value) =>
+    setParams(
+      (prev) => {
+        const next = new URLSearchParams(prev)
+        if (value) next.set('q', value)
+        else next.delete('q')
+        return next
+      },
+      { replace: true },
+    )
 
   const q = query.trim().toLowerCase()
   const matches = components.filter(
@@ -48,54 +57,16 @@ export default function LabIndex() {
             </p>
           </div>
 
-          <div className="sticky top-16 z-20 -mx-4 mt-10 flex flex-col gap-3 border-b border-[#1a0e08]/[0.07] bg-[#f8f4ee]/90 px-4 py-4 backdrop-blur sm:mx-0 sm:flex-row sm:items-center sm:px-0">
-            <label className="relative sm:w-60 sm:shrink-0">
-              <span className="sr-only">Search components</span>
-              <svg
-                viewBox="0 0 24 24"
-                className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-zinc-500"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search components…"
-                className="w-full rounded-full border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-accent/60"
-              />
-            </label>
-            <div className="scroll-thin flex min-w-0 gap-1.5 overflow-x-auto">
-              {['All', ...allCategories].map((cat) => {
-                const soon = comingSoon.includes(cat)
-                const count =
-                  cat === 'All' ? components.length : components.filter((c) => c.category === cat).length
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setCategory(cat)}
-                    className={`shrink-0 rounded-full px-3 py-1.5 text-sm transition-colors ${
-                      category === cat
-                        ? 'bg-white text-zinc-950'
-                        : 'text-zinc-400 hover:bg-white/5 hover:text-white'
-                    }`}
-                  >
-                    {cat}{' '}
-                    {soon ? (
-                      <span className="rounded-full bg-amber-400/15 px-1.5 font-mono text-[10px] text-amber-300">
-                        soon
-                      </span>
-                    ) : (
-                      <span className="font-mono text-[11px] opacity-60">{count}</span>
-                    )}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
+          {/* On phones the sidebar is hidden, so the search lives here */}
+          <label className="relative mt-8 block lg:hidden">
+            <span className="sr-only">Search components</span>
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search components…"
+              className="w-full rounded-full border border-white/10 bg-white/5 py-2.5 pl-4 pr-4 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-accent/60"
+            />
+          </label>
 
           {comingSoon.includes(category) ? (
             <TemplatesSoon />

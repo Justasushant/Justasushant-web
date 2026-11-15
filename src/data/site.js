@@ -44,7 +44,7 @@ export const site = {
 }
 
 // Components shown on the home page (the rest live in the Lab)
-export const featured = ['flow-field', 'dock', 'glass-card', 'hover-grid']
+export const featured = ['flow-field', 'mosaic-switch', 'scroll-drum', 'spider-sense-text']
 
 // status: 'soon' shows the "Updating soon" card.
 // When a project ships, set status: 'live' and fill in the links + image.
