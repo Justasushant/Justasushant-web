@@ -46,7 +46,7 @@ export default function PanelSwitch({
     if (index === shown.current) return
     setFrom({ page: shown.current, id: Math.random() })
     shown.current = index
-    const timer = setTimeout(() => setFrom(null), duration + 30)
+    const timer = setTimeout(() => setFrom(null), duration + 230)
     return () => clearTimeout(timer)
   }, [index, duration])
 
@@ -68,6 +68,7 @@ export default function PanelSwitch({
       <style>{`
         ${keyframes}
         @keyframes panel-switch-paper { 0% { opacity: 0 } 15%, 85% { opacity: 1 } 100% { opacity: 0 } }
+        @keyframes panel-switch-outline { 0%, 76% { filter: ${outline} } 90%, 100% { filter: none } }
         @keyframes panel-switch-lines { 0%, 10% { opacity: 0; transform: scale(1.3) } 25% { opacity: 0.35 } 60%, 100% { opacity: 0; transform: scale(1) } }
       `}</style>
       <div className="absolute inset-0">{pages[from ? from.page : index]}</div>
@@ -86,7 +87,7 @@ export default function PanelSwitch({
             }}
           />
           {PANELS.map((_, i) => (
-            <div key={`${from.id}-${i}`} className="absolute inset-0 z-20" style={{ filter: outline } as CSSProperties}>
+            <div key={`${from.id}-${i}`} className="absolute inset-0 z-20" style={{ animation: `panel-switch-outline ${duration}ms linear ${i * 40}ms both` } as CSSProperties}>
               <div
                 className="absolute inset-0"
                 style={{ animation: `panel-switch-${i} ${duration}ms cubic-bezier(.2,1.1,.3,1) ${i * 40}ms both` }}
