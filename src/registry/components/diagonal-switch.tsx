@@ -27,7 +27,7 @@ export default function DiagonalSwitch({
 
   return (
     <div ref={ref} tabIndex={0} className={`relative size-full touch-none overflow-hidden bg-black outline-none ${className}`}>
-      <style>{`@keyframes diagonal-switch-slash { from { transform: translate(-50%, -50%) rotate(-45deg) translateY(-650%) } to { transform: translate(-50%, -50%) rotate(-45deg) translateY(650%) } }`}</style>
+      <style>{`@keyframes diagonal-switch-slash { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(-45deg) translateY(-650%) } 12% { opacity: 1 } 88% { opacity: 1 } 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-45deg) translateY(650%) } }`}</style>
       {pages.map((page, i) => (
         <div
           key={i}
@@ -43,16 +43,15 @@ export default function DiagonalSwitch({
           {page}
         </div>
       ))}
-      {/* The slash: a bright band racing across along the wipe edge */}
+      {/* The slash: a thin solid bar that crosses the screen with the wipe, then fades */}
       <div
         key={index}
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 z-40 h-[12%] w-[300%]"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-40 h-[1.6%] w-[300%]"
         style={{
-          background: `linear-gradient(to bottom, transparent, ${slashColor} 40%, ${slashColor} 60%, transparent)`,
-          animation: index ? `diagonal-switch-slash ${duration}ms cubic-bezier(.7, 0, .2, 1) both` : 'none',
-          opacity: index ? 1 : 0,
-          mixBlendMode: 'difference',
+          background: slashColor,
+          opacity: 0,
+          animation: index ? `diagonal-switch-slash ${duration}ms cubic-bezier(.7, 0, .2, 1) forwards` : 'none',
         }}
       />
       <PageDots count={count} index={index} onSelect={go} />
