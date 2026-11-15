@@ -91,9 +91,11 @@ export default function ClosingScene({
 }: ClosingSceneProps) {
   const section = useRef<HTMLElement>(null)
   const { p, vh } = useSceneProgress(section, autoPlay)
-  const appear = smooth(0, 0.18, p)
-  const night = smooth(0.42, 0.7, p)
-  const sunrise = smooth(0.68, 0.95, p)
+  const appear = smooth(0, 0.14, p)
+  // The dark panel sweeps down the screen. Where its edge is, the first line
+  // is covered and the second line is revealed, in the very same spot.
+  const night = smooth(0.34, 0.74, p)
+  const sunrise = smooth(0.74, 0.96, p)
   const cta = smooth(0.9, 1, p)
 
   return (
@@ -110,16 +112,21 @@ export default function ClosingScene({
           className="absolute inset-x-[-10%] bottom-[-35%] h-[85%]"
           style={{ background: 'radial-gradient(ellipse 60% 70% at 50% 100%, #ff5b14, #c2410c 45%, rgba(194,65,12,0) 72%)', opacity: sunrise, transform: `translateY(${(1 - sunrise) * 30}%)`, filter: 'blur(8px)' }}
         />
-        <h2 className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center text-[clamp(1.5rem,9.5cqw,6.4rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
+        <h2 className="absolute inset-0 grid place-items-center px-4 text-center text-[clamp(1.5rem,9.5cqw,6.4rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
+          <span className="sr-only">
+            {lead} {emphasis}
+          </span>
           <span
-            className="block text-[#1a0e08]"
-            style={{ opacity: appear * (1 - night), filter: `blur(${(1 - appear) * 6 + night * 8}px)`, transform: `translateY(${(1 - appear) * 14}px)` }}
+            aria-hidden
+            className="pointer-events-none absolute inset-0 grid place-items-center px-4 text-[#1a0e08]"
+            style={{ opacity: appear, filter: `blur(${(1 - appear) * 6}px)`, clipPath: `inset(${night * 100}% 0 0 0)` }}
           >
             {lead}
           </span>
           <span
-            className="block text-[#fff6ef]"
-            style={{ opacity: appear, filter: `blur(${(1 - appear) * 4}px)`, transform: `translateY(${(1 - appear) * 14 - night * 0}px)` }}
+            aria-hidden
+            className="pointer-events-none absolute inset-0 grid place-items-center px-4 text-[#fff6ef]"
+            style={{ clipPath: `inset(0 0 ${(1 - night) * 100}% 0)` }}
           >
             {emphasis}
           </span>
