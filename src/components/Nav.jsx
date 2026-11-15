@@ -42,7 +42,7 @@ export default function Nav() {
           <Link to="/" className="text-[15px] font-semibold tracking-tight text-white">
             {site.name}
           </Link>
-          <div className="hidden items-center gap-0.5 md:flex">
+          <div className="ml-auto mr-1 hidden items-center gap-0.5 md:flex">
             {links.map(([label, to]) =>
               to.startsWith('/#') ? (
                 <Link key={to} to={to} className="rounded-lg px-3 py-1.5 text-[15px] text-white/70 transition-colors hover:text-white">
