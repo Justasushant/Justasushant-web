@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router'
 import { site } from '../data/site.js'
 import { categories } from '../registry/index.jsx'
-import ConeizLogo from './ConeizLogo.jsx'
 
 // A dark hero with a glow rising from the bottom, like the end of a day
 export default function Hero() {
@@ -17,11 +16,7 @@ export default function Hero() {
         className="absolute inset-x-[-20%] bottom-[-30%] -z-10 h-[75%]"
         style={{ background: 'radial-gradient(ellipse 65% 90% at 50% 100%, #ff5b14 0%, #e0480c 30%, rgba(194,65,12,0.55) 52%, rgba(194,65,12,0) 74%)', filter: 'blur(10px)' }}
       />
-      <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-sm ring-1 ring-white/15 backdrop-blur">
-        <ConeizLogo className="size-4" />
-        {site.companyRole}, {site.company}
-      </p>
-      <h1 className="mt-7 text-[clamp(3rem,11vw,8.75rem)] leading-[0.94] tracking-[-0.045em] text-[#fff6ef]">
+      <h1 className=" text-[clamp(3rem,11vw,8.75rem)] leading-[0.94] tracking-[-0.045em] text-[#fff6ef]">
         Sushant
         <br />
         Sharma

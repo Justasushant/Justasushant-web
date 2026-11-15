@@ -6,7 +6,7 @@ import LabShowcase from '../components/LabShowcase.jsx'
 import About from '../components/About.jsx'
 import Contact from '../components/Contact.jsx'
 import Footer from '../components/Footer.jsx'
-import { DrumSection, ClosingSection } from '../components/HomeScenes.jsx'
+import { ClosingSection } from '../components/HomeScenes.jsx'
 
 export default function Home() {
   const { hash } = useLocation()
@@ -24,7 +24,6 @@ export default function Home() {
       <main>
         <Hero />
         <LabShowcase />
-        <DrumSection />
         <About />
         <Contact />
         <ClosingSection />

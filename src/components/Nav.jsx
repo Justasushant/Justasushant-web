@@ -5,14 +5,12 @@ import { site } from '../data/site.js'
 const links = [
   ['Lab', '/lab'],
   ['Open Source', '/open-source'],
-  ['About', '/#about'],
 ]
 
 // Everything in the mobile menu, in order
 const menuLinks = [
   ['Lab', '/lab', 'components'],
   ['Open Source', '/open-source', 'coming soon'],
-  ['About', '/#about', 'who is this guy'],
   ['Contact', '/#contact', 'say hello'],
 ]
 

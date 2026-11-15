@@ -34,8 +34,7 @@ export default function LabIndex() {
         </aside>
 
         <main className="min-w-0 pb-24 pt-10 sm:pt-14">
-          <p className="text-[15px] font-semibold text-accent">Components</p>
-          <h1 className="mt-2 text-[clamp(2.6rem,7vw,4.5rem)] leading-none tracking-[-0.04em]">The Lab</h1>
+          <h1 className="text-[clamp(2.6rem,7vw,4.5rem)] leading-none tracking-[-0.04em]">The Lab</h1>
           <p className="mt-4 max-w-xl text-lg text-zinc-400">
             Page transitions, buttons, backgrounds, text effects, cards, loaders and more. Built
             with React and Tailwind CSS, no extra libraries. Open any component to grab its code.
