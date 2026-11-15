@@ -131,15 +131,17 @@ export default function ClosingScene({
             {emphasis}
           </span>
         </h2>
-        <a
-          href={buttonHref}
-          onClick={onLink ? (e) => { e.preventDefault(); onLink(buttonHref) } : undefined}
-          className="absolute bottom-[14%] left-1/2 inline-flex h-12 -translate-x-1/2 items-center gap-2 rounded-[13px] bg-[#fff6ef] px-6 font-medium text-[#1a0e08] shadow-[0_14px_30px_-14px_rgba(255,91,20,.6)]"
-          style={{ opacity: cta, pointerEvents: cta > 0.6 ? 'auto' : 'none', transform: `translate(-50%, ${(1 - cta) * 16}px)` }}
-        >
-          {buttonLabel}
-          <span aria-hidden>→</span>
-        </a>
+        <div className="pointer-events-none absolute inset-x-0 bottom-[14%] flex justify-center">
+          <a
+            href={buttonHref}
+            onClick={onLink ? (e) => { e.preventDefault(); onLink(buttonHref) } : undefined}
+            className="inline-flex h-12 items-center gap-2 rounded-[13px] bg-[#fff6ef] px-6 font-medium text-[#1a0e08] shadow-[0_14px_30px_-14px_rgba(255,91,20,.6)]"
+            style={{ opacity: cta, pointerEvents: cta > 0.6 ? 'auto' : 'none', transform: `translateY(${(1 - cta) * 16}px)` }}
+          >
+            {buttonLabel}
+            <span aria-hidden>→</span>
+          </a>
+        </div>
       </div>
     </section>
   )
